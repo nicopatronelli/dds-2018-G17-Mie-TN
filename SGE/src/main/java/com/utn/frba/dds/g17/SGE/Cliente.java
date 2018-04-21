@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
 
-public class Cliente extends Usuario {
+public class Cliente {
 
 	private String apellido;
 	private String nombre;

@@ -3,7 +3,7 @@ package com.utn.frba.dds.g17.SGE;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 
-public class Administrador extends Usuario {
+public class Administrador {
 
 	private String apellido;
 	private String nombre;
