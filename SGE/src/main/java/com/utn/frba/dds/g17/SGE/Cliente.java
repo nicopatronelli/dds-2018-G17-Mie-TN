@@ -9,7 +9,7 @@ public class Cliente {
 	private String apellido;
 	private String nombre;
 	private String nombreUsuario;
-	private String contraseña;
+	private String password;
 	private String tipoDocumento;
 	private int nroDocumento;
 	private String telefono;
@@ -23,13 +23,13 @@ public class Cliente {
 		this.dispositivos = new ArrayList<Dispositivo>();
 	}
 	
-	public Cliente(String apellido, String nombre, String nombreUsuario, String contraseña, String tipoDocumento,
+	public Cliente(String apellido, String nombre, String nombreUsuario, String password, String tipoDocumento,
 			int nroDocumento, String telefono, String domicilioServicio, DateTime fechaAltaServicio,
 			Categoria categoria, List<Dispositivo> dispositivos) {
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.nombreUsuario = nombreUsuario;
-		this.contraseña = contraseña;
+		this.password = password;
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
 		this.telefono = telefono;
@@ -79,12 +79,12 @@ public class Cliente {
 		this.nombreUsuario = nombreUsuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getpassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
 	public String getTipoDocumento() {

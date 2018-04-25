@@ -1,0 +1,41 @@
+{
+	"clientes": [
+		{
+			"apellido": "Perez",
+			"nombre": "Francisco",
+			"nombreUsuario": "PerezFrancisco",
+			"password": "pancho46",
+			"tipoDocumento": "DNI",
+			"nroDocumento": "22333555",
+			"telefono": "1589458789",
+			"domicilioServicio": "Av Callao 2879",
+			"fechaAltaServicio": "1982-10-09",
+			"categoria": {
+				"cargoFijo": "35.32",
+				"cargoVariable": "0.644"
+			},
+			"dispositivos": [
+				{
+					"nombreGenerico": "TV Samsung LED 55",
+					"consumoPorHora": "105",
+					"encendido": "true"
+				},
+				{
+					"nombreGenerico": "Heladera Patric No Frost",
+					"consumoPorHora": "120",
+					"encendido": "true"
+				},
+				{
+					"nombreGenerico": "Ventilador Liliana 20'",
+					"consumoPorHora": "45",
+					"encendido": "true"
+				},
+				{
+					"nombreGenerico": "Licuadora Philips",
+					"consumoPorHora": "35",
+					"encendido": "false"
+				}
+			]
+		}
+	]
+}

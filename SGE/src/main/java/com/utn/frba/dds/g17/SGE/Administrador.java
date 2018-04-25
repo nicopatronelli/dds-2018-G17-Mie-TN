@@ -8,7 +8,7 @@ public class Administrador {
 	private String apellido;
 	private String nombre;
 	private String nombreUsuario;
-	private String contraseña;
+	private String password;
 	private String domicilio;
 	private DateTime fechaAltaUsuarioSistema;
 	private int nroIdentificacion;
@@ -17,11 +17,11 @@ public class Administrador {
 		
 	}
 	
-	public Administrador(String apellido, String nombre, String nombreUsuario, String contraseña, String domicilio,
+	public Administrador(String apellido, String nombre, String nombreUsuario, String password, String domicilio,
 			DateTime fechaAltaUsuarioSistema, int nroIdentificacion) {
 		this.nombre = nombre;
 		this.nombreUsuario = nombreUsuario;
-		this.contraseña = contraseña;
+		this.password = password;
 		this.domicilio = domicilio;
 		this.fechaAltaUsuarioSistema = fechaAltaUsuarioSistema;
 		this.nroIdentificacion = nroIdentificacion;
@@ -55,12 +55,12 @@ public class Administrador {
 		this.nombreUsuario = nombreUsuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getpassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
 	public String getDomicilio() {
