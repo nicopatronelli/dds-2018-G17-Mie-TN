@@ -1,19 +1,39 @@
 package com.utn.frba.dds.g17.SGE;
 
-public class Dispositivo {
+public class Dispositivo implements IDispositivo {
 
 	private String nombreGenerico;
-	private int consumoPorHora;
+	private long consumoPorHora;
 	private boolean encendido;
 	
 	public Dispositivo() {
 		
 	}
-	
-	public Dispositivo(String nombreGenerico,int consumoPorHora,boolean encendido) {
+
+	public Dispositivo(String nombreGenerico, int consumoPorHora, boolean encendido) {
 		this.nombreGenerico = nombreGenerico;
 		this.consumoPorHora = consumoPorHora;
 		this.encendido = encendido;
+	}
+
+	@Override
+	public boolean estaEncendido() {
+		return this.encendido;
+	}
+	
+	@Override
+	public long cantidadDispositivosEncendidos() {
+		return this.estaEncendido() ? 1 : 0;
+	}
+
+	@Override
+	public long cantidadDispositivosApagados() {
+		return this.estaEncendido() ? 0 : 1;
+	}
+
+	@Override
+	public long cantidadTotalDispositivos() {
+		return this.getClass() != null ? 1 : 0;
 	}
 
 	public String getNombreGenerico() {
@@ -24,16 +44,12 @@ public class Dispositivo {
 		this.nombreGenerico = nombreGenerico;
 	}
 
-	public int getConsumoPorHora() {
+	public long getConsumoPorHora() {
 		return consumoPorHora;
 	}
 
-	public void setConsumoPorHora(int consumoPorHora) {
+	public void setConsumoPorHora(long consumoPorHora) {
 		this.consumoPorHora = consumoPorHora;
-	}
-
-	public boolean isEncendido() {
-		return encendido;
 	}
 
 	public void setEncendido(boolean encendido) {

@@ -46,31 +46,58 @@ public class CargaDatosJson {
 		cliente.setApellido(clienteJsonElement.getAsJsonObject().get("apellido").toString());
 		cliente.setNombre(clienteJsonElement.getAsJsonObject().get("nombre").toString());
 		cliente.setNombreUsuario(clienteJsonElement.getAsJsonObject().get("nombreUsuario").toString());
-		cliente.setpassword(clienteJsonElement.getAsJsonObject().get("password").toString());
+		cliente.setPassword(clienteJsonElement.getAsJsonObject().get("password").toString());
 		cliente.setTipoDocumento(clienteJsonElement.getAsJsonObject().get("tipoDocumento").toString());
 		cliente.setNroDocumento(clienteJsonElement.getAsJsonObject().get("nroDocumento").getAsInt());
-		cliente.setTelefono(clienteJsonElement.getAsJsonObject().get("telefono").toString());
-		cliente.setDomicilioServicio(clienteJsonElement.getAsJsonObject().get("domicilioServicio").toString());
-		String fechaAltaServicio = clienteJsonElement.getAsJsonObject().get("fechaAltaServicio").toString().replaceAll("\"", "");
-		cliente.setFechaAltaServicio(new DateTime(fechaAltaServicio));
 
-		Categoria categoria = generarCategoria(clienteJsonElement);
-		cliente.setCategoria(categoria);
-		
-		List<Dispositivo> dispositivos = generarListaDispositivos(clienteJsonElement);
-		cliente.setDispositivos(dispositivos);
+		List<DomicilioServicio> domicilios = generarListaDomicilios(clienteJsonElement);
+		cliente.setDomicilios(domicilios);
 		
 		return cliente;
 		
 	}
 	
-	private static List<Dispositivo> generarListaDispositivos(JsonElement clienteJsonElement) {
+	private static List<DomicilioServicio> generarListaDomicilios(JsonElement clienteJsonElement) {
 		
-		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+		List<DomicilioServicio> domicilios = new ArrayList<DomicilioServicio>();
 		
-		JsonElement listaDispositivosClienteJsonElement = clienteJsonElement.getAsJsonObject().get("dispositivos");
-		JsonArray dispositivosJsonArray = listaDispositivosClienteJsonElement.getAsJsonArray();
+		JsonElement listaDomiciliosClienteJsonElement = clienteJsonElement.getAsJsonObject().get("domicilios");
+		JsonArray domiciliosJsonArray = listaDomiciliosClienteJsonElement.getAsJsonArray();
+		java.util.Iterator<JsonElement> iter = domiciliosJsonArray.iterator();
+		
+		while (iter.hasNext()) {
+			
+			JsonElement domicilioJsonElement = iter.next();
+			
+			DomicilioServicio domicilio = new DomicilioServicio();
+			
+			domicilio.setTelefono(domicilioJsonElement.getAsJsonObject().get("telefono").toString());
+			
+			String fechaAltaServicio = domicilioJsonElement.getAsJsonObject().get("fechaAltaServicio").toString().replaceAll("\"", "");
+			domicilio.setFechaAltaServicio(new DateTime(fechaAltaServicio));
+			
+			Categoria categoria = generarCategoria(domicilioJsonElement);
+			domicilio.setCategoria(categoria);
+			
+			List<IDispositivo> dispositivos = generarListaDispositivos(domicilioJsonElement);
+			domicilio.setDispositivos(dispositivos);
+			
+			domicilios.add(domicilio);
+			
+		}
+		
+		return domicilios;
+		
+	}
+
+	private static List<IDispositivo> generarListaDispositivos(JsonElement domicilioJsonElement) {
+		
+		List<IDispositivo> dispositivos = new ArrayList<IDispositivo>();
+		
+		JsonElement listaDispositivosJsonElement = domicilioJsonElement.getAsJsonObject().get("dispositivos");
+		JsonArray dispositivosJsonArray = listaDispositivosJsonElement.getAsJsonArray();
 		java.util.Iterator<JsonElement> iter = dispositivosJsonArray.iterator();
+		
 		while (iter.hasNext()) {
 			JsonElement dispositivoElement = iter.next();
 			Dispositivo dispositivo = new Dispositivo();

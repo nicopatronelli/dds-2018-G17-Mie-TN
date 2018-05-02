@@ -2,9 +2,8 @@ package com.utn.frba.dds.g17.SGE;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.joda.time.DateTime;
 
-public class Cliente {
+public class Cliente implements IDispositivo {
 
 	private String apellido;
 	private String nombre;
@@ -12,49 +11,66 @@ public class Cliente {
 	private String password;
 	private String tipoDocumento;
 	private int nroDocumento;
-	private String telefono;
-	private String domicilioServicio;
-	private DateTime fechaAltaServicio;
-	private Categoria categoria;
-	List<Dispositivo> dispositivos;
-
+	private List<DomicilioServicio> domicilios = new ArrayList<DomicilioServicio>();
+	
 	public Cliente() {
-		this.categoria = new Categoria();
-		this.dispositivos = new ArrayList<Dispositivo>();
+		
 	}
 	
 	public Cliente(String apellido, String nombre, String nombreUsuario, String password, String tipoDocumento,
-			int nroDocumento, String telefono, String domicilioServicio, DateTime fechaAltaServicio,
-			Categoria categoria, List<Dispositivo> dispositivos) {
+			int nroDocumento, List<DomicilioServicio> domicilios) {
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
-		this.telefono = telefono;
-		this.domicilioServicio = domicilioServicio;
-		this.fechaAltaServicio = fechaAltaServicio;
-		this.categoria = categoria;
-		this.dispositivos = dispositivos;
+		this.domicilios = domicilios;
 	}
 
-	public boolean tieneDispositivosEncendidos() {
-		return this.dispositivos.stream().anyMatch(dispositivo -> dispositivo.isEncendido());
+	@Override
+	public boolean estaEncendido() {
+		return this.domicilios.stream().anyMatch(domicilio -> domicilio.estaEncendido());
 	}
 
-	public int cantidadDispositivosEncendidos() {
-		return (int) this.dispositivos.stream().filter(dispositivo -> dispositivo.isEncendido()).count();
+	@Override
+	public long cantidadDispositivosEncendidos() {
+		
+		long cantidadDispositivosEncendidos = 0;
+		for (DomicilioServicio domicilioServicio : domicilios) {
+			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
+				cantidadDispositivosEncendidos += dispositivo.cantidadDispositivosEncendidos();
+			}
+		}
+		
+		return cantidadDispositivosEncendidos;
+
 	}
 
-	public int cantidadDispositivosApagados() {
-		return (int) this.dispositivos.stream().filter(dispositivo -> !dispositivo.isEncendido()).count();
+	@Override
+	public long cantidadDispositivosApagados() {
+		long cantidadDispositivosApagados = 0;
+		for (DomicilioServicio domicilioServicio : domicilios) {
+			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
+				cantidadDispositivosApagados += dispositivo.cantidadDispositivosApagados();
+			}
+		}
+		
+		return cantidadDispositivosApagados;
 	}
 
-	public int cantidadTotalDispositivos() {
-		return (int) this.dispositivos.stream().count();
+	@Override
+	public long cantidadTotalDispositivos() {
+		long cantidadTotalDispositivos = 0;
+		for (DomicilioServicio domicilioServicio : domicilios) {
+			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
+				cantidadTotalDispositivos += dispositivo.cantidadTotalDispositivos();
+			}
+		}
+		
+		return cantidadTotalDispositivos;
 	}
-	
+
 	public String getApellido() {
 		return apellido;
 	}
@@ -79,11 +95,11 @@ public class Cliente {
 		this.nombreUsuario = nombreUsuario;
 	}
 
-	public String getpassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setpassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -103,44 +119,12 @@ public class Cliente {
 		this.nroDocumento = nroDocumento;
 	}
 
-	public String getTelefono() {
-		return telefono;
+	public List<DomicilioServicio> getDomicilios() {
+		return domicilios;
 	}
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setDomicilios(List<DomicilioServicio> domicilios) {
+		this.domicilios = domicilios;
 	}
-
-	public String getDomicilioServicio() {
-		return domicilioServicio;
-	}
-
-	public void setDomicilioServicio(String domicilioServicio) {
-		this.domicilioServicio = domicilioServicio;
-	}
-
-	public DateTime getFechaAltaServicio() {
-		return fechaAltaServicio;
-	}
-
-	public void setFechaAltaServicio(DateTime fechaAltaServicio) {
-		this.fechaAltaServicio = fechaAltaServicio;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	public List<Dispositivo> getDispositivos() {
-		return dispositivos;
-	}
-
-	public void setDispositivos(List<Dispositivo> dispositivos) {
-		this.dispositivos = dispositivos;
-	}
-
+	
 }
