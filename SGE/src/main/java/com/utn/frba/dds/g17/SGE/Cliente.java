@@ -28,12 +28,10 @@ public class Cliente implements IDispositivo {
 		this.domicilios = domicilios;
 	}
 
-	@Override
 	public boolean estaEncendido() {
 		return this.domicilios.stream().anyMatch(domicilio -> domicilio.estaEncendido());
 	}
 
-	@Override
 	public long cantidadDispositivosEncendidos() {
 		
 		long cantidadDispositivosEncendidos = 0;
@@ -47,7 +45,6 @@ public class Cliente implements IDispositivo {
 
 	}
 
-	@Override
 	public long cantidadDispositivosApagados() {
 		long cantidadDispositivosApagados = 0;
 		for (DomicilioServicio domicilioServicio : domicilios) {
@@ -59,7 +56,6 @@ public class Cliente implements IDispositivo {
 		return cantidadDispositivosApagados;
 	}
 
-	@Override
 	public long cantidadTotalDispositivos() {
 		long cantidadTotalDispositivos = 0;
 		for (DomicilioServicio domicilioServicio : domicilios) {
