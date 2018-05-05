@@ -1,7 +1,10 @@
 package com.utn.frba.dds.g17.SGE;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
@@ -14,7 +17,8 @@ public class CargaDatosJson {
 	public static List<Cliente> getClientesJson() throws IOException{
 				
 		JsonParser parser = new JsonParser();
-		FileReader fr = new FileReader("..\\SGE\\RepositorioJson\\clientes.json");
+		final Path path = Paths.get("src", "test","resources" ,"data","json","clientes.json");
+		FileReader fr = new FileReader(path.toFile());
 		JsonElement archivoClientesJson = parser.parse(fr);
 		
 		return getClientes(archivoClientesJson);
@@ -122,7 +126,8 @@ public class CargaDatosJson {
 	public static List<Administrador> getAdministradoresJson() throws IOException{
 		
 		JsonParser parser = new JsonParser();
-		FileReader fr = new FileReader("..\\SGE\\RepositorioJson\\administradores.json");
+		final Path path = Paths.get("src", "test","resources" ,"data","json","administradores.json");
+		FileReader fr = new FileReader(path.toFile());
 		JsonElement archivoAdministradoresJson = parser.parse(fr);
 		
 		return getAdministradores(archivoAdministradoresJson);

@@ -5,3 +5,5 @@
  
 # Maven: Archivos compilados
 /target/
+.idea/
+SGE.iml
