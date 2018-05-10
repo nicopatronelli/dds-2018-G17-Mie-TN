@@ -19,6 +19,7 @@ public class Administrador {
 	
 	public Administrador(String apellido, String nombre, String nombreUsuario, String password, String domicilio,
 			DateTime fechaAltaUsuarioSistema, int nroIdentificacion) {
+		this.apellido = apellido;
 		this.nombre = nombre;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;

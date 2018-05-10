@@ -3,6 +3,7 @@ package com.utn.frba.dds.g17.SGE;
 public class Categoria {
 
 	private double cargoFijo;
+
 	private double cargoVariable;
 
 	public double getCargoFijo() {

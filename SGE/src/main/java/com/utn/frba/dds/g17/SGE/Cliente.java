@@ -33,38 +33,31 @@ public class Cliente implements IDispositivo {
 	}
 
 	public long cantidadDispositivosEncendidos() {
-		
-		long cantidadDispositivosEncendidos = 0;
-		for (DomicilioServicio domicilioServicio : domicilios) {
-			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
-				cantidadDispositivosEncendidos += dispositivo.cantidadDispositivosEncendidos();
-			}
-		}
-		
-		return cantidadDispositivosEncendidos;
-
+		return domicilios.stream().mapToLong(d -> d.cantidadDispositivosEncendidos()).sum();
 	}
 
 	public long cantidadDispositivosApagados() {
-		long cantidadDispositivosApagados = 0;
-		for (DomicilioServicio domicilioServicio : domicilios) {
-			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
-				cantidadDispositivosApagados += dispositivo.cantidadDispositivosApagados();
-			}
-		}
-		
-		return cantidadDispositivosApagados;
+//		long cantidadDispositivosApagados = 0;
+		return domicilios.stream().mapToLong(d -> d.cantidadDispositivosApagados()).sum();
+//		for (DomicilioServicio domicilioServicio : domicilios) {
+//			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
+//				cantidadDispositivosApagados += dispositivo.cantidadDispositivosApagados();
+//			}
+//		}
+//
+//		return cantidadDispositivosApagados;
 	}
 
 	public long cantidadTotalDispositivos() {
-		long cantidadTotalDispositivos = 0;
-		for (DomicilioServicio domicilioServicio : domicilios) {
-			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
-				cantidadTotalDispositivos += dispositivo.cantidadTotalDispositivos();
-			}
-		}
-		
-		return cantidadTotalDispositivos;
+//		long cantidadTotalDispositivos = 0;
+		return domicilios.stream().mapToLong(d -> d.cantidadTotalDispositivos()).sum();
+//		for (DomicilioServicio domicilioServicio : domicilios) {
+//			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
+//				cantidadTotalDispositivos += dispositivo.cantidadTotalDispositivos();
+//			}
+//		}
+//
+//		return cantidadTotalDispositivos;
 	}
 
 	public String getApellido() {

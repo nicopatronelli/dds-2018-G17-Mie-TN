@@ -28,20 +28,20 @@ public class ClienteTest {
 
 	@Test
 	public void testCantidadDispositivosEncendidos(){
-		Assert.assertEquals(1, this.unCliente.cantidadDispositivosEncendidos());
-		Assert.assertEquals(2, this.otroCliente.cantidadDispositivosEncendidos());
+		Assert.assertEquals("cantidad total de dispositivos encendidos del cliente 1 es",1, this.unCliente.cantidadDispositivosEncendidos());
+		Assert.assertEquals("cantidad total de dispositivos encendidos del cliente 2 es",2, this.otroCliente.cantidadDispositivosEncendidos());
 	}
 
 	@Test
 	public void testCantidadDispositivosApagados(){
-		Assert.assertEquals(2, this.unCliente.cantidadDispositivosApagados());
-		Assert.assertEquals(2, this.otroCliente.cantidadDispositivosApagados());
+		Assert.assertEquals("cantidad total de dispositivos apagados del cliente 1 es",2, this.unCliente.cantidadDispositivosApagados());
+		Assert.assertEquals("cantidad total de dispositivos apagados del cliente 2 es",2, this.otroCliente.cantidadDispositivosApagados());
 	}
 
 	@Test
 	public void testCantidadTotalDispositivos() {
-		Assert.assertEquals(3, this.unCliente.cantidadTotalDispositivos());
-		Assert.assertEquals(4, this.otroCliente.cantidadTotalDispositivos());
+		Assert.assertEquals("cantidad total de dispositivos del cliente 1 es ",3, this.unCliente.cantidadTotalDispositivos());
+		Assert.assertEquals("cantidad total de dispositivos del cliente 2 es ",4, this.otroCliente.cantidadTotalDispositivos());
 	}
 
 	@After
