@@ -3,7 +3,7 @@ package com.utn.frba.dds.g17.SGE;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente implements IDispositivo {
+public class Cliente {
 
 	private String apellido;
 	private String nombre;
@@ -12,6 +12,7 @@ public class Cliente implements IDispositivo {
 	private String tipoDocumento;
 	private int nroDocumento;
 	private List<DomicilioServicio> domicilios = new ArrayList<DomicilioServicio>();
+	private int cantidadDePuntos;
 	
 	public Cliente() {
 		
@@ -26,10 +27,11 @@ public class Cliente implements IDispositivo {
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
 		this.domicilios = domicilios;
+		this.cantidadDePuntos = 0;
 	}
 
-	public boolean estaEncendido() {
-		return this.domicilios.stream().anyMatch(domicilio -> domicilio.estaEncendido());
+	public boolean tieneAlgunDispositivoEncendido() {
+		return this.domicilios.stream().anyMatch(domicilio -> domicilio.tieneAlgunDispositivoEncendido());
 	}
 
 	public long cantidadDispositivosEncendidos() {
@@ -37,27 +39,30 @@ public class Cliente implements IDispositivo {
 	}
 
 	public long cantidadDispositivosApagados() {
-//		long cantidadDispositivosApagados = 0;
 		return domicilios.stream().mapToLong(d -> d.cantidadDispositivosApagados()).sum();
-//		for (DomicilioServicio domicilioServicio : domicilios) {
-//			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
-//				cantidadDispositivosApagados += dispositivo.cantidadDispositivosApagados();
-//			}
-//		}
-//
-//		return cantidadDispositivosApagados;
+		
+/*	long cantidadDispositivosApagados = 0;
+		
+		for (DomicilioServicio domicilioServicio : domicilios) {
+			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
+				cantidadDispositivosApagados += dispositivo.cantidadDispositivosApagados();
+			}
+	}
+		return cantidadDispositivosApagados;*/
+		
 	}
 
 	public long cantidadTotalDispositivos() {
-//		long cantidadTotalDispositivos = 0;
 		return domicilios.stream().mapToLong(d -> d.cantidadTotalDispositivos()).sum();
-//		for (DomicilioServicio domicilioServicio : domicilios) {
-//			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
-//				cantidadTotalDispositivos += dispositivo.cantidadTotalDispositivos();
-//			}
-//		}
-//
-//		return cantidadTotalDispositivos;
+/*		long cantidadTotalDispositivos = 0;
+
+		for (DomicilioServicio domicilioServicio : domicilios) {
+			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
+				cantidadTotalDispositivos += dispositivo.cantidadTotalDispositivos();
+			}
+		}
+
+		return cantidadTotalDispositivos;*/
 	}
 
 	public String getApellido() {

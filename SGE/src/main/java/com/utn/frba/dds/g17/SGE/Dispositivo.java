@@ -1,5 +1,17 @@
 package com.utn.frba.dds.g17.SGE;
 
+public abstract class Dispositivo {
+	
+	// Método para el filtrado
+	public abstract boolean esInteligente();
+	public abstract boolean estaEncendido();
+	public abstract boolean estaApagado();
+
+}
+
+
+
+/*
 public class Dispositivo implements IDispositivo {
 
 	private String nombreGenerico;
@@ -57,3 +69,4 @@ public class Dispositivo implements IDispositivo {
 	}
 
 }
+*/

@@ -22,8 +22,8 @@ public class ClienteTest {
 
 	@Test
 	public void testTieneDispositivosEncendidos() {
-		Assert.assertTrue(unCliente.estaEncendido());
-		Assert.assertTrue(otroCliente.estaEncendido());
+		Assert.assertTrue(unCliente.tieneAlgunDispositivoEncendido());
+		Assert.assertTrue(otroCliente.tieneAlgunDispositivoEncendido());
 	}
 
 	@Test

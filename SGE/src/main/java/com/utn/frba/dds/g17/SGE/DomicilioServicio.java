@@ -2,33 +2,30 @@ package com.utn.frba.dds.g17.SGE;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.joda.time.DateTime;
 
-public class DomicilioServicio implements IDispositivo {
+public class DomicilioServicio {
 	
 	private String telefono;
 	private DateTime fechaAltaServicio;
 	private Categoria categoria;
-	private List<IDispositivo> dispositivos = new ArrayList<IDispositivo>();
+	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	
-	@Override
-	public boolean estaEncendido() {
-		return this.dispositivos.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
+	public boolean tieneAlgunDispositivoEncendido() {
+		return this.cantidadDispositivosEncendidos() > 0;
 	}
 
-	@Override
 	public long cantidadDispositivosEncendidos() {
-		return (long) this.dispositivos.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
+		return this.dispositivos.stream().filter(dispositivo -> dispositivo.esInteligente()).filter(dispositivoInteligente -> dispositivoInteligente.estaEncendido()).count();
 	}
 
-	@Override
 	public long cantidadDispositivosApagados() {
-		return (long) this.dispositivos.stream().filter(dispositivo -> !dispositivo.estaEncendido()).count();
+		return this.cantidadTotalDispositivos() - this.cantidadDispositivosEncendidos();
 	}
 
-	@Override
 	public long cantidadTotalDispositivos() {
-		return (long) this.dispositivos.stream().count();
+		return this.dispositivos.stream().count();
 	}
 
 	public String getTelefono() {
@@ -55,11 +52,11 @@ public class DomicilioServicio implements IDispositivo {
 		this.categoria = categoria;
 	}
 
-	public List<IDispositivo> getDispositivos() {
+	public List<Dispositivo> getDispositivos() {
 		return dispositivos;
 	}
 
-	public void setDispositivos(List<IDispositivo> dispositivos) {
+	public void setDispositivos(List<Dispositivo> dispositivos) {
 		this.dispositivos = dispositivos;
 	}
 
