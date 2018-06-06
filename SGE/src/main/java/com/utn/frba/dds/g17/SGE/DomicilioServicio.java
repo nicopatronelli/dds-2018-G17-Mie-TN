@@ -12,6 +12,10 @@ public class DomicilioServicio {
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	
+	public void registrarDispositivo(Dispositivo nuevoDispositivo) {
+		this.dispositivos.add(nuevoDispositivo);
+	}
+	
 	public boolean tieneAlgunDispositivoEncendido() {
 		return this.cantidadDispositivosEncendidos() > 0;
 	}
@@ -21,7 +25,7 @@ public class DomicilioServicio {
 	}
 
 	public long cantidadDispositivosApagados() {
-		return this.cantidadTotalDispositivos() - this.cantidadDispositivosEncendidos();
+		return this.dispositivos.stream().filter(dispositivo -> dispositivo.esInteligente()).filter(dispositivoInteligente -> dispositivoInteligente.estaApagado()).count();
 	}
 
 	public long cantidadTotalDispositivos() {

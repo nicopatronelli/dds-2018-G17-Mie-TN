@@ -4,25 +4,22 @@ import org.joda.time.DateTime;
 
 public class DispositivoInteligente extends Dispositivo {
 	
-	private String nombreGenerico;
-	private long consumoPorHora;
 	private EstadoDispositivoInteligente estado;
 	
-	public DispositivoInteligente(String nombreGenerico, long consumoPorHora) {
+	public DispositivoInteligente(String nombreGenerico) {
 		
 		this.nombreGenerico = nombreGenerico;
-		this.consumoPorHora = consumoPorHora; 
 		this.estado = new EstadoApagado(); // Asumo que todo nuevo dispositivo inteligente inicia en estado apagado
+		
 	}
 	
 	public boolean esInteligente() {
 		return true;
 	}
 	
-	/* INICIO -- Mètodos de ESTADO (non-Javadoc)
+	/* INICIO -- Mètodos de ESTADO 
 	 * Dispositivo (DispositivoInteligente en este caso) delega todas sus peticiones (responsabilidades) referidas a su estado
 	 * a su instancia de EstadoDispositivo.
-	 * 
 	 */
 	
 	public boolean estaEncendido() {
@@ -57,12 +54,16 @@ public class DispositivoInteligente extends Dispositivo {
 	// FIN -- Métodos de ESTADO
 	
 	
+	/* Para los siguientes métodos asumo que el dispositivo estuvo en estado encendido durante las últimas N horas y desde la 
+	 * fechaInicial hasta la fechaFinal. 
+	 */
+	
 	public int energiaConsumidaDuranteUltimasHoras(int horas) {
-
+		return this.consumoPorHora * horas;
 	}
 	
 	public int consumoTotalEntre(DateTime fechaInicial, DateTime fechaFinal) {
-		
+		return 0;
 	}
 	
 }

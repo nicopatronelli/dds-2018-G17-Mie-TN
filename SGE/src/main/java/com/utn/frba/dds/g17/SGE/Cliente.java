@@ -12,7 +12,7 @@ public class Cliente {
 	private String tipoDocumento;
 	private int nroDocumento;
 	private List<DomicilioServicio> domicilios = new ArrayList<DomicilioServicio>();
-	private int cantidadDePuntos;
+	private int cantidadPuntos;
 	
 	public Cliente() {
 		
@@ -27,19 +27,33 @@ public class Cliente {
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
 		this.domicilios = domicilios;
-		this.cantidadDePuntos = 0;
+		this.cantidadPuntos = 0;
 	}
-
+	
+	public void registrarDispositivoEstandar(DispositivoEstandar nuevoDispositivoEstandar, DomicilioServicio unDomicilio) {
+		unDomicilio.registrarDispositivo(nuevoDispositivoEstandar);
+	}
+	
+	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivoInteligente, DomicilioServicio unDomicilio) {
+		unDomicilio.registrarDispositivo(nuevoDispositivoInteligente);
+		this.cantidadPuntos = this.cantidadPuntos + 15; // Un cliente recibe 15 puntos por cada dispositivo inteligente que registre en SGE
+	}
+	
+	public void adaptarDispositivo(DispositivoEstandar unDispositivoEstandar) {
+		// FALTA 
+		this.cantidadPuntos = this.cantidadPuntos + 10; // Un cliente recibe 10 puntos por cada dispositivo estandar que adapta a inteligente
+	}
+	
 	public boolean tieneAlgunDispositivoEncendido() {
 		return this.domicilios.stream().anyMatch(domicilio -> domicilio.tieneAlgunDispositivoEncendido());
 	}
 
 	public long cantidadDispositivosEncendidos() {
-		return domicilios.stream().mapToLong(d -> d.cantidadDispositivosEncendidos()).sum();
+		return domicilios.stream().mapToLong(domicilio -> domicilio.cantidadDispositivosEncendidos()).sum();
 	}
 
 	public long cantidadDispositivosApagados() {
-		return domicilios.stream().mapToLong(d -> d.cantidadDispositivosApagados()).sum();
+		return domicilios.stream().mapToLong(domicilio -> domicilio.cantidadDispositivosApagados()).sum();
 		
 /*	long cantidadDispositivosApagados = 0;
 		
@@ -53,7 +67,7 @@ public class Cliente {
 	}
 
 	public long cantidadTotalDispositivos() {
-		return domicilios.stream().mapToLong(d -> d.cantidadTotalDispositivos()).sum();
+		return domicilios.stream().mapToLong(domicilio -> domicilio.cantidadTotalDispositivos()).sum();
 /*		long cantidadTotalDispositivos = 0;
 
 		for (DomicilioServicio domicilioServicio : domicilios) {
