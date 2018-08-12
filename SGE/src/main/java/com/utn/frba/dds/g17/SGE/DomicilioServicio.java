@@ -48,7 +48,7 @@ public class DomicilioServicio {
 		return this.dispositivosEstandares.stream().filter(dispositivoEstandar -> !dispositivoEstandar.estaAdaptado()).count() + this.dispositivosInteligentes.stream().count();
 	}
 
-	public void adaptarDispositivo(DispositivoEstandar unDispositivoEstandar) {
+	public void adaptarDispositivoEstandar(DispositivoEstandar unDispositivoEstandar) {
 		this.dispositivosEstandares.get(dispositivosEstandares.indexOf(unDispositivoEstandar)).adaptarDispositivo();
 		this.dispositivosInteligentes.add(unDispositivoEstandar.adaptador());
 	}

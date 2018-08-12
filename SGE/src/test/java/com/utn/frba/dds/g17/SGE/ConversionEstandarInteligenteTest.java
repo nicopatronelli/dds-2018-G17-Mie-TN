@@ -25,7 +25,7 @@ public class ConversionEstandarInteligenteTest {
 		dispositivoInteligenteB = unCliente.getDomicilios().get(0).getDispositivosInteligentes().get(1);
 		dispositivoInteligenteB.iniciarEstadoApagado();
 		// Adaptamos el dispositivoEstandarA 
-		unCliente.adaptarDispositivo(dispositivoEstandarA, unCliente.getDomicilios().get(0));
+		unCliente.adaptarDispositivoEstandar(dispositivoEstandarA, unCliente.getDomicilios().get(0));
 	}
 	
 	@Test

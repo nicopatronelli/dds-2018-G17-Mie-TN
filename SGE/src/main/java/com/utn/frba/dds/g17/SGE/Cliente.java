@@ -34,8 +34,8 @@ public class Cliente {
 		this.cantidadPuntos = this.cantidadPuntos + 15; // Un cliente recibe 15 puntos por cada dispositivo inteligente que registre en SGE
 	}
 	
-	public void adaptarDispositivo(DispositivoEstandar unDispositivoEstandar, DomicilioServicio unDomicilio) {
-		unDomicilio.adaptarDispositivo(unDispositivoEstandar); // Delego en el domicilio la adaptación del dispositivo
+	public void adaptarDispositivoEstandar(DispositivoEstandar unDispositivoEstandar, DomicilioServicio unDomicilio) {
+		unDomicilio.adaptarDispositivoEstandar(unDispositivoEstandar); // Delego en el domicilio la adaptación del dispositivo
 		this.cantidadPuntos = this.cantidadPuntos + 10; // Un cliente recibe 10 puntos por cada dispositivo estandar que adapta a inteligente
 	}
 	
