@@ -5,15 +5,31 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
+import com.google.gson.annotations.Expose;
+
 public class DomicilioServicio {
 	
 	private String telefono;
+	//@Expose(deserialize = false)
 	private DateTime fechaAltaServicio;
 	private Categoria categoria;
-	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+	private List<DispositivoEstandar> dispositivosEstandares;
+	private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
+
+	public DomicilioServicio(String telefono, DateTime fechaAltaServicio, Categoria categoria) {
+		this.telefono = telefono;
+		this.fechaAltaServicio = fechaAltaServicio;
+		this.categoria = categoria;
+		this.dispositivosEstandares = new ArrayList<DispositivoEstandar>();
+		this.dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
+	}
 	
-	public void registrarDispositivo(Dispositivo nuevoDispositivo) {
-		this.dispositivos.add(nuevoDispositivo);
+	public void registrarDispositivoEstandar(DispositivoEstandar nuevoDispositivoEstandar) {
+		this.dispositivosEstandares.add(nuevoDispositivoEstandar);
+	}
+	
+	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivoInteligente) {
+		this.dispositivosInteligentes.add(nuevoDispositivoInteligente);
 	}
 	
 	public boolean tieneAlgunDispositivoEncendido() {
@@ -21,17 +37,24 @@ public class DomicilioServicio {
 	}
 
 	public long cantidadDispositivosEncendidos() {
-		return this.dispositivos.stream().filter(dispositivo -> dispositivo.esInteligente()).filter(dispositivoInteligente -> dispositivoInteligente.estaEncendido()).count();
+		return this.dispositivosInteligentes.stream().filter(dispositivoInteligente -> dispositivoInteligente.estaEncendido()).count();
 	}
 
 	public long cantidadDispositivosApagados() {
-		return this.dispositivos.stream().filter(dispositivo -> dispositivo.esInteligente()).filter(dispositivoInteligente -> dispositivoInteligente.estaApagado()).count();
+		return this.dispositivosInteligentes.stream().filter(dispositivoInteligente -> dispositivoInteligente.estaApagado()).count();
 	}
 
 	public long cantidadTotalDispositivos() {
-		return this.dispositivos.stream().count();
+		return this.dispositivosEstandares.stream().filter(dispositivoEstandar -> !dispositivoEstandar.estaAdaptado()).count() + this.dispositivosInteligentes.stream().count();
 	}
 
+	public void adaptarDispositivo(DispositivoEstandar unDispositivoEstandar) {
+		this.dispositivosEstandares.get(dispositivosEstandares.indexOf(unDispositivoEstandar)).adaptarDispositivo();
+		this.dispositivosInteligentes.add(unDispositivoEstandar.adaptador());
+	}
+	
+	// Getters y Setters
+	
 	public String getTelefono() {
 		return telefono;
 	}
@@ -56,12 +79,20 @@ public class DomicilioServicio {
 		this.categoria = categoria;
 	}
 
-	public List<Dispositivo> getDispositivos() {
-		return dispositivos;
+	public List<DispositivoEstandar> getDispositivosEstandares() {
+		return dispositivosEstandares;
 	}
 
-	public void setDispositivos(List<Dispositivo> dispositivos) {
-		this.dispositivos = dispositivos;
+	public void setDispositivosEstandars(List<DispositivoEstandar> dispositivosEstandars) {
+		this.dispositivosEstandares = dispositivosEstandars;
 	}
 
-}
+	public List<DispositivoInteligente> getDispositivosInteligentes() {
+		return dispositivosInteligentes;
+	}
+
+	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivosInteligentes) {
+		this.dispositivosInteligentes = dispositivosInteligentes;
+	}
+
+} 

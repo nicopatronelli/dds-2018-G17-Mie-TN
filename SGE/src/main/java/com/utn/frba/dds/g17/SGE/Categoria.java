@@ -3,9 +3,15 @@ package com.utn.frba.dds.g17.SGE;
 public class Categoria {
 
 	private double cargoFijo;
-
 	private double cargoVariable;
-
+	
+	public Categoria(double cargoFijo, double cargoVariable) {
+		this.cargoFijo = cargoFijo;
+		this.cargoVariable = cargoVariable;
+	}
+	
+	// Getters y Setters
+	
 	public double getCargoFijo() {
 		return cargoFijo;
 	}
@@ -21,5 +27,5 @@ public class Categoria {
 	public void setCargoVariable(double cargoVariable) {
 		this.cargoVariable = cargoVariable;
 	}
-
+	
 }

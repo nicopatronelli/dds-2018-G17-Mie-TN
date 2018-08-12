@@ -1,52 +1,42 @@
 package com.utn.frba.dds.g17.SGE;
 
-import java.io.IOException;
-import java.util.List;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ClienteTest {
-
-	private List<Cliente> clientes;
-	private Cliente unCliente;
-	private Cliente otroCliente;
+	
+	Cliente clientes[];
+	Cliente unCliente;
+	DispositivoInteligente dispositivoInteligenteA;
+	DispositivoInteligente dispositivoInteligenteB;
 	
 	@Before
-	public void setUp() throws IOException {
-		this.clientes = CargaDatosJson.getClientesJson();
-		this.unCliente = this.clientes.get(0);
-		this.otroCliente = this.clientes.get(1);
+	public void initialize() {
+		//El único cliente del archivo tiene 2 dispositivos inteligentes y 2 dispositivos estandares 
+		clientes = CargaDatosJson.cargarClientes("src\\test\\resources\\data\\json\\Clientes.json");
+		unCliente = clientes[0];
+		dispositivoInteligenteA = unCliente.getDomicilios().get(0).getDispositivosInteligentes().get(0);
+		dispositivoInteligenteA.iniciarEstadoApagado();
+		// Encendemos uno de los dos dispositivos inteligentes que tiene el cliente 
+		unCliente.getDomicilios().get(0).getDispositivosInteligentes().get(0).encender();
+		dispositivoInteligenteB = unCliente.getDomicilios().get(0).getDispositivosInteligentes().get(1);
+		dispositivoInteligenteB.iniciarEstadoApagado();
 	}
-
+	
 	@Test
 	public void testTieneDispositivosEncendidos() {
 		Assert.assertTrue(unCliente.tieneAlgunDispositivoEncendido());
-		Assert.assertTrue(otroCliente.tieneAlgunDispositivoEncendido());
 	}
-
+	
 	@Test
-	public void testCantidadDispositivosEncendidos(){
-		Assert.assertEquals("cantidad total de dispositivos encendidos del cliente 1 es",1, this.unCliente.cantidadDispositivosEncendidos());
-		Assert.assertEquals("cantidad total de dispositivos encendidos del cliente 2 es",2, this.otroCliente.cantidadDispositivosEncendidos());
+	public void testCantidadDispositivosEncendidos() {
+		Assert.assertTrue(unCliente.cantidadDispositivosEncendidos() == 1);
 	}
-
+	
 	@Test
-	public void testCantidadDispositivosApagados(){
-		Assert.assertEquals("cantidad total de dispositivos apagados del cliente 1 es",2, this.unCliente.cantidadDispositivosApagados());
-		Assert.assertEquals("cantidad total de dispositivos apagados del cliente 2 es",2, this.otroCliente.cantidadDispositivosApagados());
-	}
-
-	@Test
-	public void testCantidadTotalDispositivos() {
-		Assert.assertEquals("cantidad total de dispositivos del cliente 1 es ",3, this.unCliente.cantidadTotalDispositivos());
-		Assert.assertEquals("cantidad total de dispositivos del cliente 2 es ",4, this.otroCliente.cantidadTotalDispositivos());
-	}
-
-	@After
-	public void limpiarVariables() {
-		this.clientes.clear();
+	public void testCantidadDispositivosApagados() {
+		Assert.assertTrue(unCliente.cantidadDispositivosApagados() == 1);
 	}
 
 }

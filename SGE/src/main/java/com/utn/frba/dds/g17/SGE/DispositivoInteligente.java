@@ -2,24 +2,21 @@ package com.utn.frba.dds.g17.SGE;
 
 import org.joda.time.DateTime;
 
-public class DispositivoInteligente extends Dispositivo {
+public class DispositivoInteligente {
 	
+	//private int idSGE; // Número de identificación único del dispositivo en SGE
+	private String idFabricante;
 	private EstadoDispositivoInteligente estado;
 	
-	public DispositivoInteligente(String nombreGenerico) {
-		
-		this.nombreGenerico = nombreGenerico;
+	public DispositivoInteligente(String idFabricante) {
+		this.idFabricante = idFabricante;
 		this.estado = new EstadoApagado(); // Asumo que todo nuevo dispositivo inteligente inicia en estado apagado
-		
 	}
 	
-	public boolean esInteligente() {
-		return true;
-	}
-	
-	/* INICIO -- Mètodos de ESTADO 
-	 * Dispositivo (DispositivoInteligente en este caso) delega todas sus peticiones (responsabilidades) referidas a su estado
-	 * a su instancia de EstadoDispositivo.
+	/* INICIO - Métodos de ESTADO 
+	 * 
+	 * DispositivoInteligente delega todas las peticiones (responsabilidades) referidas a su estado
+	 * a su instancia de EstadoDispositivoInteligente 
 	 */
 	
 	public boolean estaEncendido() {
@@ -50,20 +47,29 @@ public class DispositivoInteligente extends Dispositivo {
 		this.estado = nuevoEstado;
 	}
 	
-	
-	// FIN -- Métodos de ESTADO
-	
+	// FIN - Métodos de ESTADO
 	
 	/* Para los siguientes métodos asumo que el dispositivo estuvo en estado encendido durante las últimas N horas y desde la 
 	 * fechaInicial hasta la fechaFinal. 
 	 */
 	
-	public int energiaConsumidaDuranteUltimasHoras(int horas) {
-		return this.consumoPorHora * horas;
+	public float energiaConsumidaDuranteUltimasHoras(int horas) {
+		return 0;
 	}
 	
 	public int consumoTotalEntre(DateTime fechaInicial, DateTime fechaFinal) {
 		return 0;
 	}
+
+	// Getters y Setters
+	
+	public String getIdFabricante() {
+		return idFabricante;
+	}
+	
+	public void iniciarEstadoApagado() { // Para testing
+		this.estado = new EstadoApagado();
+	}
+	
 	
 }

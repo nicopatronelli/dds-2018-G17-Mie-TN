@@ -31,7 +31,9 @@ public class Administrador {
 	public int cantidadMesesComoAdmistrador() {
 		return Months.monthsBetween(this.fechaAltaUsuarioSistema, new DateTime()).getMonths();
 	}
-
+	
+	// Getters y Setters
+	
 	public String getApellido() {
 		return apellido;
 	}

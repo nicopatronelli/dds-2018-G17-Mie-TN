@@ -1,6 +1,6 @@
 package com.utn.frba.dds.g17.SGE;
 
-public class EstadoEncendido extends EstadoDispositivoInteligente {
+public class EstadoEncendido implements EstadoDispositivoInteligente {
 	
 	/* Métodos que NO implican un cambio de ESTADO: Si bien estos métodos no necesitan recibir el parámetro Dispositivo los incluimos 
 	 * aquí para ser congruentes con la interfaz, ya que son métodos que pertenecen al estado del dispositivo.
@@ -18,19 +18,19 @@ public class EstadoEncendido extends EstadoDispositivoInteligente {
 		return false;
 	}
 	
-	// Métodos que PUEDEN implicar un cambio de ESTADO
+	// Métodos que PUEDEN implicar un cambio de ESTADO 
+	
 	public void encender(DispositivoInteligente dispositivoInteligente) {
 		// Si el dispositivo está encendido y recibe el mensaje encender() no hace nada. 
 	}
 	
 	public void apagar(DispositivoInteligente dispositivoInteligente) {
-		// Si el dispositivo está encendido y se le envía el mensaje apagar() debe CAMBIAR SU ESTADO A APAGADO
+		// Si el dispositivo está encendido y se le envía el mensaje apagar() debe cambiar su estado a apagado
 		 dispositivoInteligente.cambiarEstado(new EstadoApagado());
-		
 	}
 	
 	public void activarAhorroDeEnergia(DispositivoInteligente dispositivoInteligente) {
-		// Si el dispositivo está encendido y se le envía el mensaje apagar() debe CAMBIAR SU ESTADO A AHORRO DE ENERGIA
+		// Si el dispositivo está encendido y se le envía el mensaje apagar() debe cambiar su estado a ahorro de energía
 		 dispositivoInteligente.cambiarEstado(new EstadoAhorroDeEnergia());
 	}
 

@@ -4,19 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
-
+	
 	private String apellido;
 	private String nombre;
-	private String nombreUsuario;
-	private String password;
 	private String tipoDocumento;
 	private int nroDocumento;
-	private List<DomicilioServicio> domicilios = new ArrayList<DomicilioServicio>();
+	private String nombreUsuario;
+	private String password;
 	private int cantidadPuntos;
-	
-	public Cliente() {
-		
-	}
+	private List<DomicilioServicio> domicilios;
 	
 	public Cliente(String apellido, String nombre, String nombreUsuario, String password, String tipoDocumento,
 			int nroDocumento, List<DomicilioServicio> domicilios) {
@@ -31,16 +27,16 @@ public class Cliente {
 	}
 	
 	public void registrarDispositivoEstandar(DispositivoEstandar nuevoDispositivoEstandar, DomicilioServicio unDomicilio) {
-		unDomicilio.registrarDispositivo(nuevoDispositivoEstandar);
+		unDomicilio.registrarDispositivoEstandar(nuevoDispositivoEstandar);
 	}
 	
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivoInteligente, DomicilioServicio unDomicilio) {
-		unDomicilio.registrarDispositivo(nuevoDispositivoInteligente);
+		unDomicilio.registrarDispositivoInteligente(nuevoDispositivoInteligente);
 		this.cantidadPuntos = this.cantidadPuntos + 15; // Un cliente recibe 15 puntos por cada dispositivo inteligente que registre en SGE
 	}
 	
-	public void adaptarDispositivo(DispositivoEstandar unDispositivoEstandar) {
-		// FALTA 
+	public void adaptarDispositivo(DispositivoEstandar unDispositivoEstandar, DomicilioServicio unDomicilio) {
+		unDomicilio.adaptarDispositivo(unDispositivoEstandar); // Delego en el domicilio la adaptación del dispositivo
 		this.cantidadPuntos = this.cantidadPuntos + 10; // Un cliente recibe 10 puntos por cada dispositivo estandar que adapta a inteligente
 	}
 	
@@ -54,31 +50,18 @@ public class Cliente {
 
 	public long cantidadDispositivosApagados() {
 		return domicilios.stream().mapToLong(domicilio -> domicilio.cantidadDispositivosApagados()).sum();
-		
-/*	long cantidadDispositivosApagados = 0;
-		
-		for (DomicilioServicio domicilioServicio : domicilios) {
-			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
-				cantidadDispositivosApagados += dispositivo.cantidadDispositivosApagados();
-			}
-	}
-		return cantidadDispositivosApagados;*/
-		
 	}
 
 	public long cantidadTotalDispositivos() {
 		return domicilios.stream().mapToLong(domicilio -> domicilio.cantidadTotalDispositivos()).sum();
-/*		long cantidadTotalDispositivos = 0;
-
-		for (DomicilioServicio domicilioServicio : domicilios) {
-			for (IDispositivo dispositivo : domicilioServicio.getDispositivos()) {
-				cantidadTotalDispositivos += dispositivo.cantidadTotalDispositivos();
-			}
-		}
-
-		return cantidadTotalDispositivos;*/
 	}
-
+	
+	public int cantidadDePuntos() {
+		return cantidadPuntos;
+	}
+	
+	// Getters y Setters
+	
 	public String getApellido() {
 		return apellido;
 	}
@@ -135,4 +118,4 @@ public class Cliente {
 		this.domicilios = domicilios;
 	}
 	
-}
+} 
