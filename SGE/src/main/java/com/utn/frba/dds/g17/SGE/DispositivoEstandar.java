@@ -27,7 +27,7 @@ public class DispositivoEstandar {
 	}
 	
 	public void adaptarDispositivo() {
-		this.adaptador = new DispositivoInteligente("0"); 
+		this.adaptador = new DispositivoInteligente("0", null); 
 		this.estaAdaptado = true;
 	}
 	
