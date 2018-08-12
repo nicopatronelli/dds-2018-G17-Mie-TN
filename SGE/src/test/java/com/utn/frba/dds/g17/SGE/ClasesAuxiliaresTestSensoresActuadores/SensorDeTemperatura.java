@@ -9,9 +9,9 @@ public class SensorDeTemperatura extends SensorObservado {
 	
 	int temperaturaActual; 
 	
-	public SensorDeTemperatura() {
+	public SensorDeTemperatura(int temperaturaActual) {
 		this.listaObservadores = new ArrayList<ActuadorObservador>();
-		this.temperaturaActual = 0;
+		this.temperaturaActual = temperaturaActual; 
 	}
 	
 	public void revisarTemperatura(int temperaturaAmbiente) {
@@ -22,6 +22,8 @@ public class SensorDeTemperatura extends SensorObservado {
 		}
 		
 	}
+	
+	// Getters y Setters
 	
 	public int getTemperaturaActual() {
 		return temperaturaActual;

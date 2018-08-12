@@ -19,7 +19,7 @@ public class SensoresActuadoresTest {
 		aireInteligente = new DispositivoInteligente("SAMSUNG CP3284X");
 		// Encendemos el aire
 		aireInteligente.encender(); 
-		sensorDeTemperatura = new SensorDeTemperatura();
+		sensorDeTemperatura = new SensorDeTemperatura(20);
 		aireInteligenteObservador = new AireAcondicionadoTemperaturaObservador(sensorDeTemperatura, aireInteligente);
 		sensorDeTemperatura.agregarObservador(aireInteligenteObservador);
 	}
