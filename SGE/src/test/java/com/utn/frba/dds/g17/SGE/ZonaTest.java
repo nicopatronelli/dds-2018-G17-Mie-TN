@@ -33,9 +33,9 @@ public class ZonaTest {
 		
 		Administrador admin = new Administrador("Pepito");
 		// Primero se cargan las zonas 
-		admin.cargarZonas("C:\\Users\\Nicolas\\Documents\\git\\dds-2018-G17-Mie-TN\\SGE\\src\\test\\resources\\data\\json\\Zonas.json");
+		admin.cargarZonas("src/test/resources/data/json/Zonas.json");
 		// Después cargamos los transformadores activos (que nos envia el ENRE), que son distribuidos a su respectiva zona 
-		admin.cargarTransformadores("C:\\Users\\Nicolas\\Documents\\git\\dds-2018-G17-Mie-TN\\SGE\\src\\test\\resources\\data\\json\\Transformadores.json");
+		admin.cargarTransformadores("src/test/resources/data/json/Transformadores.json");
 		clientes = admin.cargarClientes();
 		cliente = clientes[0];
 		domicilio =  cliente.getDomicilios().get(0);

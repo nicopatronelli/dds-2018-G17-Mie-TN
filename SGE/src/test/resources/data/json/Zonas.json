@@ -1,0 +1,16 @@
+[
+	{
+		"id" : 1,
+		"nombre" : "Pueblo Paleta", 
+		"latitud" : 250,
+		"longitud" : 350, 
+		"radio" : 50
+	},
+	{
+		"id" : 2,
+		"nombre" : "Springfield", 
+		"latitud" : 150,
+		"longitud" : 50, 
+		"radio" : 25
+	}
+]

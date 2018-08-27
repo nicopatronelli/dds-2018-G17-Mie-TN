@@ -1,0 +1,26 @@
+[
+	{
+		"id" : 1,
+		"latitud" : 50,
+		"longitud" : 100,
+		"zonaId" : 1
+	}, 
+	{
+		"id" : 2,
+		"latitud" : 80,
+		"longitud" : 350,
+		"zonaId" : 1
+	}, 
+	{
+		"id" : 3,
+		"latitud" : 100,
+		"longitud" : 750,
+		"zonaId" : 2
+	}, 
+	{
+		"id" : 4,
+		"latitud" : 450,
+		"longitud" : 750,
+		"zonaId" : 2
+	}, 
+]

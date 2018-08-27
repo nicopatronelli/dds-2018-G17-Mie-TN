@@ -93,8 +93,8 @@ public class Administrador {
 	
 	// Método auxiliar (no de negocio) 
 	public Cliente[] cargarClientes() {
-		Cliente[] clientes = CargaDatosJson.cargarClientes("src\\test\\resources\\data\\json\\Clientes.json");
-		
+		Cliente[] clientes = CargaDatosJson.cargarClientes("src/test/resources/data/json/Clientes.json");
+		//Cliente[] clientes = CargaDatosJson.cargarClientes("src\\test\\resources\\data\\json\\Clientes.json");
 		for( int i = 0; i < clientes.length; i++) {
 			// Inicializo la lista de dispositivos de cada domicilio (de cada cliente)
 			for ( int j = 0; j < clientes[i].getDomicilios().size(); j++ ) {
