@@ -1,0 +1,46 @@
+[	{
+		"apellido" : "Perez",
+		"nombre" : "Juan",
+		"tipoDocumento" : "DNI",
+		"nroDocumento" : 14294121,
+		"nombreUsuario" : "Usuario",
+		"password" : "Password",
+		"cantidadPuntos" : 0,
+		"domicilios" : [
+			{
+				"telefono" : "42841465",
+				"fechaAltaServicio" : null,
+				"categoria" : {
+						"cargoFijo": 35.32,
+						"cargoVariable": 0.644
+					},
+				"dispositivosEstandares" : [
+					{
+						"nombreGenerico" : "Heladera Comercial",
+						"consumoKwPorHora" : 1.2,
+						"horasDeUsoDiarias" : 24,
+						"estaAdaptado" : false;
+						"adaptador" : null
+					},
+					{
+						"nombreGenerico" : "Ventilador Turbo",
+						"consumoKwPorHora" : 0.01,
+						"horasDeUsoDiarias" : 5,
+						"estaAdaptado" : false;
+						"adaptador" : null						
+					}
+				],
+				"dispositivosInteligentes" : [
+					{
+						"idFabricante" : "TV SMART SAMSUNG C280",
+						"estado" : null
+					},
+					{
+						"idFabricante" : "HELADERA NO FROST SMART K2841",
+						"estado" : null
+					}
+				]
+			}
+		]
+	}
+]

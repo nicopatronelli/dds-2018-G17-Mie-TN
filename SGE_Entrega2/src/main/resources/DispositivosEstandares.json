@@ -1,0 +1,93 @@
+[
+	{
+		"nombreGenerico" : "TV 21 Estandar",
+		"consumoKwPorHora" : 0.075,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false
+	},
+	{
+		"nombreGenerico" : "TV 29 Estandar",
+		"consumoKwPorHora" : 0.175,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false
+	},
+	{
+		"nombreGenerico" : "TV 30 Estandar",
+		"consumoKwPorHora" : 0.175,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false
+	},
+	{
+		"nombreGenerico" : "TV 31 Estandar",
+		"consumoKwPorHora" : 0.175,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false
+	},
+	{
+		"nombreGenerico" : "TV 32 Estandar",
+		"consumoKwPorHora" : 0.175,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false
+	},
+	{
+		"nombreGenerico" : "TV 33 Estandar",
+		"consumoKwPorHora" : 0.175,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false
+	},
+	{
+		"nombreGenerico" : "TV 34 Estandar",
+		"consumoKwPorHora" : 0.175,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false
+	},
+	{
+		"nombreGenerico" : "LCD 40 Estandar",
+		"consumoKwPorHora" : 0.18,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false
+	}, 
+	{
+		"nombreGenerico" : "Lavarropas auto 5kg Estandar",
+		"consumoKwPorHora" : 0.875,
+		"usoMensualMinimoEnHoras" : 6, 
+		"usoMensualMaximoEnHoras" : 30,
+		"esBajoConsumo" : false
+	}, 
+	{
+		"nombreGenerico" : "Lavarropas semi 5kg Estandar",
+		"consumoKwPorHora" : 0.1275,
+		"usoMensualMinimoEnHoras" : 6, 
+		"usoMensualMaximoEnHoras" : 30,
+		"esBajoConsumo" : true
+	}, 
+	{
+		"nombreGenerico" : "Ventilador pie Estandar",
+		"consumoKwPorHora" : 0.09,
+		"usoMensualMinimoEnHoras" : 120, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : true
+	}, 
+	{
+		"nombreGenerico" : "Microondas Estándar",
+		"consumoKwPorHora" : 0.64,
+		"usoMensualMinimoEnHoras" : 3, 
+		"usoMensualMaximoEnHoras" : 15,
+		"esBajoConsumo" : true
+	}, 
+	{
+		"nombreGenerico" : "Plancha a vapor Estandar",
+		"consumoKwPorHora" : 0.75,
+		"usoMensualMinimoEnHoras" : 3, 
+		"usoMensualMaximoEnHoras" : 30,
+		"esBajoConsumo" : true
+	}
+]
