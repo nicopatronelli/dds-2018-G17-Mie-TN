@@ -4,13 +4,15 @@
 		"nombre" : "Pueblo Paleta", 
 		"latitud" : 250,
 		"longitud" : 350, 
-		"radio" : 50
+		"radio" : 50,
+		"transformadores" : []
 	},
 	{
 		"id" : 2,
 		"nombre" : "Springfield", 
 		"latitud" : 150,
 		"longitud" : 50, 
-		"radio" : 25
+		"radio" : 25,
+		"transformadores" : []
 	}
 ]

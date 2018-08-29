@@ -63,42 +63,42 @@
 		"esBajoConsumo" : true
 	},
 	{
-		"nombreGenerico" : "Lámpara halógena 40W Inteligente",
+		"nombreGenerico" : "Lampara halogena 40W Inteligente",
 		"consumoKwPorHora" : 0.04,
 		"usoMensualMinimoEnHoras" : 90, 
 		"usoMensualMaximoEnHoras" : 360,
 		"esBajoConsumo" : false
 	},
 	{
-		"nombreGenerico" : "Lámpara halógena 60W Inteligente",
+		"nombreGenerico" : "Lampara halogena 60W Inteligente",
 		"consumoKwPorHora" : 0.06,
 		"usoMensualMinimoEnHoras" : 90, 
 		"usoMensualMaximoEnHoras" : 360,
 		"esBajoConsumo" : false
 	},
 	{
-		"nombreGenerico" : "Lámpara halógena 100W Inteligente",
+		"nombreGenerico" : "Lampara halogena 100W Inteligente",
 		"consumoKwPorHora" : 0.15,
 		"usoMensualMinimoEnHoras" : 90, 
 		"usoMensualMaximoEnHoras" : 360,
 		"esBajoConsumo" : false
 	},
 	{
-		"nombreGenerico" : "Lámpara 11W Inteligente",
+		"nombreGenerico" : "Lampara 11W Inteligente",
 		"consumoKwPorHora" : 0.011,
 		"usoMensualMinimoEnHoras" : 90, 
 		"usoMensualMaximoEnHoras" : 360,
 		"esBajoConsumo" : true
 	},
 	{
-		"nombreGenerico" : "Lámpara 15W Inteligente",
+		"nombreGenerico" : "Lampara 15W Inteligente",
 		"consumoKwPorHora" : 0.015,
 		"usoMensualMinimoEnHoras" : 90, 
 		"usoMensualMaximoEnHoras" : 360,
 		"esBajoConsumo" : true
 	},
 	{
-		"nombreGenerico" : "Lámpara 20W Inteligente",
+		"nombreGenerico" : "Lampara 20W Inteligente",
 		"consumoKwPorHora" : 0.02,
 		"usoMensualMinimoEnHoras" : 90, 
 		"usoMensualMaximoEnHoras" : 360,

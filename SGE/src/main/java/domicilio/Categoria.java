@@ -1,5 +1,8 @@
 package domicilio;
 
+import lombok.Data;
+
+@Data
 public class Categoria {
 
 	private double cargoFijo;
@@ -7,24 +10,6 @@ public class Categoria {
 	
 	public Categoria(double cargoFijo, double cargoVariable) {
 		this.cargoFijo = cargoFijo;
-		this.cargoVariable = cargoVariable;
-	}
-	
-	// Getters y Setters
-	
-	public double getCargoFijo() {
-		return cargoFijo;
-	}
-
-	public void setCargoFijo(double cargoFijo) {
-		this.cargoFijo = cargoFijo;
-	}
-
-	public double getCargoVariable() {
-		return cargoVariable;
-	}
-
-	public void setCargoVariable(double cargoVariable) {
 		this.cargoVariable = cargoVariable;
 	}
 	

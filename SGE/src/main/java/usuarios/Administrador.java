@@ -55,9 +55,8 @@ public class Administrador {
 		transformadores = Arrays.asList(CargaDatosJson.cargarTransformadores(pathJsonTransformadores));
 		
 		for(Zona zona : this.zonas) {
-			zona.setTransformadores(new ArrayList<Transformador>());
 			for(Transformador transformador : this.transformadores){
-				transformador.setDomicilios(new ArrayList<DomicilioServicio>()); // Reseteo los domicilios asignados a cada transformador
+				resetearTransformador(transformador);
 				if (transformador.getZonaId() == zona.getId()) {
 					zona.agregarTransformador(transformador); // Agrego los transformadores a la zona correspondiente
 				}
@@ -65,6 +64,10 @@ public class Administrador {
 		} // fin for 1
 		
 	} // FIN cargarTransformadores()
+	
+	private void resetearTransformador(Transformador transformador) {
+		transformador.setDomicilios(new ArrayList<DomicilioServicio>()); // Reseteo los domicilios asignados a cada transformador
+	}
 	
 	public void asignarTransformadores(Cliente[] clientes) {
 		for(Cliente cliente : clientes) {
@@ -94,14 +97,6 @@ public class Administrador {
 	// Método auxiliar (no de negocio) 
 	public Cliente[] cargarClientes() {
 		Cliente[] clientes = CargaDatosJson.cargarClientes("src/test/resources/data/json/Clientes.json");
-		//Cliente[] clientes = CargaDatosJson.cargarClientes("src\\test\\resources\\data\\json\\Clientes.json");
-		for( int i = 0; i < clientes.length; i++) {
-			// Inicializo la lista de dispositivos de cada domicilio (de cada cliente)
-			for ( int j = 0; j < clientes[i].getDomicilios().size(); j++ ) {
-				clientes[i].getDomicilios().get(j).setDispositivos(new ArrayList<Dispositivo>()); 
-			}
-		}
-		
 		return clientes;
 	}
 }

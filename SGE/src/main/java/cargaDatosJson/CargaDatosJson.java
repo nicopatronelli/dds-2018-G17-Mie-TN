@@ -14,7 +14,7 @@ import usuarios.Cliente;
 
 public class CargaDatosJson {
 		
-	private static String archivoAString(String path) throws IOException {
+	public static String archivoAString(String path) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, StandardCharsets.UTF_8);
 	}
