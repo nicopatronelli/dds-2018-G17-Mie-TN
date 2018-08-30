@@ -2,6 +2,8 @@ package domicilio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.joda.time.DateTime;
 
 import dispositivos.Dispositivo;
@@ -28,20 +30,8 @@ public class DomicilioServicio {
 	}
 	
 	// No devolvemos List<DispositivoInteligente> porque un dispositivo estandar adaptado también es inteligente 
-	public List<Dispositivo> dispositivosInteligentes(){
-		
-		//return dispositivos.stream().filter(dispositivo->dispositivo.esInteligente()).collect(Collectors.toList());
-		
-		List<Dispositivo> dispositivosInteligentes = new ArrayList<Dispositivo>();
-		
-		for(Dispositivo dispositivo : this.dispositivos) {
-			if ( dispositivo.esInteligente() ) {
-				dispositivosInteligentes.add(dispositivo);
-			}
-		}
-		
-		return dispositivosInteligentes;
-		
+	public List<Dispositivo> dispositivosInteligentes(){		
+		return this.dispositivos.stream().filter(dispositivo -> dispositivo.esInteligente()).collect(Collectors.toList()); 
 	}
 	
 	public int cantidadDispositivosInteligentes() {
