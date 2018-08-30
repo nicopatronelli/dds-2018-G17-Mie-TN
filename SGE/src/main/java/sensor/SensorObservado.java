@@ -23,9 +23,7 @@ public abstract class SensorObservado {
 	}
 	
 	public void notificarObservadores() {
-		for(ReglaObservador observador : listaObservadores) {
-			observador.revisarRegla(magnitudMedida);
-		}
+		listaObservadores.forEach(observador->observador.revisarRegla(magnitudMedida));
 	}
 	
 }
