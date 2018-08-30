@@ -18,15 +18,9 @@ public abstract class ReglaObservador {
 	}
 	
 	public void revisarRegla(int magnitudMedida) {
-		
-		// Template Method
-		if ( seCumpleRegla(magnitudMedida) ) {
-			for (Actuador actuador : actuadores) {
-				actuador.ejecutarActuador();
-			}
-		}
-
-	} // fin revisarRegla()
+		if ( seCumpleRegla(magnitudMedida) ) // Template Method
+			actuadores.forEach(actuador -> actuador.ejecutarActuador());
+	} 
 	
 	abstract protected boolean seCumpleRegla(int magnitudMedida);
 	
