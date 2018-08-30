@@ -15,7 +15,7 @@ public class DispositivoEstandar extends Dispositivo {
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
 		
 		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
-		this.esInteligente = false; // Todo Dispositivo Estandar inicia como no adaptado
+		this.esInteligente = false; // Todo dispositivo estándar inicia como no adaptado
 	}
 
 	public double consumoDiarioEstimado() {
@@ -33,6 +33,10 @@ public class DispositivoEstandar extends Dispositivo {
 		this.adaptador.setFabricante(new FabricanteSGE("01A_SGE"));
 		this.esInteligente = true;
 	}
+	
+	/* Una vez que un dispositivo estándar esta adaptado delego todos los mensajes referidos a un dispositivo 
+	 * inteligente a su adaptador. 
+	 */
 	
 	public DispositivoInteligente adaptador() {
 		return this.adaptador;

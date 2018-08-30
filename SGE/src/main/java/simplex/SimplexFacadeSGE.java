@@ -11,7 +11,7 @@ import domicilio.DomicilioServicio;
 import simplex.facade.SimplexFacade;
 
 /* Esta es nuestra propia Facade de la biblioteca Simplex. La biblioteca Simplex original provista para el 
- * TP la agregamos como una dependencia Maven utilizando jitpack.
+ * TP la agregamos como una dependencia Maven utilizando Jitpack.
  */
 
 public class SimplexFacadeSGE {

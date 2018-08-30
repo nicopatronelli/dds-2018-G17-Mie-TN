@@ -77,14 +77,12 @@ public class DispositivoInteligente extends Dispositivo {
 		else 
 			return this.fabricante.consumoInstantaneo(fabricante.getIdFabricante());
 	}
-
-	// Getters y Setters
 	
 	public String getIdFabricante() {
 		return fabricante.getIdFabricante();
 	}
 	
-	public void iniciarEstadoApagado() { // Para testing
+	public void iniciarEstadoApagado() { 
 		this.estado = new EstadoApagado();
 	}
 	
