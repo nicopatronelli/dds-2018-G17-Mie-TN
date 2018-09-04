@@ -1,6 +1,7 @@
 package estadosDispositivoInteligente;
 
 import dispositivos.DispositivoInteligente;
+import dispositivos.EstadoHistorial;
 
 public class EstadoEncendido implements EstadoDispositivoInteligente {
 	
@@ -30,12 +31,14 @@ public class EstadoEncendido implements EstadoDispositivoInteligente {
 		// Si el dispositivo está encendido y se le envía el mensaje apagar() debe cambiar su estado a apagado
 		 dispositivoInteligente.cambiarEstado(new EstadoApagado());
 		 dispositivoInteligente.getFabricante().apagar(dispositivoInteligente.getIdFabricante()); // Le digo al fabricante que apague el dispositivo
+		 dispositivoInteligente.actualizarHistorial(EstadoHistorial.APAGADO);
 	}
 	
 	public void activarAhorroDeEnergia(DispositivoInteligente dispositivoInteligente) {
 		// Si el dispositivo está encendido y se le envía el mensaje apagar() debe cambiar su estado a ahorro de energía
 		 dispositivoInteligente.cambiarEstado(new EstadoAhorroDeEnergia());
 		 dispositivoInteligente.getFabricante().activarAhorroDeEnergia(dispositivoInteligente.getIdFabricante()); // Le digo al fabricante que active el ahorro de energía del dispositivo
+		 dispositivoInteligente.actualizarHistorial(EstadoHistorial.AHORRO_DE_ENERGIA);
 	}
 
 }

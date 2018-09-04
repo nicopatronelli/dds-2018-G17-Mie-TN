@@ -11,6 +11,7 @@ import cargaDatosJson.CargaDatosJson;
 import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
+import dispositivos.EntradaDispositivoInteligente;
 import dispositivos.FabricanteDispositivoInteligente;
 import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
@@ -91,6 +92,7 @@ public class Administrador {
 		dispositivoInteligente.setEsInteligente(true);
 		dispositivoInteligente.iniciarEstadoApagado();
 		dispositivoInteligente.setFabricante(fabricante);
+		dispositivoInteligente.setHistorial(new ArrayList<EntradaDispositivoInteligente>());
 		return dispositivoInteligente;
 	}
 	

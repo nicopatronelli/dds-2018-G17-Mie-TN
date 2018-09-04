@@ -1,5 +1,8 @@
 package dispositivos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 import estadosDispositivoInteligente.EstadoApagado;
@@ -11,13 +14,14 @@ public class DispositivoInteligente extends Dispositivo {
 	
 	private FabricanteDispositivoInteligente fabricante;
 	private EstadoDispositivoInteligente estado;
-	
+	private List<EntradaDispositivoInteligente> historial;
 	
 	public DispositivoInteligente(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
 		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
 		this.estado = new EstadoApagado(); // Asumo que todo nuevo dispositivo inteligente inicia en estado apagado
 		this.esInteligente = true;
+		this.historial = new ArrayList<EntradaDispositivoInteligente>();
 	}
 	
 	
@@ -61,6 +65,11 @@ public class DispositivoInteligente extends Dispositivo {
 	 * son los fabricantes de los dispositivos inteligentes los que nos van a proporcionar el consumo 
 	 * de los mismos (INTERFAZ EXTERNA con SGE). 
 	 */
+	
+	public void actualizarHistorial(EstadoHistorial estadoActual) {
+		EntradaDispositivoInteligente nuevaEntrada = new EntradaDispositivoInteligente(new DateTime(), estadoActual);
+		historial.add(nuevaEntrada);
+	}
 	
 	public float energiaConsumidaDuranteUltimasHoras(int horas) {
 		// Lo tenemos que hacer nosotros guardando el estado de los dispositivos 
