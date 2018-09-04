@@ -82,17 +82,15 @@ public class Administrador {
 	
 	public Dispositivo crearDispositivoEstandar(String keyDispositivo, int horasDeUsoDiarias) throws CloneNotSupportedException {
 		DispositivoEstandar dispositivoEstandar = (DispositivoEstandar)crearDispositivo(keyDispositivo);
-		dispositivoEstandar.setEsInteligente(false);
 		dispositivoEstandar.setHorasDeUsoDiarias(horasDeUsoDiarias);
 		return dispositivoEstandar;
 	}
 	
 	public Dispositivo crearDispositivoInteligente(String keyDispositivo, FabricanteDispositivoInteligente fabricante) throws CloneNotSupportedException {
 		DispositivoInteligente dispositivoInteligente = (DispositivoInteligente)crearDispositivo(keyDispositivo);
-		dispositivoInteligente.setEsInteligente(true);
 		dispositivoInteligente.iniciarEstadoApagado();
 		dispositivoInteligente.setFabricante(fabricante);
-		dispositivoInteligente.setHistorial(new ArrayList<EntradaDispositivoInteligente>());
+		//dispositivoInteligente.setHistorial(new ArrayList<EntradaDispositivoInteligente>());
 		return dispositivoInteligente;
 	}
 	

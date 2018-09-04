@@ -71,6 +71,10 @@ public class DispositivoInteligente extends Dispositivo {
 		historial.add(nuevaEntrada);
 	}
 	
+	public void mostrarHistorial() {
+		System.out.println(historial.toString());
+	}
+	
 	public float energiaConsumidaDuranteUltimasHoras(int horas) {
 		// Lo tenemos que hacer nosotros guardando el estado de los dispositivos 
 		return 0;

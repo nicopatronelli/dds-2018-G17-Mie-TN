@@ -15,4 +15,9 @@ public class EntradaDispositivoInteligente {
 		this.estado = estadoActual;
 	}
 	
+	@Override
+	public String toString() {
+		return "FECHA:" + fecha + " ESTADO:" + estado;
+	}
+	
 }

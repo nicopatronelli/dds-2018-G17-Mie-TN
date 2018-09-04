@@ -60,6 +60,7 @@ public class EstadosDispositivoInteligenteTest {
 		dispositivoInteligente.activarAhorroDeEnergia();
 		// Si le envio el mensaje encender estando en modo ahorro de energía el dispositivo se enciende
 		dispositivoInteligente.encender();
+		dispositivoInteligente.mostrarHistorial();
 		Assert.assertTrue(dispositivoInteligente.estaEncendido());
 	}
 	
