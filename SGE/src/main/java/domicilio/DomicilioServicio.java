@@ -18,8 +18,7 @@ public class DomicilioServicio {
 	private DateTime fechaAltaServicio;
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos;
-	private double latitud;
-	private double longitud;
+	private Posicion posicion;
 	private Transformador transformador;
 	
 	public DomicilioServicio(String telefono, DateTime fechaAltaServicio, Categoria categoria) {
@@ -86,8 +85,8 @@ public class DomicilioServicio {
 	
 	// Método auxiliar
 	private double distanciaEntreDomicilioTransformador(Transformador unTransformador) {
-		return Math.sqrt(Math.pow(this.getLatitud() - unTransformador.getLatitud(), 2) 
-				+ Math.pow(this.getLongitud() - unTransformador.getLongitud(), 2));
+		return Math.sqrt(Math.pow(this.getPosicion().getLatitud() - unTransformador.getLatitud(), 2) 
+				+ Math.pow(this.getPosicion().getLongitud() - unTransformador.getLongitud(), 2));
 	}
 	
 } 

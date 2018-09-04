@@ -3,7 +3,6 @@ package com.utn.frba.dds.g17.SGE;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.utn.frba.dds.g17.SGE.ClasesMock.FabricanteSamsungMock;
 import com.utn.frba.dds.g17.SGE.ClasesMock.ReglaTemperaturaMayor20Grados;
 import com.utn.frba.dds.g17.SGE.ClasesMock.SensorDeTemperatura;
 

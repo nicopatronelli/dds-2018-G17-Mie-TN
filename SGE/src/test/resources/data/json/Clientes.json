@@ -12,8 +12,11 @@
 			{
 				"telefono" : 42960647, 
 				"fechaAltaServicio" : null,
-				"latitud" : 350,
-				"longitud" : 250, 
+				"posicion" : 
+				{
+					"latitud" : 350,
+					"longitud" : 250
+				}, 
 				"transformador" : {},
 				"categoria" : 
 				{

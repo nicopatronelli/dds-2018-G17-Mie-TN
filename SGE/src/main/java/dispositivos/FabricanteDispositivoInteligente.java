@@ -1,7 +1,5 @@
 package dispositivos;
 
-import org.joda.time.DateTime;
-
 public abstract class FabricanteDispositivoInteligente {
 	
 	/*

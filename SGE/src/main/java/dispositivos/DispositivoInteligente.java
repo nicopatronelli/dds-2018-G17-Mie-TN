@@ -12,6 +12,7 @@ public class DispositivoInteligente extends Dispositivo {
 	private FabricanteDispositivoInteligente fabricante;
 	private EstadoDispositivoInteligente estado;
 	
+	
 	public DispositivoInteligente(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
 		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
