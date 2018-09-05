@@ -2,9 +2,6 @@ package geoposicionamiento;
 
 import java.util.List;
 
-import lombok.Data;
-
-@Data
 public class Zona {
 	
 	private int id; 
@@ -20,6 +17,12 @@ public class Zona {
 	
 	public double consumoTotal() {
 		return this.transformadores.stream().mapToDouble(transformador -> transformador.energiaConsumida()).sum();
+	}
+	
+	// GETTERS Y SETTERS
+	
+	public int getId() {
+		return id;
 	}
 	
 

@@ -9,9 +9,7 @@ import org.joda.time.DateTime;
 import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import geoposicionamiento.Transformador;
-import lombok.Data;
 
-@Data
 public class DomicilioServicio {
 	
 	private String telefono;
@@ -87,6 +85,20 @@ public class DomicilioServicio {
 	private double distanciaEntreDomicilioTransformador(Transformador unTransformador) {
 		return Math.sqrt(Math.pow(this.getPosicion().getLatitud() - unTransformador.getLatitud(), 2) 
 				+ Math.pow(this.getPosicion().getLongitud() - unTransformador.getLongitud(), 2));
+	}
+
+	// GETTERS Y SETTERS 
+	
+	private Posicion getPosicion() {
+		return posicion;
+	}
+
+	public List<Dispositivo> getDispositivos() {
+		return dispositivos;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
 	}
 	
 } 

@@ -1,8 +1,5 @@
 package dispositivos;
 
-import lombok.Data;
-
-@Data
 public abstract class Dispositivo implements Cloneable {
 	
 	protected String nombreGenerico;
@@ -45,6 +42,24 @@ public abstract class Dispositivo implements Cloneable {
 	// Para prototype
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
+	}
+
+	// GETTERS Y SETTERS
+	
+	public double getUsoMensualMinimoEnHoras() {
+		return usoMensualMinimoEnHoras;
+	}
+
+	public double getUsoMensualMaximoEnHoras() {
+		return usoMensualMaximoEnHoras;
+	}
+
+	public double getConsumoKwPorHora() {
+		return consumoKwPorHora;
+	}
+
+	public String getNombreGenerico() {
+		return nombreGenerico;
 	}
 	
 }

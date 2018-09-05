@@ -6,10 +6,8 @@ import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
-import lombok.Data;
 import simplex.SimplexFacadeSGE;
 
-@Data
 public class Cliente {
 	
 	private String apellido;
@@ -64,6 +62,10 @@ public class Cliente {
 		for(DomicilioServicio domicilio : domicilios) {
 			domicilio.asignarTransformadorMasCercano(transformadores);
 		}
+	}
+
+	public List<DomicilioServicio> getDomicilios() {
+		return domicilios;
 	}
 	
 } 

@@ -11,14 +11,11 @@ import cargaDatosJson.CargaDatosJson;
 import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
-import dispositivos.EntradaDispositivoInteligente;
 import dispositivos.FabricanteDispositivoInteligente;
 import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
-import lombok.Data;
 
-@Data
 public class Administrador {
 
 	private int id;
@@ -98,5 +95,15 @@ public class Administrador {
 	public Cliente[] cargarClientes() {
 		Cliente[] clientes = CargaDatosJson.cargarClientes("src/test/resources/data/json/Clientes.json");
 		return clientes;
+	}
+	
+	// GETTERS Y SETTERS 
+
+	public List<Transformador> getTransformadores() {
+		return transformadores;
+	}
+
+	public List<Zona> getZonas() {
+		return zonas;
 	}
 }

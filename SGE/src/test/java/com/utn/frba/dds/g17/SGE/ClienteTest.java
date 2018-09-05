@@ -28,7 +28,6 @@ public class ClienteTest {
 		clientes = admin.cargarClientes();
 		cliente = clientes[0];
 		domicilio =  cliente.getDomicilios().get(0);
-		System.out.println(domicilio.getCategoria().getCargoFijo());
 		dispositivoEstandarA = (DispositivoEstandar)admin.crearDispositivoEstandar("LCD 40 Estandar", 5);
 		dispositivoEstandarB = (DispositivoEstandar)admin.crearDispositivoEstandar("Ventilador pie Estandar", 1);
 		dispositivoInteligenteA = (DispositivoInteligente)admin.crearDispositivoInteligente("Aire 2200 Inteligente", new FabricanteSamsungMock("Samsung-IK248"));

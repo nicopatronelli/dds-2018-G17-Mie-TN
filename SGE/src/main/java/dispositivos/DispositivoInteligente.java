@@ -7,9 +7,7 @@ import org.joda.time.DateTime;
 
 import estadosDispositivoInteligente.EstadoApagado;
 import estadosDispositivoInteligente.EstadoDispositivoInteligente;
-import lombok.Data;
 
-@Data
 public class DispositivoInteligente extends Dispositivo {
 	
 	private FabricanteDispositivoInteligente fabricante;
@@ -99,5 +97,17 @@ public class DispositivoInteligente extends Dispositivo {
 	public void iniciarEstadoApagado() { 
 		this.estado = new EstadoApagado();
 	}
+
+	// GETTERS Y SETTERS
+
+	public void setFabricante(FabricanteDispositivoInteligente fabricante) {
+		this.fabricante = fabricante;
+	}
+
+
+	public FabricanteDispositivoInteligente getFabricante() {
+		return fabricante;
+	}
+
 	
 }

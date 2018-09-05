@@ -2,9 +2,6 @@ package dispositivos;
 
 import org.joda.time.DateTime;
 
-import lombok.Data;
-
-@Data
 public class EntradaDispositivoInteligente {
 	
 	private DateTime fecha;

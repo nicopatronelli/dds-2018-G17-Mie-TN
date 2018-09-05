@@ -2,9 +2,6 @@ package dispositivos;
 
 import com.utn.frba.dds.g17.SGE.ClasesMock.FabricanteSGE;
 
-import lombok.Data;
-
-@Data
 public class DispositivoEstandar extends Dispositivo {
 	
 	private int horasDeUsoDiarias; // Lo informa el cliente
@@ -69,6 +66,12 @@ public class DispositivoEstandar extends Dispositivo {
 	@Override
 	public double consumoInstantaneo() {
 		return adaptador.consumoInstantaneo();
+	}
+
+	// GETTERS Y SETTERS
+	
+	public void setHorasDeUsoDiarias(int horasDeUsoDiarias) {
+		this.horasDeUsoDiarias = horasDeUsoDiarias;
 	}
 	
 }

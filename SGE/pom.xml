@@ -51,16 +51,14 @@
 		    <groupId>com.github.dds-utnfrba-17</groupId>
 		    <artifactId>Simplex-Solution-Final</artifactId>
 		    <version>-SNAPSHOT</version>
-		</dependency>
+		</dependency>		
 		
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.2</version>
-		    <scope>provided</scope>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.2</version>
+			<scope>provided</scope>
 		</dependency>
-		
 
 	</dependencies>
 	

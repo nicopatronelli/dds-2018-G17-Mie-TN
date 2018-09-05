@@ -1,11 +1,10 @@
 package geoposicionamiento;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import domicilio.DomicilioServicio;
-import lombok.Data;
 
-@Data
 public class Transformador {
 	
 	private int id;
@@ -20,6 +19,24 @@ public class Transformador {
 	
 	public double energiaConsumida() {
 		return this.domicilios.stream().mapToDouble(domicilio->domicilio.consumoInteligenteDomicilio()).sum();
+	}
+	
+	// GETTERS Y SETTERS
+	
+	public double getLatitud() {
+		return latitud;
+	}
+	
+	public double getLongitud() {
+		return longitud;
+	}
+
+	public int getZonaId() {
+		return zonaId;
+	}
+
+	public void setDomicilios(List<DomicilioServicio> domicilios) {
+		this.domicilios = domicilios;
 	}
 
 }
