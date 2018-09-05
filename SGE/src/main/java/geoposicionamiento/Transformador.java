@@ -1,6 +1,5 @@
 package geoposicionamiento;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import domicilio.DomicilioServicio;
