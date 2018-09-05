@@ -1,4 +1,4 @@
-package com.utn.frba.dds.g17.SGE.ClasesMock;
+package mocks;
 
 import sensor.SensorObservado;
 

@@ -3,11 +3,10 @@ package com.utn.frba.dds.g17.SGE;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.utn.frba.dds.g17.SGE.ClasesMock.ReglaTemperaturaMayor20Grados;
-import com.utn.frba.dds.g17.SGE.ClasesMock.SensorDeTemperatura;
-
 import actuadores.ActuadorEncender;
 import dispositivos.Dispositivo;
+import mocks.ReglaTemperaturaMayor20Grados;
+import mocks.SensorDeTemperatura;
 import usuarios.Administrador;
 
 import org.junit.Assert;

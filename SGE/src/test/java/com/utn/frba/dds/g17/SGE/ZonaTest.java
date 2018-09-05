@@ -6,13 +6,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.utn.frba.dds.g17.SGE.ClasesMock.FabricanteSamsungMock;
-
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
+import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
 import usuarios.Cliente;
 

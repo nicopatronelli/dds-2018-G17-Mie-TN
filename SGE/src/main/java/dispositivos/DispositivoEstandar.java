@@ -1,6 +1,6 @@
 package dispositivos;
 
-import com.utn.frba.dds.g17.SGE.ClasesMock.FabricanteSGE;
+import mocks.FabricanteSGE;
 
 public class DispositivoEstandar extends Dispositivo {
 	

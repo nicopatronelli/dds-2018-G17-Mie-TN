@@ -4,9 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.utn.frba.dds.g17.SGE.ClasesMock.FabricanteSamsungMock;
-
 import dispositivos.DispositivoInteligente;
+import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
 
 public class EstadosDispositivoInteligenteTest {
