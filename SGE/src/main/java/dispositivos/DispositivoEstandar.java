@@ -1,12 +1,21 @@
 package dispositivos;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
 import mocks.FabricanteSGE;
 
+@Entity
 public class DispositivoEstandar extends Dispositivo {
 	
 	private int horasDeUsoDiarias; // Lo informa el cliente
 	
+	@OneToOne
 	private DispositivoInteligente adaptador = null;
+	
+	public DispositivoEstandar() {
+		// Constructor vacío para Hibernate
+	}
 	
 	public DispositivoEstandar(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {

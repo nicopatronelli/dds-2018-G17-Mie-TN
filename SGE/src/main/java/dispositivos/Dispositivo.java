@@ -1,14 +1,35 @@
 package dispositivos;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dispositivo implements Cloneable {
 	
+	@Id @GeneratedValue(strategy = GenerationType.TABLE)
+	protected Long id;
+	
 	protected String nombreGenerico;
+	
 	protected double consumoKwPorHora;
+	
 	protected int usoMensualMinimoEnHoras;
+	
 	protected int usoMensualMaximoEnHoras;
+	
 	protected boolean esBajoConsumo;
+	
 	protected boolean esInteligente;
-
+	
+	public Dispositivo() {
+		// Constructor vacío para Hibernate
+	}
+	
 	public Dispositivo(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
 		this.nombreGenerico = nombreGenerico;

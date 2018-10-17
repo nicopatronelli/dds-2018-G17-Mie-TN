@@ -1,11 +1,20 @@
 package usuarios;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.joda.time.DateTime;
-import org.joda.time.Months;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import cargaDatosJson.CargaDatosJson;
 import dispositivos.Dispositivo;
@@ -16,31 +25,62 @@ import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
 
+@Entity
+@Table(name = "Administradores")
 public class Administrador {
-
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String apellido;
+	
 	private String nombre;
-	private String nombreUsuario;
+	
+	private String apellido;
+	
+	private String usuario;
+	
 	private String password;
-	private String domicilio;
-	private DateTime fechaAltaUsuarioSistema;
-	private List<Cliente> clientes;
+	
+	private String direccion;
+	
+	@Column(name = "FECHA_ALTA")
+	private LocalDate fechaAlta;
+	
+	@Transient
+	private GestorDispositivos gestorDispositivos = new GestorDispositivos();;
+	
+	//private List<Cliente> clientes;
+	
+	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
 	private List<Transformador> transformadores;
+	
+	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
 	private List<Zona> zonas;
-	private GestorDispositivos gestorDispositivos = new GestorDispositivos();
+	
+	public Administrador() {
+		// Constructor sin argumentos para Hibernate
+	}
 	
 	public Administrador(String nombre) {
 		this.nombre = nombre;
 	}
 	
- 	public int cantidadMesesComoAdmistrador() {
-		return Months.monthsBetween(this.fechaAltaUsuarioSistema, new DateTime()).getMonths();
+ 	public Administrador(String nombre, String apellido, String usuario, String password, String direccion,
+			LocalDate fechaAlta) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.usuario = usuario;
+		this.password = password;
+		this.direccion = direccion;
+		this.fechaAlta = fechaAlta;
 	}
 	
- 	public void agregarCliente(Cliente cliente) {
+/* 	public int cantidadMesesComoAdmistrador() {
+		return Months.monthsBetween(this.fechaAltaUsuarioSistema, new DateTime()).getMonths();
+	}*/
+
+/*	public void agregarCliente(Cliente cliente) {
  		clientes.add(cliente);
- 	}
+ 	}*/
  	
 	public void cargarZonas(String pathJsonZonas) {
 		zonas = new ArrayList<Zona>();
@@ -77,18 +117,21 @@ public class Administrador {
 		return gestorDispositivos.obtenerDispositivo(keyDispositivo);
 	}
 	
-	public Dispositivo crearDispositivoEstandar(String keyDispositivo, int horasDeUsoDiarias) throws CloneNotSupportedException {
+	public Dispositivo obtenerDispositivoEstandar(String keyDispositivo, int horasDeUsoDiarias) throws CloneNotSupportedException {
 		DispositivoEstandar dispositivoEstandar = (DispositivoEstandar)crearDispositivo(keyDispositivo);
 		dispositivoEstandar.setHorasDeUsoDiarias(horasDeUsoDiarias);
 		return dispositivoEstandar;
 	}
 	
-	public Dispositivo crearDispositivoInteligente(String keyDispositivo, FabricanteDispositivoInteligente fabricante) throws CloneNotSupportedException {
+	public Dispositivo obtenerDispositivoInteligente(String keyDispositivo, FabricanteDispositivoInteligente fabricante) throws CloneNotSupportedException {
 		DispositivoInteligente dispositivoInteligente = (DispositivoInteligente)crearDispositivo(keyDispositivo);
 		dispositivoInteligente.iniciarEstadoApagado();
 		dispositivoInteligente.setFabricante(fabricante);
-		//dispositivoInteligente.setHistorial(new ArrayList<EntradaDispositivoInteligente>());
 		return dispositivoInteligente;
+	}
+	
+	public int cantidadTransformadoresActivos() {
+		return transformadores.size();
 	}
 	
 	// Método auxiliar (no de negocio) 

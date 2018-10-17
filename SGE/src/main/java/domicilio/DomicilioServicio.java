@@ -1,25 +1,66 @@
 package domicilio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.joda.time.DateTime;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import geoposicionamiento.Transformador;
 
+@Entity
+@Table(name = "DOMICILIO_SERVICIO")
 public class DomicilioServicio {
 	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
 	private String telefono;
-	private DateTime fechaAltaServicio;
+	
+	@Column(name = "fecha_alta_servicio")
+	private LocalDate fechaAltaServicio;
+
+	@Embedded
 	private Categoria categoria;
-	private List<Dispositivo> dispositivos;
+	
+	@Embedded 
 	private Posicion posicion;
+	
+	@OneToMany @JoinColumn(name = "domicilio_id")
+	@Transient
+	private List<Dispositivo> dispositivos;
+	
+	@ManyToOne(cascade = { CascadeType.ALL })
 	private Transformador transformador;
 	
-	public DomicilioServicio(String telefono, DateTime fechaAltaServicio, Categoria categoria) {
+	public DomicilioServicio() {
+		// Constructor vacío para Hibernate
+	}
+	
+	public DomicilioServicio(String telefono, LocalDate fechaAltaServicio, Categoria categoria, Posicion posicion) {
+		this.telefono = telefono;
+		this.fechaAltaServicio = fechaAltaServicio;
+		this.categoria = categoria;
+		this.dispositivos = new ArrayList<Dispositivo>();
+		this.posicion = posicion;
+	}
+	
+	// Sobrecarga de constructores (Borrar este sino pincha)
+	public DomicilioServicio(String telefono, LocalDate fechaAltaServicio, Categoria categoria) {
 		this.telefono = telefono;
 		this.fechaAltaServicio = fechaAltaServicio;
 		this.categoria = categoria;
@@ -89,8 +130,12 @@ public class DomicilioServicio {
 
 	// GETTERS Y SETTERS 
 	
-	private Posicion getPosicion() {
+	public Posicion getPosicion() {
 		return posicion;
+	}
+	
+	public void nuevaPosicion(Posicion posicion) {
+		this.posicion = posicion;
 	}
 
 	public List<Dispositivo> getDispositivos() {
@@ -99,6 +144,10 @@ public class DomicilioServicio {
 
 	public Categoria getCategoria() {
 		return categoria;
+	}
+	
+	public void nuevaCategoria(Categoria nuevaCategoria) {
+		this.categoria = nuevaCategoria;
 	}
 	
 } 

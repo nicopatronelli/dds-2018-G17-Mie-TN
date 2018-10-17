@@ -17,7 +17,7 @@ public class EstadosDispositivoInteligenteTest {
 	public void initialize() throws CloneNotSupportedException {
 		
 		admin = new Administrador("Pepito");
-		dispositivoInteligente = (DispositivoInteligente) admin.crearDispositivoInteligente("LED 32 Inteligente", 
+		dispositivoInteligente = (DispositivoInteligente) admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-JD256"));
 		
 	}

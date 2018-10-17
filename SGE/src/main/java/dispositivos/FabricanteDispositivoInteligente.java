@@ -1,5 +1,8 @@
 package dispositivos;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public abstract class FabricanteDispositivoInteligente {
 	
 	/*
@@ -9,6 +12,10 @@ public abstract class FabricanteDispositivoInteligente {
 	
 	String idFabricante;
 
+	protected FabricanteDispositivoInteligente() {
+		// Constructor vacío para Hibernate
+	}
+	
 	protected FabricanteDispositivoInteligente(String idDispositivoFabricante) {
 		this.idFabricante = idDispositivoFabricante;
 	}

@@ -25,7 +25,7 @@ public class SensorReglaActuadorDispositivoInteligenteTest {
 		
 		admin = new Administrador("Pepito");
 		// El aire inicia apagado 
-		aireInteligente = admin.crearDispositivoInteligente("Aire 2200 Inteligente", 
+		aireInteligente = admin.obtenerDispositivoInteligente("Aire 2200 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-CP3284X"));
 		sensor = new SensorDeTemperatura(15); // Supongamos que la temperatura ambiente actual es de 15°C
 		regla = new ReglaTemperaturaMayor20Grados();

@@ -16,7 +16,7 @@ public class ConversionEstandarInteligenteTest {
 	public void init() throws CloneNotSupportedException {
 		
 		admin = new Administrador("Pepito");
-		dispositivoEstandar = (DispositivoEstandar) admin.crearDispositivoEstandar("TV 33 Estandar", 4);
+		dispositivoEstandar = (DispositivoEstandar) admin.obtenerDispositivoEstandar("TV 33 Estandar", 4);
 		dispositivoEstandar.adaptarDispositivo();
 
 	}

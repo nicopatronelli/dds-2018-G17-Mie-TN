@@ -29,7 +29,7 @@ public class SensorReglaActuadorDispositivoEstandarTest {
 		
 		admin = new Administrador("Pepito");
 		// El ventilador inicia apagado 
-		ventiladorEstandar = admin.crearDispositivoEstandar("Ventilador pie Estandar", 2);
+		ventiladorEstandar = admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 2);
 		ventiladorEstandar.adaptarDispositivo(); // Adaptamos el dispositivo 
 		sensor = new SensorDeTemperatura(15); // Supongamos que la temperatura ambiente actual es de 15°C
 		regla = new ReglaTemperaturaMayor20Grados();

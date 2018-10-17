@@ -26,10 +26,10 @@ public class ClienteTest {
 		admin = new Administrador("Pepito");
 		clientes = admin.cargarClientes();
 		cliente = clientes[0];
-		domicilio =  cliente.getDomicilios().get(0);
-		dispositivoEstandarA = (DispositivoEstandar)admin.crearDispositivoEstandar("LCD 40 Estandar", 5);
-		dispositivoEstandarB = (DispositivoEstandar)admin.crearDispositivoEstandar("Ventilador pie Estandar", 1);
-		dispositivoInteligenteA = (DispositivoInteligente)admin.crearDispositivoInteligente("Aire 2200 Inteligente", new FabricanteSamsungMock("Samsung-IK248"));
+		domicilio =  cliente.domicilios().get(0);
+		dispositivoEstandarA = (DispositivoEstandar)admin.obtenerDispositivoEstandar("LCD 40 Estandar", 5);
+		dispositivoEstandarB = (DispositivoEstandar)admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 1);
+		dispositivoInteligenteA = (DispositivoInteligente)admin.obtenerDispositivoInteligente("Aire 2200 Inteligente", new FabricanteSamsungMock("Samsung-IK248"));
 		cliente.registrarDispositivoEstandar(dispositivoEstandarA, domicilio);
 		cliente.registrarDispositivoEstandar(dispositivoEstandarB, domicilio);
 		cliente.registrarDispositivoInteligente(dispositivoInteligenteA, domicilio);

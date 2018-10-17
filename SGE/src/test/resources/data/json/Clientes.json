@@ -1,21 +1,49 @@
 [	
 	{
-		"apellido" : "Perez",
-		"nombre" : "Juan",
+		"nombre" : "Farrokh",
+		"apellido" : "Bulsara",
 		"tipoDocumento" : "DNI",
-		"nroDocumento" : 14294121,
-		"nombreUsuario" : "Usuario",
-		"password" : "Password",
+		"nroDocumento" : 20294121,
+		"usuario" : "Freedie",
+		"password" : "Inuendo",
 		"cantidadPuntos" : 0,
-		"ahorro automatico" : false,
+		"ahorroAutomatico" : false,
 		"domicilios" : [
 			{
-				"telefono" : 42960647, 
+				"telefono" : "42960647", 
 				"fechaAltaServicio" : null,
 				"posicion" : 
 				{
 					"latitud" : 350,
 					"longitud" : 250
+				}, 
+				"transformador" : {},
+				"categoria" : 
+				{
+					"cargoFijo" : 0.2, 
+					"cargoVariable" : 0.1
+				},
+				"dispositivos" : []
+			}
+		]
+	},
+	{
+		"nombre" : "Brian",
+		"apellido" : "May",
+		"tipoDocumento" : "DNI",
+		"nroDocumento" : 15294121,
+		"usuario" : "Brian22",
+		"password" : "Queen1984",
+		"cantidadPuntos" : 0,
+		"ahorroAutomatico" : false,
+		"domicilios" : [
+			{
+				"telefono" : "43547868", 
+				"fechaAltaServicio" : null,
+				"posicion" : 
+				{
+					"latitud" : 450,
+					"longitud" : 150
 				}, 
 				"transformador" : {},
 				"categoria" : 

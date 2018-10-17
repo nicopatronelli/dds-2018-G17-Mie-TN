@@ -37,14 +37,14 @@ public class ZonaTest {
 		admin.cargarTransformadores("src/test/resources/data/json/Transformadores.json");
 		clientes = admin.cargarClientes();
 		cliente = clientes[0];
-		domicilio =  cliente.getDomicilios().get(0);
+		domicilio =  cliente.domicilios().get(0);
 
-		dispositivoEstandarA = (DispositivoEstandar)admin.crearDispositivoEstandar("LCD 40 Estandar", 5);
+		dispositivoEstandarA = (DispositivoEstandar)admin.obtenerDispositivoEstandar("LCD 40 Estandar", 5);
 		dispositivoEstandarA.adaptarDispositivo();
-		dispositivoEstandarB = (DispositivoEstandar)admin.crearDispositivoEstandar("Ventilador pie Estandar", 1);
+		dispositivoEstandarB = (DispositivoEstandar)admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 1);
 		dispositivoEstandarB.adaptarDispositivo();
-		dispositivoInteligenteA = (DispositivoInteligente)admin.crearDispositivoInteligente("Aire 2200 Inteligente", new FabricanteSamsungMock("Samsung-IK248"));
-		dispositivoInteligenteB = (DispositivoInteligente)admin.crearDispositivoInteligente("Aire 2200 Inteligente", new FabricanteSamsungMock("Samsung-J854"));
+		dispositivoInteligenteA = (DispositivoInteligente)admin.obtenerDispositivoInteligente("Aire 2200 Inteligente", new FabricanteSamsungMock("Samsung-IK248"));
+		dispositivoInteligenteB = (DispositivoInteligente)admin.obtenerDispositivoInteligente("Aire 2200 Inteligente", new FabricanteSamsungMock("Samsung-J854"));
 		dispositivoEstandarA.encender();
 		dispositivoEstandarB.encender();
 		dispositivoInteligenteA.encender();

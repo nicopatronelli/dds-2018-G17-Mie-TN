@@ -1,24 +1,78 @@
 package usuarios;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 import domicilio.DomicilioServicio;
+import domicilio.Posicion;
 import geoposicionamiento.Transformador;
 import simplex.SimplexFacadeSGE;
 
+@Entity
+@Table(name = "CLIENTES")
 public class Cliente {
 	
-	private String apellido;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
 	private String nombre;
+	
+	private String apellido;
+	
+	@Column(name = "tipo_documento")
 	private String tipoDocumento;
+	
+	@Column(name = "numero_documento")
 	private int nroDocumento;
-	private String nombreUsuario;
+	
+	private String usuario;
+	
 	private String password;
+	
+	@Column(name = "cantidad_puntos")
 	private int cantidadPuntos;
+	
+	@Column(name = "ahorro_automatico")
 	private boolean ahorroAutomatico;
+
+	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "cliente_id")
 	private List<DomicilioServicio> domicilios;
+	
+	public Cliente() {
+		// Constructor vacío para Hibernate (obligatorio para @Entity) 
+	}
+	
+	public Cliente(String nombre, String apellido, String tipoDocumento, int nroDocumento, 
+			String nombreUsuario, String password) {
+		
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.tipoDocumento = tipoDocumento;
+		this.nroDocumento = nroDocumento;
+		this.usuario = nombreUsuario;
+		this.password = password;
+		this.cantidadPuntos = 0;
+		this.ahorroAutomatico = false;
+		this.domicilios = new ArrayList<DomicilioServicio>();
+		
+	}
+	
+	public void agregarDomicilio(DomicilioServicio domicilio) {
+		domicilios.add(domicilio);
+	}
 	
 	public void registrarDispositivoEstandar(DispositivoEstandar nuevoDispositivoEstandar, DomicilioServicio unDomicilio) {
 		unDomicilio.registrarDispositivo(nuevoDispositivoEstandar);
@@ -63,9 +117,23 @@ public class Cliente {
 			domicilio.asignarTransformadorMasCercano(transformadores);
 		}
 	}
-
-	public List<DomicilioServicio> getDomicilios() {
+	
+	public void cambiarDomicilio(DomicilioServicio domicilioActual, Posicion nuevaPosicion) {
+		domicilioActual.nuevaPosicion(nuevaPosicion);
+	}
+	
+	public List<DomicilioServicio> domicilios() {
 		return domicilios;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public String toString() {
+		return "Cliente [nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento
+				+ ", nroDocumento=" + nroDocumento + ", usuario=" + usuario + ", password=" + password
+				+ ", cantidadPuntos=" + cantidadPuntos + ", ahorroAutomatico=" + ahorroAutomatico + "]";
 	}
 	
 } 

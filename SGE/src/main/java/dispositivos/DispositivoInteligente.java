@@ -3,16 +3,32 @@ package dispositivos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import org.joda.time.DateTime;
 
 import estadosDispositivoInteligente.EstadoApagado;
 import estadosDispositivoInteligente.EstadoDispositivoInteligente;
 
+@Entity
 public class DispositivoInteligente extends Dispositivo {
 	
+	private double consumoGenerado;
+	
+	@Embedded
 	private FabricanteDispositivoInteligente fabricante;
+	
+	@Transient
 	private EstadoDispositivoInteligente estado;
+	
+	@Transient
 	private List<EntradaDispositivoInteligente> historial;
+	
+	public DispositivoInteligente() {
+		// Constructor vacío para Hibernate
+	}
 	
 	public DispositivoInteligente(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
@@ -21,7 +37,6 @@ public class DispositivoInteligente extends Dispositivo {
 		this.esInteligente = true;
 		this.historial = new ArrayList<EntradaDispositivoInteligente>();
 	}
-	
 	
 	/*  							
 	 * INICIO - Métodos de ESTADO	
@@ -103,7 +118,6 @@ public class DispositivoInteligente extends Dispositivo {
 	public void setFabricante(FabricanteDispositivoInteligente fabricante) {
 		this.fabricante = fabricante;
 	}
-
 
 	public FabricanteDispositivoInteligente getFabricante() {
 		return fabricante;
