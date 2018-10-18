@@ -22,10 +22,10 @@ import geoposicionamiento.Transformador;
 import simplex.SimplexFacadeSGE;
 
 @Entity
-@Table(name = "CLIENTES")
+@Table(name = "Clientes")
 public class Cliente {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_cliente")
 	private int id;
 	
 	private String nombre;

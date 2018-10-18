@@ -1,5 +1,6 @@
 package dispositivos;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,19 +12,25 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dispositivo implements Cloneable {
 	
-	@Id @GeneratedValue(strategy = GenerationType.TABLE)
+	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id_dispositivo")
 	protected Long id;
 	
+	@Column(name = "nombre_generico")
 	protected String nombreGenerico;
 	
+	@Column(name = "consumo_kw_por_hora")
 	protected double consumoKwPorHora;
 	
+	@Column(name = "uso_mensual_minimo_en_horas")
 	protected int usoMensualMinimoEnHoras;
 	
+	@Column(name = "uso_mensual_maximo_en_horas")
 	protected int usoMensualMaximoEnHoras;
 	
+	@Column(name = "es_bajo_consumo")
 	protected boolean esBajoConsumo;
 	
+	@Column(name = "es_inteligente")
 	protected boolean esInteligente;
 	
 	public Dispositivo() {

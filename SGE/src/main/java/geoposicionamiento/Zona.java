@@ -12,12 +12,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ZONAS")
+@Table(name = "Zonas")
 public class Zona {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idPK;
+/*	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idPK;*/
 	
+	@Id 
 	private int id; 
 	
 	private String nombre; // Descripción de la zona 
@@ -28,7 +29,7 @@ public class Zona {
 	
 	private double radio;
 	
-	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "idPK")
+	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "zona_id")
 	List<Transformador> transformadores; // Una zona geografica engloba 1 o más transformadores 
 	
 	public void agregarTransformador(Transformador transformador) {

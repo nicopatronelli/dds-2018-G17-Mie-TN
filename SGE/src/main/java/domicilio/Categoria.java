@@ -1,21 +1,19 @@
 package domicilio;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "CATEGORIAS")
 @Embeddable
 public class Categoria {
 	
-	//@Id @GeneratedValue
-	//private int idCategoria;
-	
+	@Column(name = "cargo_fijo")
 	private double cargoFijo;
 	
+	@Column(name = "cargo_variable")
 	private double cargoVariable;
 	
 	public Categoria() {

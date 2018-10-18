@@ -1,8 +1,13 @@
 package dispositivos;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-@Embeddable
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class FabricanteDispositivoInteligente {
 	
 	/*
@@ -10,6 +15,7 @@ public abstract class FabricanteDispositivoInteligente {
 	 *  mensajes. 
 	 */
 	
+	@Id
 	String idFabricante;
 
 	protected FabricanteDispositivoInteligente() {

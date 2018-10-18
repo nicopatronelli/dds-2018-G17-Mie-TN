@@ -1,16 +1,21 @@
 package dispositivos;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import mocks.FabricanteSGE;
 
 @Entity
+@Table(name = "Dispositivos_estandares")
 public class DispositivoEstandar extends Dispositivo {
 	
+	@Column(name = "horas_de_uso_diarias")
 	private int horasDeUsoDiarias; // Lo informa el cliente
 	
-	@OneToOne
+	@OneToOne(cascade = { CascadeType.ALL })
 	private DispositivoInteligente adaptador = null;
 	
 	public DispositivoEstandar() {
@@ -19,7 +24,7 @@ public class DispositivoEstandar extends Dispositivo {
 	
 	public DispositivoEstandar(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
-		
+
 		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
 		this.esInteligente = false; // Todo dispositivo estándar inicia como no adaptado
 	}

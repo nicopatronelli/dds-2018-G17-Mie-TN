@@ -23,10 +23,10 @@ import dispositivos.DispositivoEstandar;
 import geoposicionamiento.Transformador;
 
 @Entity
-@Table(name = "DOMICILIO_SERVICIO")
+@Table(name = "Domicilios")
 public class DomicilioServicio {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_domicilio")
 	private int id;
 	
 	private String telefono;
@@ -41,10 +41,9 @@ public class DomicilioServicio {
 	private Posicion posicion;
 	
 	@OneToMany @JoinColumn(name = "domicilio_id")
-	@Transient
 	private List<Dispositivo> dispositivos;
 	
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne(cascade = { CascadeType.ALL }) 
 	private Transformador transformador;
 	
 	public DomicilioServicio() {

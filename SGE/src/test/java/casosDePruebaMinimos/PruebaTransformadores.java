@@ -26,9 +26,10 @@ public class PruebaTransformadores {
 	Administrador admin;
 	EntityManagerFactory emf;
 	EntityManager manager;
+	int cantidadTransformadores; 
 	
 	@Before
-	public void persistirTransformadores() throws CloneNotSupportedException {
+	public void persistirTransformadores()  {
 			
 		emf = Persistence.createEntityManagerFactory("SGE");
 		manager = emf.createEntityManager();
@@ -37,17 +38,19 @@ public class PruebaTransformadores {
 		admin.cargarZonas("src/test/resources/data/json/Zonas.json");
 		// Cargamos los transformadores activos que nos envia el ENRE en un json y los distribuimos en sus respectivas zonas
 		admin.cargarTransformadores("src/test/resources/data/json/Transformadores.json"); 
+		cantidadTransformadores = admin.getTransformadores().size();
 		
 		// Los persistimos en la base de datos 
 		manager.getTransaction().begin();
 		manager.persist(admin);
 		manager.getTransaction().commit();
-
+		
 	}
 	
 	@Test
 	public void cantidadTransformadores() {
-		
+		// Agregamos un transformador a mano al JSON para comprabar como la cantidad es igual a la anterior + 1
+		System.out.println("La cantidad de transformadores activos es: " + cantidadTransformadores);
 	}
 	
 }

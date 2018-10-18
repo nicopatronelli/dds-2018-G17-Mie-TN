@@ -29,8 +29,8 @@ import geoposicionamiento.Zona;
 @Table(name = "Administradores")
 public class Administrador {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id_admin")
+	private Long id;
 	
 	private String nombre;
 	
@@ -42,7 +42,7 @@ public class Administrador {
 	
 	private String direccion;
 	
-	@Column(name = "FECHA_ALTA")
+	@Column(name = "fecha_alta")
 	private LocalDate fechaAlta;
 	
 	@Transient

@@ -3,8 +3,13 @@ package dispositivos;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Embedded;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.joda.time.DateTime;
@@ -13,17 +18,19 @@ import estadosDispositivoInteligente.EstadoApagado;
 import estadosDispositivoInteligente.EstadoDispositivoInteligente;
 
 @Entity
+@Table(name = "Dispositivos_Inteligentes")
 public class DispositivoInteligente extends Dispositivo {
 	
+	@Column(name = "consumo_generado")
 	private double consumoGenerado;
 	
-	@Embedded
+	@OneToOne(cascade = { CascadeType.ALL })
 	private FabricanteDispositivoInteligente fabricante;
 	
 	@Transient
 	private EstadoDispositivoInteligente estado;
 	
-	@Transient
+	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "dispositivo_inteligente_id")
 	private List<EntradaDispositivoInteligente> historial;
 	
 	public DispositivoInteligente() {
@@ -32,6 +39,7 @@ public class DispositivoInteligente extends Dispositivo {
 	
 	public DispositivoInteligente(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
+		
 		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
 		this.estado = new EstadoApagado(); // Asumo que todo nuevo dispositivo inteligente inicia en estado apagado
 		this.esInteligente = true;

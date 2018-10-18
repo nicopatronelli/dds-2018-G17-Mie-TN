@@ -6,13 +6,9 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity
-//@Table(name = "POSICIONES")
 @Embeddable
 public class Posicion {
 	
-	//@Id @GeneratedValue
-	//private int posicionId;
 	private double latitud;
 	private double longitud;
 	

@@ -1,7 +1,11 @@
 package mocks;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+
 import dispositivos.FabricanteDispositivoInteligente;
 
+@Embeddable
 public class FabricanteSamsungMock extends FabricanteDispositivoInteligente {
 
 	public FabricanteSamsungMock(String idDispositivoFabricante) {
