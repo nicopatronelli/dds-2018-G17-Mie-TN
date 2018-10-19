@@ -118,6 +118,11 @@ public class Cliente {
 		}
 	}
 	
+	public void mostrarDomicilios() {
+		domicilios.forEach(domicilio->domicilio.mostrarDomicilio());
+	}
+	
+	
 	public void cambiarDomicilio(DomicilioServicio domicilioActual, Posicion nuevaPosicion) {
 		domicilioActual.nuevaPosicion(nuevaPosicion);
 	}
@@ -128,6 +133,10 @@ public class Cliente {
 	
 	public int getId() {
 		return id;
+	}
+	
+	public String getNombreApellido() {
+		return nombre + apellido;
 	}
 	
 	public String toString() {

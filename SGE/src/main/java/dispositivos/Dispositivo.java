@@ -69,6 +69,8 @@ public abstract class Dispositivo implements Cloneable {
 	
 	abstract public double consumoInstantaneo();
 	
+	abstract public boolean estaAdaptado();
+	
 	// Para prototype
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();

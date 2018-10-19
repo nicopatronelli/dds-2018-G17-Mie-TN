@@ -149,4 +149,11 @@ public class DomicilioServicio {
 		this.categoria = nuevaCategoria;
 	}
 	
+	public void mostrarDomicilio() {
+		System.out.println("El id del domicilio es: " + id);
+		System.out.println("El telefono del domicilio es: " + telefono);
+		System.out.println("La posicion del domicilio es: ");
+		System.out.println("Latitud: " + posicion.getLatitud() + 
+				" Longitud: " + posicion.getLongitud());
+	}
 } 

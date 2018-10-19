@@ -41,6 +41,7 @@ public class PruebaUsuario {
 		
 		// Recupero el cliente recién persistido
 		cliente = manager.find(Cliente.class, cliente.getId());
+		cliente.mostrarDomicilios();
 		
 		// Cambio la posicion de un domicilio 
 		nuevaPosicion = new Posicion(450, 880);
@@ -56,7 +57,7 @@ public class PruebaUsuario {
 	@Test
 	public void cambioDeGeoposicionamientoCorrecto() {
 		cliente = manager.find(Cliente.class, cliente.getId());
-		System.out.println("El cliente es " + cliente.toString());
+		cliente.mostrarDomicilios();
 		Assert.assertTrue(cliente.domicilios().get(0).getPosicion().equals(nuevaPosicion));
 	}
 	

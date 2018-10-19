@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import hibernate.Manager;
@@ -15,13 +17,13 @@ import usuarios.Cliente;
 
 public class UsuariosPersistenciaTest {
 	
-	Manager manager; // Para Hibernate
-	Administrador admin;
-	Cliente clientes[];
-	List<Cliente> clientesDeLaBase;
+	private static Manager manager; // Para Hibernate
+	private static Administrador admin;
+	private static Cliente clientes[];
+	private static List<Cliente> clientesDeLaBase;
 	
-	@Before
-	public void persistirYRecuperarClientes() {
+	@BeforeClass
+	public static void persistirYRecuperarClientes() {
 		
 		// Cargamos un administrador y 2 clientes (de Clientes.json)
 		admin = new Administrador("Jim", "Beach", "Jimmy", "Queen123", "FakeStreet 123", LocalDate.of(2018, 3, 18));
@@ -58,14 +60,14 @@ public class UsuariosPersistenciaTest {
 		Assert.assertTrue(cliente1.equals(clientes[0])); 
 	}
 	
-	@After
-	public void after() {
+	@AfterClass
+	public static void after() {
 		manager.cerrar();
 	}
 	
 	// Métodos auxiliares 
 	
-	private void mostrarClientesDeLaBase(List<Cliente> clientesDeLaBase) {
+	private static void mostrarClientesDeLaBase(List<Cliente> clientesDeLaBase) {
 		System.out.println("****************************************");
 		System.out.println("Los clientes en la base de datos son:");
 		for(Cliente cliente : clientesDeLaBase) {

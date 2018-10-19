@@ -120,6 +120,11 @@ public class DispositivoInteligente extends Dispositivo {
 	public void iniciarEstadoApagado() { 
 		this.estado = new EstadoApagado();
 	}
+	
+	@Override
+	public boolean estaAdaptado() {
+		return false;
+	}
 
 	// GETTERS Y SETTERS
 
@@ -134,6 +139,5 @@ public class DispositivoInteligente extends Dispositivo {
 	public List<EntradaDispositivoInteligente> getHistorial(){
 		return historial;
 	}
-
 	
 }
