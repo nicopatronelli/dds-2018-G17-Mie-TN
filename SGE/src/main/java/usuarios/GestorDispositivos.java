@@ -14,13 +14,13 @@ public class GestorDispositivos {
 		Dispositivo[] dispositivosInteligentes = CargaDatosJson.cargarDispositivosInteligentes("src/main/resources/DispositivosInteligentes.json");
 		
 		for( int i = 0; i < dispositivosInteligentes.length; i++ ) {
-			dispositivos.put(dispositivosInteligentes[i].getNombreGenerico(), dispositivosInteligentes[i]);
+			dispositivos.put(dispositivosInteligentes[i].getNombre(), dispositivosInteligentes[i]);
 		}
 		
 		Dispositivo[] dispositivosEstandares = CargaDatosJson.cargarDispositivosEstandares("src/main/resources/DispositivosEstandares.json");
 		
 		for( int i = 0; i < dispositivosEstandares.length; i++ ) {
-			dispositivos.put(dispositivosEstandares[i].getNombreGenerico(), dispositivosEstandares[i]);
+			dispositivos.put(dispositivosEstandares[i].getNombre(), dispositivosEstandares[i]);
 		}
 		
 	} // fin GestorDispositivos()

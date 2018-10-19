@@ -1,5 +1,7 @@
 package dispositivos;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -86,6 +88,11 @@ public class DispositivoEstandar extends Dispositivo {
 	
 	public void setHorasDeUsoDiarias(int horasDeUsoDiarias) {
 		this.horasDeUsoDiarias = horasDeUsoDiarias;
+	}
+
+	@Override
+	public List<EntradaDispositivoInteligente> getHistorial() {
+		return adaptador.getHistorial();
 	}
 	
 }

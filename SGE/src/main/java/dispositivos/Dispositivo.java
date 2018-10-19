@@ -1,5 +1,7 @@
 package dispositivos;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -86,8 +88,19 @@ public abstract class Dispositivo implements Cloneable {
 		return consumoKwPorHora;
 	}
 
-	public String getNombreGenerico() {
+	public String getNombre() {
 		return nombreGenerico;
 	}
+	
+	public void cambiarNombre(String nombre) {
+		this.nombreGenerico = nombre;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+		
+	abstract public List<EntradaDispositivoInteligente> getHistorial();
 	
 }

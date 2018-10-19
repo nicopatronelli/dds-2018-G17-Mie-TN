@@ -1,5 +1,7 @@
 package dispositivos;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +14,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.joda.time.DateTime;
-
 import estadosDispositivoInteligente.EstadoApagado;
 import estadosDispositivoInteligente.EstadoDispositivoInteligente;
 
@@ -24,7 +24,7 @@ public class DispositivoInteligente extends Dispositivo {
 	@Column(name = "consumo_generado")
 	private double consumoGenerado;
 	
-	@OneToOne(cascade = { CascadeType.ALL })
+	@OneToOne(cascade = { CascadeType.ALL }) 
 	private FabricanteDispositivoInteligente fabricante;
 	
 	@Transient
@@ -88,7 +88,7 @@ public class DispositivoInteligente extends Dispositivo {
 	 */
 	
 	public void actualizarHistorial(EstadoHistorial estadoActual) {
-		EntradaDispositivoInteligente nuevaEntrada = new EntradaDispositivoInteligente(new DateTime(), estadoActual);
+		EntradaDispositivoInteligente nuevaEntrada = new EntradaDispositivoInteligente(LocalDateTime.now(), estadoActual);
 		historial.add(nuevaEntrada);
 	}
 	
@@ -101,7 +101,7 @@ public class DispositivoInteligente extends Dispositivo {
 		return 0;
 	}
 	
-	public float consumoTotalEntre(DateTime fechaInicial, DateTime fechaFinal) {
+	public float consumoTotalEntre(LocalDate fechaInicial, LocalDate fechaFinal) {
 		// Lo tenemos que calcular nosotros guardando el estado de los dispositivos
 		return 0;
 	}
@@ -129,6 +129,10 @@ public class DispositivoInteligente extends Dispositivo {
 
 	public FabricanteDispositivoInteligente getFabricante() {
 		return fabricante;
+	}
+	
+	public List<EntradaDispositivoInteligente> getHistorial(){
+		return historial;
 	}
 
 	
