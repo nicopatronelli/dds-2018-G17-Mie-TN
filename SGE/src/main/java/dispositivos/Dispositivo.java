@@ -35,25 +35,23 @@ public abstract class Dispositivo implements Cloneable {
 	@Column(name = "es_inteligente")
 	protected boolean esInteligente;
 	
-	public Dispositivo() {
+	protected Dispositivo() {
 		// Constructor vacío para Hibernate
 	}
 	
-	public Dispositivo(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
+/*	public Dispositivo(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
 		this.nombreGenerico = nombreGenerico;
 		this.consumoKwPorHora = consumoKwPorHora;
 		this.usoMensualMinimoEnHoras = usoMensualMinimoEnHoras;
 		this.usoMensualMaximoEnHoras = usoMensualMaximoEnHoras;
 		this.esBajoConsumo = esBajoConsumo;
+	}*/
+	
+	public void adaptarDispositivo() throws CloneNotSupportedException {
 	}
 	
-	public void adaptarDispositivo() {
-	}
-	
-	public boolean esInteligente() {
-		return this.esInteligente;
-	}
+	abstract public boolean esInteligente(); 
 	
 	abstract public boolean estaEncendido();
 	
@@ -78,18 +76,38 @@ public abstract class Dispositivo implements Cloneable {
 
 	// GETTERS Y SETTERS
 	
-	public double getUsoMensualMinimoEnHoras() {
+	public int getUsoMensualMinimoEnHoras() {
 		return usoMensualMinimoEnHoras;
 	}
-
-	public double getUsoMensualMaximoEnHoras() {
+	
+	public void setUsoMensualMinimoEnHoras(int usoMensualMinimoEnHoras) {
+		this.usoMensualMinimoEnHoras = usoMensualMinimoEnHoras;
+	}
+	
+	public int getUsoMensualMaximoEnHoras() {
 		return usoMensualMaximoEnHoras;
 	}
-
+	
+	public void setUsoMensualMaximoEnHoras(int usoMensualMaximoEnHoras) {
+		this.usoMensualMaximoEnHoras = usoMensualMaximoEnHoras;
+	}
+	
 	public double getConsumoKwPorHora() {
 		return consumoKwPorHora;
 	}
-
+	
+	public void setConsumoKwPorHora(double consumoKwPorHora) {
+		this.consumoKwPorHora = consumoKwPorHora;
+	}
+	
+	public boolean esBajoConsumo() {
+		return esBajoConsumo;
+	}
+	
+	public void setBajoConsumo(boolean valor) {
+		this.esBajoConsumo = valor; 
+	}
+	
 	public String getNombre() {
 		return nombreGenerico;
 	}
@@ -101,7 +119,6 @@ public abstract class Dispositivo implements Cloneable {
 	public Long getId() {
 		return id;
 	}
-	
 		
 	abstract public List<EntradaDispositivoInteligente> getHistorial();
 	

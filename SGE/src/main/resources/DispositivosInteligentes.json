@@ -142,6 +142,15 @@
 		"esBajoConsumo" : true,
 		"esInteligente" : true,
 		"historial" : []
+	},
+	{
+		"nombreGenerico" : "Adaptador SGE",
+		"consumoKwPorHora" : 0,
+		"usoMensualMinimoEnHoras" : 0, 
+		"usoMensualMaximoEnHoras" : 0,
+		"esBajoConsumo" : false,
+		"esInteligente" : true,
+		"historial" : []
 	}
 ]
 	

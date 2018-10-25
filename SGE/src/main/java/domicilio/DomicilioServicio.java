@@ -95,7 +95,7 @@ public class DomicilioServicio {
 		return (int) this.dispositivos.stream().count();
 	}
 
-	public void adaptarDispositivoEstandar(DispositivoEstandar unDispositivoEstandar) {
+	public void adaptarDispositivoEstandar(DispositivoEstandar unDispositivoEstandar) throws CloneNotSupportedException {
 		this.dispositivos.get(dispositivos.indexOf(unDispositivoEstandar)).adaptarDispositivo();
 	}
 	

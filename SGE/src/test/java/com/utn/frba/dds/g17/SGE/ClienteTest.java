@@ -13,8 +13,6 @@ import usuarios.Cliente;
 
 public class ClienteTest {
 	
-	Administrador admin;
-	Cliente clientes[];
 	Cliente cliente;
 	DomicilioServicio domicilio;
 	DispositivoEstandar dispositivoEstandarA, dispositivoEstandarB;
@@ -22,6 +20,9 @@ public class ClienteTest {
 
 	@Before
 	public void initialize() throws CloneNotSupportedException {
+		
+		Administrador admin;
+		Cliente clientes[];
 		
 		admin = new Administrador("Pepito");
 		clientes = admin.cargarClientes();
@@ -33,7 +34,7 @@ public class ClienteTest {
 		cliente.registrarDispositivoEstandar(dispositivoEstandarA, domicilio);
 		cliente.registrarDispositivoEstandar(dispositivoEstandarB, domicilio);
 		cliente.registrarDispositivoInteligente(dispositivoInteligenteA, domicilio);
-		
+		DispositivoInteligente dispositivoInteligenteB = new DispositivoInteligente();
 	}
 	
 	// El cliente tiene 3 dispositivos: 2 estandares y 1 inteligente 
@@ -56,7 +57,7 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void testCantidadDispositivosEncendidos() {
+	public void testCantidadDispositivosEncendidos() throws CloneNotSupportedException {
 		// Adapto el dispositivoEstandarA
 		cliente.adaptarDispositivoEstandar(dispositivoEstandarA, domicilio);
 		// Enciendo el único dispositivo inteligente y el dispositivo recién adaptado 
@@ -66,7 +67,7 @@ public class ClienteTest {
 	}
 
 	@Test 
-	public void testElClienteRecibe10PuntosAlAdaptarDispositivo() {
+	public void testElClienteRecibe10PuntosAlAdaptarDispositivo() throws CloneNotSupportedException {
 		cliente.adaptarDispositivoEstandar(dispositivoEstandarA, domicilio);
 		// Sumo 15 por registrar un dispositivo inteligente + 10 por adaptar uno estandar
 		Assert.assertTrue(cliente.cantidadDePuntos() == 25);

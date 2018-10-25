@@ -37,14 +37,14 @@ public class DispositivoInteligente extends Dispositivo {
 		// Constructor vacío para Hibernate
 	}
 	
-	public DispositivoInteligente(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
+/*	private DispositivoInteligente(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
 		
 		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
 		this.estado = new EstadoApagado(); // Asumo que todo nuevo dispositivo inteligente inicia en estado apagado
 		this.esInteligente = true;
 		this.historial = new ArrayList<EntradaDispositivoInteligente>();
-	}
+	}*/
 	
 	/*  							
 	 * INICIO - Métodos de ESTADO	
@@ -86,6 +86,11 @@ public class DispositivoInteligente extends Dispositivo {
 	 * son los fabricantes de los dispositivos inteligentes los que nos van a proporcionar el consumo 
 	 * de los mismos (INTERFAZ EXTERNA con SGE). 
 	 */
+	
+	@Override
+	public boolean esInteligente() {
+		return true;
+	}
 	
 	public void actualizarHistorial(EstadoHistorial estadoActual) {
 		EntradaDispositivoInteligente nuevaEntrada = new EntradaDispositivoInteligente(LocalDateTime.now(), estadoActual);
@@ -139,5 +144,5 @@ public class DispositivoInteligente extends Dispositivo {
 	public List<EntradaDispositivoInteligente> getHistorial(){
 		return historial;
 	}
-	
+
 }

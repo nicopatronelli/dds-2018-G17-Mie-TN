@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import mocks.FabricanteSGE;
+import usuarios.Administrador;
 
 @Entity
 @Table(name = "Dispositivos_estandares")
@@ -20,16 +20,16 @@ public class DispositivoEstandar extends Dispositivo {
 	@OneToOne(cascade = { CascadeType.ALL })
 	private DispositivoInteligente adaptador = null;
 	
-	public DispositivoEstandar() {
+	protected DispositivoEstandar() {
 		// Constructor vacío para Hibernate
 	}
 	
-	public DispositivoEstandar(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
+/*	private DispositivoEstandar(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
 			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
 
 		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
 		this.esInteligente = false; // Todo dispositivo estándar inicia como no adaptado
-	}
+	}*/
 
 	public double consumoDiarioEstimado() {
 		return this.consumoKwPorHora * this.horasDeUsoDiarias;
@@ -39,12 +39,24 @@ public class DispositivoEstandar extends Dispositivo {
 		return this.esInteligente(); // Si el dispositivo estándar es inteligente entonces está adaptado
 	}
 	
+	@Override
+	public boolean esInteligente() {
+		if (adaptador != null)
+			return adaptador.esInteligente();
+		else
+			return false;
+	}
+	
 	@Override 
-	public void adaptarDispositivo() {
-		this.adaptador = new DispositivoInteligente(this.nombreGenerico, this.consumoKwPorHora, this.usoMensualMinimoEnHoras, 
+	public void adaptarDispositivo() throws CloneNotSupportedException {
+		
+		Administrador admin = new Administrador("Admin_SGE");
+		adaptador = admin.obtenerAdaptador(this);
+		
+/*		this.adaptador = new DispositivoInteligente(this.nombreGenerico, this.consumoKwPorHora, this.usoMensualMinimoEnHoras, 
 				this.usoMensualMaximoEnHoras, this.esBajoConsumo); 
 		this.adaptador.setFabricante(new FabricanteSGE("01A_SGE"));
-		this.esInteligente = true;
+		this.esInteligente = true;*/
 	}
 	
 	/* Una vez que un dispositivo estándar esta adaptado delego todos los mensajes referidos a un dispositivo 
@@ -94,5 +106,5 @@ public class DispositivoEstandar extends Dispositivo {
 	public List<EntradaDispositivoInteligente> getHistorial() {
 		return adaptador.getHistorial();
 	}
-	
+
 }

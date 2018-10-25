@@ -24,6 +24,7 @@ import dispositivos.FabricanteDispositivoInteligente;
 import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
+import mocks.FabricanteSGE;
 
 @Entity
 @Table(name = "Administradores")
@@ -128,6 +129,20 @@ public class Administrador {
 		dispositivoInteligente.iniciarEstadoApagado();
 		dispositivoInteligente.setFabricante(fabricante);
 		return dispositivoInteligente;
+	}
+	
+	public DispositivoInteligente obtenerAdaptador(DispositivoEstandar dispositivoEstandar) throws CloneNotSupportedException {
+		
+		DispositivoInteligente adaptador = (DispositivoInteligente) obtenerDispositivoInteligente("Adaptador SGE", new FabricanteSGE("01A_SGE"));
+		
+/*		adaptador.cambiarNombre(dispositivoEstandar.getNombre());
+		adaptador.setConsumoKwPorHora(dispositivoEstandar.getConsumoKwPorHora());
+		adaptador.setUsoMensualMaximoEnHoras(dispositivoEstandar.getUsoMensualMaximoEnHoras());
+		adaptador.setUsoMensualMinimoEnHoras(dispositivoEstandar.getUsoMensualMinimoEnHoras());
+		adaptador.setBajoConsumo(dispositivoEstandar.esBajoConsumo());*/
+		
+		return adaptador;
+		
 	}
 	
 	public int cantidadTransformadoresActivos() {

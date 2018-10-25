@@ -46,7 +46,7 @@ public class ConversionDispositivoPersistenciaTest {
 	}
 	
 	@Test
-	public void sePersisteLaAdaptacionDeUnDispositivoEstandar() {
+	public void sePersisteLaAdaptacionDeUnDispositivoEstandar() throws CloneNotSupportedException {
 		
 		dispositivoEstandar.adaptarDispositivo();
 		dispositivoEstandar = manager.find(DispositivoEstandar.class, dispositivoEstandar.getId());

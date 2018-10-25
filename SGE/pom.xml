@@ -19,6 +19,13 @@
 	
 	<dependencies>
 		
+		<!-- Hibernate provisto por la cátedra de Diseño de Sistemas -->
+<!-- 		<dependency>
+	   		 <groupId>org.uqbar-project</groupId>
+	   		 <artifactId>jpa-java8-extras</artifactId>
+	   		 <version>1.0-alpha-1</version>
+   	 	</dependency> -->
+		
 	 	<!-- Para utilizar java.time de Java 8 con Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -109,7 +116,7 @@
 			<artifactId>hsqldb</artifactId>
 			<version>2.2.8</version>
 		</dependency>
-
+   	 	
 	</dependencies>
 	
 	<repositories>

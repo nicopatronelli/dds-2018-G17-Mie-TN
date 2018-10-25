@@ -1,7 +1,6 @@
 package casosDePruebaMinimos;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
