@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import regla.ReglaObservador;
 
 @Entity
-@Table(name = "Sensores")
+//@Table(name = "Sensores")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class SensorObservado {
 	

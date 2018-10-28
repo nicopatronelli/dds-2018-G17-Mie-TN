@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import actuadores.Actuador;
 
 @Entity
-@Table(name = "Reglas")
+//@Table(name = "Reglas")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class ReglaObservador {
 	

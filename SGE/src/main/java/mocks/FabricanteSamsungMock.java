@@ -8,6 +8,10 @@ import dispositivos.FabricanteDispositivoInteligente;
 @Embeddable
 public class FabricanteSamsungMock extends FabricanteDispositivoInteligente {
 
+	public FabricanteSamsungMock() {
+		// Constructor vacío para Hibernate
+	}
+	
 	public FabricanteSamsungMock(String idDispositivoFabricante) {
 		super(idDispositivoFabricante);
 	}

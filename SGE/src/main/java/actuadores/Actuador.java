@@ -15,7 +15,7 @@ import dispositivos.Dispositivo;
 
 // Los actuadores son los comandos (patrón command) 
 @Entity
-@Table(name = "Actuadores")
+//@Table(name = "Actuadores")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Actuador {
 	

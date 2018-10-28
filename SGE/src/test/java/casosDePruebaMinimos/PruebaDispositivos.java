@@ -35,7 +35,6 @@ public class PruebaDispositivos {
 		dispositivoInteligente = (DispositivoInteligente) admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-JD256"));
 		
-		
 		simularFuncionamientoDispositivo();
 		
 		manager.getTransaction().begin();
@@ -57,11 +56,13 @@ public class PruebaDispositivos {
 		
 		System.out.println("El nombre actual del dispositivo es " + dispositivoInteligente.getNombre());
 		dispositivoInteligente.cambiarNombre("Mi Dispositivo");
+		manager.getTransaction().begin();
+		manager.persist(dispositivoInteligente);
+		manager.getTransaction().commit();
 		dispositivoInteligente = manager.find(DispositivoInteligente.class, dispositivoInteligente.getId());
 		System.out.println("El nuevo nombre del dispositivo es " + dispositivoInteligente.getNombre());
 		
 	}
-	
 	
 	@AfterClass
 	public static void liberarRecursos() {
