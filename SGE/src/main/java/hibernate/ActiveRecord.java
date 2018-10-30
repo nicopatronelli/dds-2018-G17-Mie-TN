@@ -1,15 +1,12 @@
 package hibernate;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class ActiveRecord<T> {
 	
-	protected Long id;
-	protected EntityManager manager;
-	
-	protected Long getId() {
-		return id;
-	}
+	public EntityManager manager;
 	
 	public void guardar() {
 		manager.getTransaction().begin();
@@ -17,12 +14,17 @@ public class ActiveRecord<T> {
 		manager.getTransaction().commit();
 	}
 	
-	public T recuperar() {
-		return (T) manager.find(this.getClass(), this.getId());
+	public T recuperar(Long id) {
+		return (T) manager.find(this.getClass(), id);
 	}
 
 	public void borrar() {
 		manager.remove(this);
+	}
+	
+	public EntityManager crearEntityManager() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
+		return emf.createEntityManager();
 	}
 	
 }

@@ -26,7 +26,7 @@ public class PruebaUsuario {
 		cliente.guardar();
 		
 		// Recupero el cliente recién persistido
-		cliente = cliente.recuperar();
+		cliente = cliente.recuperar(cliente.getId());
 		cliente.mostrarDomicilios();
 		
 		// Cambio la posicion de un domicilio 
@@ -39,7 +39,7 @@ public class PruebaUsuario {
 	
 	@Test
 	public void cambioDeGeoposicionamientoCorrecto() {
-		cliente = cliente.recuperar();
+		cliente = cliente.recuperar(cliente.getId());
 		cliente.mostrarDomicilios();
 		Assert.assertTrue(cliente.domicilios().get(0).getPosicion().equals(nuevaPosicion));
 	}

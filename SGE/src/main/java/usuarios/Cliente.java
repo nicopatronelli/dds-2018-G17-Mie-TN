@@ -29,7 +29,7 @@ import simplex.SimplexFacadeSGE;
 
 @Entity
 @Table(name = "Clientes")
-public class Cliente {
+public class Cliente extends ActiveRecord<Cliente>{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_cliente")
 	private Long id;
@@ -56,10 +56,7 @@ public class Cliente {
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER) @JoinColumn(name = "cliente_id")
 	private List<DomicilioServicio> domicilios;
-	
-	@Transient
-	private EntityManager manager;
-	
+
 	public Cliente() {
 		// Constructor vacío para Hibernate (obligatorio para @Entity) 
 	}
@@ -76,12 +73,7 @@ public class Cliente {
 		this.cantidadPuntos = 0;
 		this.ahorroAutomatico = false;
 		this.domicilios = new ArrayList<DomicilioServicio>();
-		this.manager = crearEntityManager();
-	}
-	
-	private EntityManager crearEntityManager() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
-		return emf.createEntityManager();
+		this.manager = super.crearEntityManager();
 	}
 	
 	public void agregarDomicilio(DomicilioServicio domicilio) {
@@ -157,26 +149,6 @@ public class Cliente {
 		return "Cliente [nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento
 				+ ", nroDocumento=" + nroDocumento + ", usuario=" + usuario + ", password=" + password
 				+ ", cantidadPuntos=" + cantidadPuntos + ", ahorroAutomatico=" + ahorroAutomatico + "]";
-	}
-	
-	/*
-	 *  Métodos para ActiveRecord (Hibernate)
-	 */
-	
-	public void guardar() {
-		manager.getTransaction().begin();
-		manager.persist(this);
-		manager.getTransaction().commit();
-	}
-	
-	public Cliente recuperar() {
-		return manager.find(this.getClass(), this.getId());
-	}
-	
-	public void borrar() {
-		manager.getTransaction().begin();
-		manager.remove(this);
-		manager.getTransaction().commit();
 	}
 	
 } 

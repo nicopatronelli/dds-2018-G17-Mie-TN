@@ -34,7 +34,7 @@ public class PruebaDispositivos {
 
 	@Test
 	public void mostrarEstadosPorLosQuePasoUnDispositivoInteligente() {
-		dispositivoInteligente = dispositivoInteligente.recuperar();
+		dispositivoInteligente = dispositivoInteligente.recuperar(dispositivoInteligente.getId());
 		System.out.println("Los estados por los que paso el dispositivo inteligente son:" + dispositivoInteligente.getHistorial().toString());
 	}
 	
@@ -43,7 +43,7 @@ public class PruebaDispositivos {
 		System.out.println("El nombre actual del dispositivo es " + dispositivoInteligente.getNombre());
 		dispositivoInteligente.cambiarNombre("Mi Dispositivo");
 		dispositivoInteligente.guardar();
-		dispositivoInteligente = dispositivoInteligente.recuperar();
+		dispositivoInteligente = dispositivoInteligente.recuperar(dispositivoInteligente.getId());
 		System.out.println("El nuevo nombre del dispositivo es " + dispositivoInteligente.getNombre());
 	}
 	

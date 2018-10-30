@@ -19,7 +19,7 @@ import usuarios.Cliente;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Dispositivo implements Cloneable {
+public abstract class Dispositivo extends ActiveRecord<Dispositivo> implements Cloneable  {
 	
 	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id_dispositivo")
 	protected Long id;
@@ -41,9 +41,6 @@ public abstract class Dispositivo implements Cloneable {
 	
 	@Column(name = "es_inteligente")
 	protected boolean esInteligente;
-	
-	@Transient
-	protected EntityManager manager;
 	
 	protected Dispositivo() {
 		// Constructor vacío para Hibernate
@@ -128,25 +125,5 @@ public abstract class Dispositivo implements Cloneable {
 	}
 		
 	abstract public List<EntradaDispositivoInteligente> getHistorial();
-	
-	/*
-	 *  Métodos para ActiveRecord (Hibernate)
-	 */
-	
-	public void guardar() {
-		manager.getTransaction().begin();
-		manager.persist(this);
-		manager.getTransaction().commit();
-	}
-	
-	public Dispositivo recuperar() {
-		return manager.find(this.getClass(), this.getId());
-	}
-	
-	public void borrar() {
-		manager.getTransaction().begin();
-		manager.remove(this);
-		manager.getTransaction().commit();
-	}
 	
 }
