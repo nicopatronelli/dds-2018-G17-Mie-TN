@@ -4,12 +4,18 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.Persistence;
+import javax.persistence.Transient;
+
+import hibernate.ActiveRecord;
+import usuarios.Cliente;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -36,18 +42,12 @@ public abstract class Dispositivo implements Cloneable {
 	@Column(name = "es_inteligente")
 	protected boolean esInteligente;
 	
+	@Transient
+	protected EntityManager manager;
+	
 	protected Dispositivo() {
 		// Constructor vacío para Hibernate
 	}
-	
-/*	public Dispositivo(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
-			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
-		this.nombreGenerico = nombreGenerico;
-		this.consumoKwPorHora = consumoKwPorHora;
-		this.usoMensualMinimoEnHoras = usoMensualMinimoEnHoras;
-		this.usoMensualMaximoEnHoras = usoMensualMaximoEnHoras;
-		this.esBajoConsumo = esBajoConsumo;
-	}*/
 	
 	public void adaptarDispositivo() throws CloneNotSupportedException {
 	}
@@ -73,6 +73,12 @@ public abstract class Dispositivo implements Cloneable {
 	// Para prototype
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
+	}
+	
+	// Para Hibernate
+	public void iniciarEntityManager() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
+		this.manager = emf.createEntityManager();
 	}
 
 	// GETTERS Y SETTERS
@@ -122,5 +128,25 @@ public abstract class Dispositivo implements Cloneable {
 	}
 		
 	abstract public List<EntradaDispositivoInteligente> getHistorial();
+	
+	/*
+	 *  Métodos para ActiveRecord (Hibernate)
+	 */
+	
+	public void guardar() {
+		manager.getTransaction().begin();
+		manager.persist(this);
+		manager.getTransaction().commit();
+	}
+	
+	public Dispositivo recuperar() {
+		return manager.find(this.getClass(), this.getId());
+	}
+	
+	public void borrar() {
+		manager.getTransaction().begin();
+		manager.remove(this);
+		manager.getTransaction().commit();
+	}
 	
 }

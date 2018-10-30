@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -115,7 +116,9 @@ public class Administrador {
 	}
 	
 	private Dispositivo crearDispositivo(String keyDispositivo) throws CloneNotSupportedException {
-		return gestorDispositivos.obtenerDispositivo(keyDispositivo);
+		Dispositivo dispositivo = gestorDispositivos.obtenerDispositivo(keyDispositivo);
+		dispositivo.iniciarEntityManager();
+		return dispositivo;
 	}
 	
 	public Dispositivo obtenerDispositivoEstandar(String keyDispositivo, int horasDeUsoDiarias) throws CloneNotSupportedException {
@@ -132,17 +135,8 @@ public class Administrador {
 	}
 	
 	public DispositivoInteligente obtenerAdaptador(DispositivoEstandar dispositivoEstandar) throws CloneNotSupportedException {
-		
 		DispositivoInteligente adaptador = (DispositivoInteligente) obtenerDispositivoInteligente("Adaptador SGE", new FabricanteSGE("01A_SGE"));
-		
-/*		adaptador.cambiarNombre(dispositivoEstandar.getNombre());
-		adaptador.setConsumoKwPorHora(dispositivoEstandar.getConsumoKwPorHora());
-		adaptador.setUsoMensualMaximoEnHoras(dispositivoEstandar.getUsoMensualMaximoEnHoras());
-		adaptador.setUsoMensualMinimoEnHoras(dispositivoEstandar.getUsoMensualMinimoEnHoras());
-		adaptador.setBajoConsumo(dispositivoEstandar.esBajoConsumo());*/
-		
 		return adaptador;
-		
 	}
 	
 	public int cantidadTransformadoresActivos() {

@@ -23,13 +23,6 @@ public class DispositivoEstandar extends Dispositivo {
 	protected DispositivoEstandar() {
 		// Constructor vacío para Hibernate
 	}
-	
-/*	private DispositivoEstandar(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
-			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
-
-		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
-		this.esInteligente = false; // Todo dispositivo estándar inicia como no adaptado
-	}*/
 
 	public double consumoDiarioEstimado() {
 		return this.consumoKwPorHora * this.horasDeUsoDiarias;
@@ -49,14 +42,8 @@ public class DispositivoEstandar extends Dispositivo {
 	
 	@Override 
 	public void adaptarDispositivo() throws CloneNotSupportedException {
-		
 		Administrador admin = new Administrador("Admin_SGE");
 		adaptador = admin.obtenerAdaptador(this);
-		
-/*		this.adaptador = new DispositivoInteligente(this.nombreGenerico, this.consumoKwPorHora, this.usoMensualMinimoEnHoras, 
-				this.usoMensualMaximoEnHoras, this.esBajoConsumo); 
-		this.adaptador.setFabricante(new FabricanteSGE("01A_SGE"));
-		this.esInteligente = true;*/
 	}
 	
 	/* Una vez que un dispositivo estándar esta adaptado delego todos los mensajes referidos a un dispositivo 

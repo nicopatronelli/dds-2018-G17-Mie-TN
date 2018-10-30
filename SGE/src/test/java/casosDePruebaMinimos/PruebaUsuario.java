@@ -2,11 +2,6 @@ package casosDePruebaMinimos;
 
 import java.time.LocalDate;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +9,6 @@ import org.junit.Test;
 import domicilio.Categoria;
 import domicilio.DomicilioServicio;
 import domicilio.Posicion;
-import hibernate.Manager;
 import usuarios.Cliente;
 
 /*
@@ -22,25 +16,17 @@ import usuarios.Cliente;
  */
 public class PruebaUsuario {
 	
-	EntityManagerFactory emf;
-	EntityManager manager;
 	Posicion nuevaPosicion;
 	Cliente cliente;
 	
 	@Before
 	public void initialize() {
-		
-		emf = Persistence.createEntityManagerFactory("SGE");
-		manager = emf.createEntityManager();
-		
 		// Creo un nuevo cliente y lo persisto
 		cliente = crearCliente();
-		manager.getTransaction().begin();
-		manager.persist(cliente);
-		manager.getTransaction().commit();
+		cliente.guardar();
 		
 		// Recupero el cliente recién persistido
-		cliente = manager.find(Cliente.class, cliente.getId());
+		cliente = cliente.recuperar();
 		cliente.mostrarDomicilios();
 		
 		// Cambio la posicion de un domicilio 
@@ -48,25 +34,19 @@ public class PruebaUsuario {
 		cliente.domicilios().get(0).nuevaPosicion(nuevaPosicion);
 		
 		// Grabo los cambios
-		manager.getTransaction().begin();
-		manager.persist(cliente);
-		manager.getTransaction().commit();
-		
+		cliente.guardar();
 	}
 	
 	@Test
 	public void cambioDeGeoposicionamientoCorrecto() {
-		cliente = manager.find(Cliente.class, cliente.getId());
+		cliente = cliente.recuperar();
 		cliente.mostrarDomicilios();
 		Assert.assertTrue(cliente.domicilios().get(0).getPosicion().equals(nuevaPosicion));
 	}
 	
-	@After
-	public void after() {
-		manager.close();
-	}
-	
-	// Métodos auxiliares
+	/*
+	 *  Métodos auxiliares
+	 */
 	
 	private Cliente crearCliente() {
 		Categoria categoriaR1 = new Categoria(18.7, 0.644);

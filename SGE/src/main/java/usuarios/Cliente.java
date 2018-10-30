@@ -6,19 +6,25 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 import domicilio.DomicilioServicio;
 import domicilio.Posicion;
 import geoposicionamiento.Transformador;
+import hibernate.ActiveRecord;
 import simplex.SimplexFacadeSGE;
 
 @Entity
@@ -26,7 +32,7 @@ import simplex.SimplexFacadeSGE;
 public class Cliente {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_cliente")
-	private int id;
+	private Long id;
 	
 	private String nombre;
 	
@@ -48,8 +54,11 @@ public class Cliente {
 	@Column(name = "ahorro_automatico")
 	private boolean ahorroAutomatico;
 
-	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "cliente_id")
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER) @JoinColumn(name = "cliente_id")
 	private List<DomicilioServicio> domicilios;
+	
+	@Transient
+	private EntityManager manager;
 	
 	public Cliente() {
 		// Constructor vacío para Hibernate (obligatorio para @Entity) 
@@ -67,7 +76,12 @@ public class Cliente {
 		this.cantidadPuntos = 0;
 		this.ahorroAutomatico = false;
 		this.domicilios = new ArrayList<DomicilioServicio>();
-		
+		this.manager = crearEntityManager();
+	}
+	
+	private EntityManager crearEntityManager() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
+		return emf.createEntityManager();
 	}
 	
 	public void agregarDomicilio(DomicilioServicio domicilio) {
@@ -131,7 +145,7 @@ public class Cliente {
 		return domicilios;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
@@ -143,6 +157,26 @@ public class Cliente {
 		return "Cliente [nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento
 				+ ", nroDocumento=" + nroDocumento + ", usuario=" + usuario + ", password=" + password
 				+ ", cantidadPuntos=" + cantidadPuntos + ", ahorroAutomatico=" + ahorroAutomatico + "]";
+	}
+	
+	/*
+	 *  Métodos para ActiveRecord (Hibernate)
+	 */
+	
+	public void guardar() {
+		manager.getTransaction().begin();
+		manager.persist(this);
+		manager.getTransaction().commit();
+	}
+	
+	public Cliente recuperar() {
+		return manager.find(this.getClass(), this.getId());
+	}
+	
+	public void borrar() {
+		manager.getTransaction().begin();
+		manager.remove(this);
+		manager.getTransaction().commit();
 	}
 	
 } 

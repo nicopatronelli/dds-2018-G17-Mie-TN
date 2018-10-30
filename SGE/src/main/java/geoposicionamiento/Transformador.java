@@ -29,7 +29,6 @@ public class Transformador {
 	
 	private int zonaId; // Zona a la que pertenece 
 	
-	//@OneToMany @JoinColumn(name = "transformador_id")
 	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "transformador") 
 	List<DomicilioServicio> domicilios; // Lista de domicilios a los que suministra energía 
 	

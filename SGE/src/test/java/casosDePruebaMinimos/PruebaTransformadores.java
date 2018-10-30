@@ -16,7 +16,6 @@ import dispositivos.DispositivoInteligente;
 import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
-import hibernate.Manager;
 import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
 import usuarios.Cliente;

@@ -17,31 +17,23 @@ import usuarios.Administrador;
 
 public class ConversionDispositivoPersistenciaTest {
 	
-	private static EntityManagerFactory emf;
-	private static EntityManager manager;
 	private static Dispositivo dispositivoEstandar;
 	private static Administrador admin;
 	
 	@BeforeClass
 	public static void initialize() throws CloneNotSupportedException {
 		
-		emf = Persistence.createEntityManagerFactory("SGE");
-		manager = emf.createEntityManager();
-		
 		admin = new Administrador("Jim", "Beach", "Jimmy", "Queen123", "FakeStreet 123", LocalDate.now());
 		dispositivoEstandar = (DispositivoEstandar) admin.obtenerDispositivoEstandar("TV 33 Estandar", 4);
-		
-		manager.getTransaction().begin();
-		manager.persist(dispositivoEstandar);
-		manager.getTransaction().commit();
+		dispositivoEstandar.guardar();
 
 	}
 	
 	@Test
 	public void unDispositivoEstandarPersistidoSinConvertirNoEstaAdaptado() {
 	
-		dispositivoEstandar = manager.find(DispositivoEstandar.class, dispositivoEstandar.getId());
-		//System.out.println("El dispositivo estandar está adaptado: " + dispositivoEstandar.estaAdaptado());
+		dispositivoEstandar = dispositivoEstandar.recuperar();
+		System.out.println("El dispositivo estandar está adaptado: " + dispositivoEstandar.estaAdaptado());
 		Assert.assertFalse(dispositivoEstandar.estaAdaptado());
 	}
 	
@@ -49,14 +41,10 @@ public class ConversionDispositivoPersistenciaTest {
 	public void sePersisteLaAdaptacionDeUnDispositivoEstandar() throws CloneNotSupportedException {
 		
 		dispositivoEstandar.adaptarDispositivo();
-		dispositivoEstandar = manager.find(DispositivoEstandar.class, dispositivoEstandar.getId());
-		//System.out.println("El dispositivo estandar está adaptado: " + dispositivoEstandar.estaAdaptado());
+		//dispositivoEstandar.guardar();
+		dispositivoEstandar = dispositivoEstandar.recuperar();
+		System.out.println("El dispositivo estandar está adaptado: " + dispositivoEstandar.estaAdaptado());
 		Assert.assertTrue(dispositivoEstandar.estaAdaptado());
-	}
-	
-	@AfterClass
-	public static void after() {
-		manager.close();
 	}
 	
 }

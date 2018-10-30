@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 import dispositivos.FabricanteDispositivoInteligente;
 
-@Embeddable
+
 public class FabricanteSamsungMock extends FabricanteDispositivoInteligente {
 
 	public FabricanteSamsungMock() {
