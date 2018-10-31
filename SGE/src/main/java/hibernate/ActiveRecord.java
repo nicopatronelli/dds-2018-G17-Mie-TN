@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class ActiveRecord<T> {
 	
-	public EntityManager manager;
+	protected EntityManager manager;
 	
 	public void guardar() {
 		manager.getTransaction().begin();

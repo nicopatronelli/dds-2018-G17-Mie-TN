@@ -20,13 +20,13 @@ import usuarios.Administrador;
  */
 public class PruebaDispositivos {
 
-	private static Dispositivo dispositivoInteligente;
+	private static DispositivoInteligente dispositivoInteligente;
 	private static Administrador admin;
 	
 	@BeforeClass
 	public static void initalize() throws CloneNotSupportedException {
 		admin = crearAdministrador();
-		dispositivoInteligente = (DispositivoInteligente) admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
+		dispositivoInteligente = admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-JD256"));
 		simularFuncionamientoDispositivo();
 		dispositivoInteligente.guardar();
@@ -34,8 +34,9 @@ public class PruebaDispositivos {
 
 	@Test
 	public void mostrarEstadosPorLosQuePasoUnDispositivoInteligente() {
-		dispositivoInteligente = dispositivoInteligente.recuperar(dispositivoInteligente.getId());
-		System.out.println("Los estados por los que paso el dispositivo inteligente son:" + dispositivoInteligente.getHistorial().toString());
+		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.getId());
+		System.out.println("Los intervalos que estuvo encendido el dispositivo inteligente son:" 
+		+ dispositivoInteligente.intervalosEncendido().toString());
 	}
 	
 	@Test
@@ -43,7 +44,7 @@ public class PruebaDispositivos {
 		System.out.println("El nombre actual del dispositivo es " + dispositivoInteligente.getNombre());
 		dispositivoInteligente.cambiarNombre("Mi Dispositivo");
 		dispositivoInteligente.guardar();
-		dispositivoInteligente = dispositivoInteligente.recuperar(dispositivoInteligente.getId());
+		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.getId());
 		System.out.println("El nuevo nombre del dispositivo es " + dispositivoInteligente.getNombre());
 	}
 	
@@ -58,6 +59,7 @@ public class PruebaDispositivos {
 	private static void simularFuncionamientoDispositivo() {
 		dispositivoInteligente.encender();
 		dispositivoInteligente.apagar();
+		dispositivoInteligente.encender();
 		dispositivoInteligente.encender();
 		dispositivoInteligente.apagar();
 		dispositivoInteligente.encender();

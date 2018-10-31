@@ -127,7 +127,7 @@ public class Administrador {
 		return dispositivoEstandar;
 	}
 	
-	public Dispositivo obtenerDispositivoInteligente(String keyDispositivo, FabricanteDispositivoInteligente fabricante) throws CloneNotSupportedException {
+	public DispositivoInteligente obtenerDispositivoInteligente(String keyDispositivo, FabricanteDispositivoInteligente fabricante) throws CloneNotSupportedException {
 		DispositivoInteligente dispositivoInteligente = (DispositivoInteligente)crearDispositivo(keyDispositivo);
 		dispositivoInteligente.iniciarEstadoApagado();
 		dispositivoInteligente.setFabricante(fabricante);

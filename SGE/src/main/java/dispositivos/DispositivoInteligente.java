@@ -3,6 +3,7 @@ package dispositivos;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,15 +36,6 @@ public class DispositivoInteligente extends Dispositivo {
 	public DispositivoInteligente() {
 		// Constructor vacío para Hibernate
 	}
-	
-/*	private DispositivoInteligente(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
-			int usoMensualMaximoEnHoras, boolean esBajoConsumo) {
-		
-		super(nombreGenerico, consumoKwPorHora, usoMensualMinimoEnHoras, usoMensualMaximoEnHoras, esBajoConsumo);
-		this.estado = new EstadoApagado(); // Asumo que todo nuevo dispositivo inteligente inicia en estado apagado
-		this.esInteligente = true;
-		this.historial = new ArrayList<EntradaDispositivoInteligente>();
-	}*/
 	
 	/*  							
 	 * INICIO - Métodos de ESTADO	
@@ -143,5 +135,9 @@ public class DispositivoInteligente extends Dispositivo {
 	public List<EntradaDispositivoInteligente> getHistorial(){
 		return historial;
 	}
-
+	
+	public List<EntradaDispositivoInteligente> intervalosEncendido(){
+		return this.getHistorial().stream().filter(entrada -> entrada.encendidoOApagado()).collect(Collectors.toList());
+	}
+	
 }

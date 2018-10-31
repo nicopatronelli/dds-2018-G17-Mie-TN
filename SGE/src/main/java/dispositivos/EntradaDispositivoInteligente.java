@@ -35,9 +35,22 @@ public class EntradaDispositivoInteligente {
 		// Constructor vacío para Hibernate
 	}
 	
+	/*
+	 * GETTERS Y SETTERS
+	 */
+	
 	@Override
 	public String toString() {
 		return "FECHA:" + fechaHoraActual + " ESTADO:" + estado;
+	}
+	
+	public EstadoHistorial getEstado() {
+		return estado;
+	}
+	
+	public boolean encendidoOApagado() {
+		return estado.equals(EstadoHistorial.ENCENDIDO) 
+				|| estado.equals(EstadoHistorial.APAGADO);
 	}
 	
 }
