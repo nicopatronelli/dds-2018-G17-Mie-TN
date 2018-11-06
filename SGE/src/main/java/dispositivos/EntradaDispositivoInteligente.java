@@ -21,13 +21,14 @@ public class EntradaDispositivoInteligente {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_estado")
 	private Long id;
 	
-	private LocalDateTime fechaHoraActual;
+	@Column(name = "fecha_hora")
+	private LocalDateTime fechaHora;
 	
 	@Enumerated(EnumType.STRING)
 	private EstadoHistorial estado;
 	
 	public EntradaDispositivoInteligente(LocalDateTime fechaHoraActual, EstadoHistorial estadoActual) {
-		this.fechaHoraActual = fechaHoraActual;
+		this.fechaHora = fechaHoraActual;
 		this.estado = estadoActual;
 	}
 	
@@ -41,7 +42,7 @@ public class EntradaDispositivoInteligente {
 	
 	@Override
 	public String toString() {
-		return "FECHA:" + fechaHoraActual + " ESTADO:" + estado;
+		return "FECHA:" + fechaHora + " ESTADO:" + estado;
 	}
 	
 	public EstadoHistorial getEstado() {
@@ -51,6 +52,10 @@ public class EntradaDispositivoInteligente {
 	public boolean encendidoOApagado() {
 		return estado.equals(EstadoHistorial.ENCENDIDO) 
 				|| estado.equals(EstadoHistorial.APAGADO);
+	}
+	
+	public void historialPorPeriodo() {
+		
 	}
 	
 }

@@ -73,7 +73,7 @@ public class DispositivoInteligente extends Dispositivo {
 	 *  FIN - Métodos de ESTADO
 	 */
 	
-	/* A diferencia de los dispositivos estándar, donde calculamos un consumo aproximado nosotros (SGE), 
+	/* A diferencia de los dispositivos estandares, donde calculamos un consumo aproximado nosotros (SGE), 
 	 * son los fabricantes de los dispositivos inteligentes los que nos van a proporcionar el consumo 
 	 * de los mismos (INTERFAZ EXTERNA con SGE). 
 	 */
@@ -93,6 +93,7 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 	
 	public float energiaConsumidaDuranteUltimasHoras(int horas) {
+		//this.historial
 		// Lo tenemos que hacer nosotros guardando el estado de los dispositivos 
 		return 0;
 	}

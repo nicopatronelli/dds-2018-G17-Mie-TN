@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureQuery;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -47,6 +49,7 @@ public class PruebaDispositivos {
 		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.getId());
 		System.out.println("El nuevo nombre del dispositivo es " + dispositivoInteligente.getNombre());
 	}
+	
 	
 	/*
 	 *  Métodos auxiliares
