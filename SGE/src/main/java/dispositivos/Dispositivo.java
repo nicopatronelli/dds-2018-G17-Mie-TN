@@ -14,12 +14,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Persistence;
 import javax.persistence.Transient;
 
-import hibernate.ActiveRecord;
+import hibernate.PersistEntity;
 import usuarios.Cliente;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Dispositivo extends ActiveRecord<Dispositivo> implements Cloneable  {
+public abstract class Dispositivo extends PersistEntity<Dispositivo> implements Cloneable  {
 	
 	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id_dispositivo")
 	protected Long id;

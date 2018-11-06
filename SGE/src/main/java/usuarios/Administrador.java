@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.joda.time.DateTime;
+import org.joda.time.Months;
+
 import cargaDatosJson.CargaDatosJson;
 import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
@@ -25,11 +28,12 @@ import dispositivos.FabricanteDispositivoInteligente;
 import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
+import hibernate.PersistEntity;
 import mocks.FabricanteSGE;
 
 @Entity
 @Table(name = "Administradores")
-public class Administrador {
+public class Administrador extends PersistEntity {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id_admin")
 	private Long id;
@@ -50,12 +54,12 @@ public class Administrador {
 	@Transient
 	private GestorDispositivos gestorDispositivos = new GestorDispositivos();;
 	
-	//private List<Cliente> clientes;
-	
-	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
+	//@Transient
+	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "administrador_id")
 	private List<Transformador> transformadores;
 	
-	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
+	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "administrador_id")
+	//@Transient
 	private List<Zona> zonas;
 	
 	public Administrador() {
@@ -74,10 +78,11 @@ public class Administrador {
 		this.password = password;
 		this.direccion = direccion;
 		this.fechaAlta = fechaAlta;
+		this.manager = crearEntityManager();
 	}
 	
 /* 	public int cantidadMesesComoAdmistrador() {
-		return Months.monthsBetween(this.fechaAltaUsuarioSistema, new DateTime()).getMonths();
+		return Months.monthsBetween(fechaAlta, new DateTime()).getMonths();
 	}*/
 
 /*	public void agregarCliente(Cliente cliente) {

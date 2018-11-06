@@ -3,6 +3,7 @@ package geoposicionamiento;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Zona {
 /*	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPK;*/
 	
-	@Id 
+	@Id @Column(name = "id_zona")
 	private int id; 
 	
 	private String nombre; // Descripción de la zona 
@@ -29,7 +30,7 @@ public class Zona {
 	
 	private double radio;
 	
-	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "zona_id")
+	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "zona_id")
 	List<Transformador> transformadores; // Una zona geografica engloba 1 o más transformadores 
 	
 	public void agregarTransformador(Transformador transformador) {

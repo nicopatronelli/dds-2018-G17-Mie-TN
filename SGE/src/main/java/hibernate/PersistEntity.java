@@ -1,10 +1,15 @@
 package hibernate;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Persistence;
 
-public class ActiveRecord<T> {
+public class PersistEntity<T> {
 	
 	protected EntityManager manager;
 	
@@ -20,6 +25,10 @@ public class ActiveRecord<T> {
 
 	public void borrar() {
 		manager.remove(this);
+	}
+	
+	public List ejecutarQuery(String query) {
+		return manager.createQuery(query).getResultList();
 	}
 	
 	public EntityManager crearEntityManager() {

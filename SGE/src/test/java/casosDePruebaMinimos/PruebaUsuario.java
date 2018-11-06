@@ -9,6 +9,7 @@ import org.junit.Test;
 import domicilio.Categoria;
 import domicilio.DomicilioServicio;
 import domicilio.Posicion;
+import geoposicionamiento.Transformador;
 import usuarios.Cliente;
 
 /*
@@ -54,6 +55,8 @@ public class PruebaUsuario {
 		DomicilioServicio domicilio = new DomicilioServicio("4232-4817", LocalDate.of(2018, 06, 12), categoriaR1, geoposicionamiento);
 		Cliente nuevoCliente = new Cliente("John", "Deacon", "DNI", 10512789, "Johnny", "queen123");
 		nuevoCliente.agregarDomicilio(domicilio);
+		Transformador transformador = new Transformador(100, 200, 1);
+		domicilio.setTransformador(transformador);
 		return nuevoCliente;
 	}
 	

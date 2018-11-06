@@ -156,4 +156,8 @@ public class DomicilioServicio {
 		System.out.println("Latitud: " + posicion.getLatitud() + 
 				" Longitud: " + posicion.getLongitud());
 	}
+	
+	public void setTransformador(Transformador transformador) {
+		this.transformador = transformador;
+	}
 } 

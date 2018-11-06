@@ -6,30 +6,25 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Persistence;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 import domicilio.DomicilioServicio;
 import domicilio.Posicion;
 import geoposicionamiento.Transformador;
-import hibernate.ActiveRecord;
+import hibernate.PersistEntity;
 import simplex.SimplexFacadeSGE;
 
 @Entity
 @Table(name = "Clientes")
-public class Cliente extends ActiveRecord<Cliente>{
+public class Cliente extends PersistEntity<Cliente>{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_cliente")
 	private Long id;

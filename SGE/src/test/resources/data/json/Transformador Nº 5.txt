@@ -1,0 +1,6 @@
+	{
+		"id" : 5,
+		"latitud" : 950,
+		"longitud" : 820,
+		"zonaId" : 2
+	}
