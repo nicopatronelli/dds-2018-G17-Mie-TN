@@ -26,13 +26,47 @@
 	   		 <version>1.0-alpha-1</version>
    	 	</dependency> -->
 		
+		<!-- Spark Java (Descarga todas las dependencias del servidor Jetty)-->
+		<dependency>
+		    <groupId>com.sparkjava</groupId>
+		    <artifactId>spark-core</artifactId>
+		    <version>2.7.2</version>
+		</dependency>
+		
+		<!-- Logging para Spark -->
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-simple</artifactId>
+		    <version>1.7.21</version>
+		</dependency>
+		
+		<!-- Handlebars Template Engine -->
+		<dependency>
+		    <groupId>com.sparkjava</groupId>
+		    <artifactId>spark-template-handlebars</artifactId>
+		    <version>2.7.1</version>
+		</dependency>
+		
+		<!--  Velocity Template Engine -->
+		<dependency>
+		    <groupId>com.sparkjava</groupId>
+		    <artifactId>spark-template-velocity</artifactId>
+		    <version>2.7.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-debug-tools</artifactId>
+			<version>0.5</version>
+		</dependency>
+				
 	 	<!-- Para utilizar java.time de Java 8 con Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-java8</artifactId>
 			<version>5.1.0.Final</version>
-		</dependency> 
-		
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
 		    <groupId>org.hibernate</groupId>

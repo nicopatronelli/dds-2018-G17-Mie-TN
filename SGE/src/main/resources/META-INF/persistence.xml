@@ -35,8 +35,9 @@
             <property name="hibernate.connection.username" value="sa" /> 
             <property name="hibernate.connection.password" value="" /> 
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /> -->
-	
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			
+			<!-- En "create" borra las tablas y las vuelve a crear pero no así los Store Procedures de la BD -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="use_sql_comments" value="true" />
