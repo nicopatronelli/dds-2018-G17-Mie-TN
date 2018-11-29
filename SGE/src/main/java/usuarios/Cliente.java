@@ -68,7 +68,7 @@ public class Cliente extends PersistEntity<Cliente>{
 		this.cantidadPuntos = 0;
 		this.ahorroAutomatico = false;
 		this.domicilios = new ArrayList<DomicilioServicio>();
-		this.manager = super.crearEntityManager();
+		super.inicializarEntityManager();
 	}
 	
 	public void agregarDomicilio(DomicilioServicio domicilio) {
@@ -105,10 +105,6 @@ public class Cliente extends PersistEntity<Cliente>{
 		return domicilios.stream().mapToInt(domicilio -> domicilio.cantidadTotalDispositivos()).sum();
 	}
 	
-	public int cantidadDePuntos() {
-		return cantidadPuntos;
-	}
-	
 	public double[] recomendacionConsumo(DomicilioServicio unDomicilio) {
 		return SimplexFacadeSGE.recomendacionConsumo(unDomicilio);
 	}
@@ -123,9 +119,14 @@ public class Cliente extends PersistEntity<Cliente>{
 		domicilios.forEach(domicilio->domicilio.mostrarDomicilio());
 	}
 	
-	
 	public void cambiarDomicilio(DomicilioServicio domicilioActual, Posicion nuevaPosicion) {
 		domicilioActual.nuevaPosicion(nuevaPosicion);
+	}
+	
+	/* GETTERS Y SETTERS */
+	
+	public int cantidadDePuntos() {
+		return cantidadPuntos;
 	}
 	
 	public List<DomicilioServicio> domicilios() {
@@ -144,6 +145,14 @@ public class Cliente extends PersistEntity<Cliente>{
 		return "Cliente [nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento
 				+ ", nroDocumento=" + nroDocumento + ", usuario=" + usuario + ", password=" + password
 				+ ", cantidadPuntos=" + cantidadPuntos + ", ahorroAutomatico=" + ahorroAutomatico + "]";
+	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
+	
+	public String getPassword() {
+		return password;
 	}
 	
 } 

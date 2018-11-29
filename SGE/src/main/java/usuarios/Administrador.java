@@ -78,7 +78,7 @@ public class Administrador extends PersistEntity {
 		this.password = password;
 		this.direccion = direccion;
 		this.fechaAlta = fechaAlta;
-		this.manager = crearEntityManager();
+		super.inicializarEntityManager();
 	}
 	
 /* 	public int cantidadMesesComoAdmistrador() {
@@ -162,5 +162,13 @@ public class Administrador extends PersistEntity {
 
 	public List<Zona> getZonas() {
 		return zonas;
+	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
+	
+	public String getPassword() {
+		return password;
 	}
 }

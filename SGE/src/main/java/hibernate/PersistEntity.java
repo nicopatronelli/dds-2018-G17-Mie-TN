@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Persistence;
 
+import usuarios.Cliente;
+
 public class PersistEntity<T> {
 	
 	protected EntityManager manager;
@@ -34,6 +36,28 @@ public class PersistEntity<T> {
 	public EntityManager crearEntityManager() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
 		return emf.createEntityManager();
+	}
+	
+	public void inicializarEntityManager() {
+		this.manager = crearEntityManager();
+	}
+	
+/*	public Cliente obtenerClientePorAtributo(String atributo, String valorAtributo) {
+		String query = "FROM Cliente WHERE " + atributo + " = " + "'" + valorAtributo + "'";
+		List<Cliente> clienteTemp = (List<Cliente>) manager.createQuery(query).getResultList();
+		if ( clienteTemp.isEmpty() ) // No se encontro la entidad
+			return null;
+		else 
+			return clienteTemp.get(0);
+	}*/
+	
+	public T obtenerEntidadPorAtributo(String atributo, String valorAtributo) {
+		String query = "FROM " + this.getClass().getName() +" WHERE " + atributo + " = " + "'" + valorAtributo + "'";
+		List<T> temp = manager.createQuery(query).getResultList();
+		if ( temp.isEmpty() ) // No se encontro la entidad
+			return null;
+		else 
+			return temp.get(0);
 	}
 	
 }
