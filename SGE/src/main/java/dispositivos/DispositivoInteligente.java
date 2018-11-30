@@ -26,7 +26,8 @@ public class DispositivoInteligente extends Dispositivo {
 	@Column(name = "consumo_generado")
 	private double consumoGenerado;
 	
-	@OneToOne(cascade = { CascadeType.ALL }) 
+	//@OneToOne(cascade = { CascadeType.ALL }) 
+	@Transient
 	private FabricanteDispositivoInteligente fabricante;
 	
 	@Transient
