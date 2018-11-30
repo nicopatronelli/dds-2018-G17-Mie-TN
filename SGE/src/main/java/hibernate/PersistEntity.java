@@ -42,15 +42,6 @@ public class PersistEntity<T> {
 		this.manager = crearEntityManager();
 	}
 	
-/*	public Cliente obtenerClientePorAtributo(String atributo, String valorAtributo) {
-		String query = "FROM Cliente WHERE " + atributo + " = " + "'" + valorAtributo + "'";
-		List<Cliente> clienteTemp = (List<Cliente>) manager.createQuery(query).getResultList();
-		if ( clienteTemp.isEmpty() ) // No se encontro la entidad
-			return null;
-		else 
-			return clienteTemp.get(0);
-	}*/
-	
 	public T obtenerEntidadPorAtributo(String atributo, String valorAtributo) {
 		String query = "FROM " + this.getClass().getName() +" WHERE " + atributo + " = " + "'" + valorAtributo + "'";
 		List<T> temp = manager.createQuery(query).getResultList();
@@ -59,5 +50,7 @@ public class PersistEntity<T> {
 		else 
 			return temp.get(0);
 	}
+	
+	
 	
 }

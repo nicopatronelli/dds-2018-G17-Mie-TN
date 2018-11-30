@@ -60,14 +60,22 @@ public class StoreProcedureTest {
 	public void procedure_minutos_encendido() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
 		EntityManager manager = emf.createEntityManager();
-
+		
+		long id = 1;
+		
 		StoredProcedureQuery query =  manager
-				.createStoredProcedureQuery("horas_encendido")
-				.registerStoredProcedureParameter("resultado", Integer.class, ParameterMode.OUT);
+		.createStoredProcedureQuery("minutos_encendido")
+		.registerStoredProcedureParameter("id_disp_intel", Long.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("fecha_inicio", String.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("fecha_final", String.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("resultado", Double.class, ParameterMode.OUT)
+		.setParameter("id_disp_intel", id)
+		.setParameter("fecha_inicio", "2018-10-18")
+		.setParameter("fecha_final", "2018-10-26");
 		
 		query.execute();
 		
-		Integer resultado = (Integer) query.getOutputParameterValue("resultado");
+		Double resultado = (Double) query.getOutputParameterValue("resultado");
 		System.out.println("El resultado es: " + resultado);
 	}
 	

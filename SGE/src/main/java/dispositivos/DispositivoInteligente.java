@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -98,11 +100,27 @@ public class DispositivoInteligente extends Dispositivo {
 		return 0;
 	}
 	
-	public float consumoTotalEntre(LocalDate fechaInicial, LocalDate fechaFinal) {
-		// Lo tenemos que calcular nosotros guardando el estado de los dispositivos
-		return 0;
+	public double consumoEntre(String fechaInicial, String fechaFinal) {
+		
+		StoredProcedureQuery query =  manager
+		.createStoredProcedureQuery("horas_encendido")
+		.registerStoredProcedureParameter("id_disp_intel", Long.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("fecha_inicio", String.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("fecha_final", String.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("resultado", Double.class, ParameterMode.OUT)
+		.setParameter("id_disp_intel", this.id)
+		.setParameter("fecha_inicio", fechaInicial)
+		.setParameter("fecha_final", fechaFinal);
+		
+		query.execute();
+		
+		Double horasEncendido = (Double) query.getOutputParameterValue("resultado");
+
+		return horasEncendido * this.consumoKwPorHora;
+		
 	}
 	
+	// El consumo instantáneo nos lo provee el fabricante 
 	public double consumoInstantaneo() {
 		if (this.estaApagado())
 			return 0;

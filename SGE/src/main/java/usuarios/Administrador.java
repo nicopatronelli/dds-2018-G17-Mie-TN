@@ -8,7 +8,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,9 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.joda.time.DateTime;
-import org.joda.time.Months;
 
 import cargaDatosJson.CargaDatosJson;
 import dispositivos.Dispositivo;
@@ -54,12 +50,10 @@ public class Administrador extends PersistEntity {
 	@Transient
 	private GestorDispositivos gestorDispositivos = new GestorDispositivos();;
 	
-	//@Transient
 	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "administrador_id")
 	private List<Transformador> transformadores;
 	
 	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "administrador_id")
-	//@Transient
 	private List<Zona> zonas;
 	
 	public Administrador() {
@@ -81,13 +75,9 @@ public class Administrador extends PersistEntity {
 		super.inicializarEntityManager();
 	}
 	
-/* 	public int cantidadMesesComoAdmistrador() {
-		return Months.monthsBetween(fechaAlta, new DateTime()).getMonths();
-	}*/
-
-/*	public void agregarCliente(Cliente cliente) {
- 		clientes.add(cliente);
- 	}*/
+ 	public <T> Dispositivo recuperarDispositivoPorId(Class <T> clase, Long dispositivoId) {
+ 		return (Dispositivo) this.manager.find(clase, dispositivoId);
+ 	}
  	
 	public void cargarZonas(String pathJsonZonas) {
 		zonas = new ArrayList<Zona>();
