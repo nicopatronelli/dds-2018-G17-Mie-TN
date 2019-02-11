@@ -17,8 +17,8 @@
 		<class>dispositivos.EntradaDispositivoInteligente</class>
 		<class>dispositivos.DispositivoEstandar</class>
 		<class>actuadores.Actuador</class>
-		<class>regla.ReglaObservador</class>
-		<class>sensor.SensorObservado</class>
+		<class>reglas.ReglaObservador</class>
+		<class>sensores.SensorObservado</class>
 		
 		<properties>
 		
@@ -37,7 +37,7 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /> -->
 			
 			<!-- En "create" borra las tablas y las vuelve a crear pero no así los Store Procedures de la BD -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="use_sql_comments" value="true" />

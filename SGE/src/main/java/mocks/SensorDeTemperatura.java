@@ -1,6 +1,6 @@
 package mocks;
 
-import sensor.SensorObservado;
+import sensores.SensorObservado;
 
 public class SensorDeTemperatura extends SensorObservado {
 	
@@ -13,12 +13,12 @@ public class SensorDeTemperatura extends SensorObservado {
 		if (temperaturaAmbiente != this.magnitudMedida) {
 			this.magnitudMedida = temperaturaAmbiente;
 			System.out.println("La temperatura ambiente cambio a " + temperaturaAmbiente);
-			super.notificarObservadores();
+			super.notificarReglas();
 		}
 		
 	} // fin revisarTemperatura()
 	
-	public int getTemperaturaActual() {
+	public double getTemperaturaActual() {
 		return magnitudMedida;
 	}
 

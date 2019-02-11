@@ -3,6 +3,7 @@ package mocks;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
+import commons.Matematica;
 import dispositivos.FabricanteDispositivoInteligente;
 
 
@@ -14,11 +15,11 @@ public class FabricanteSamsungMock extends FabricanteDispositivoInteligente {
 	
 	public FabricanteSamsungMock(String idDispositivoFabricante) {
 		super(idDispositivoFabricante);
-	}
+	}	
 
 	@Override
 	public double consumoInstantaneo(String idFabricante) {
-		return 0.1;
+		return Matematica.numeroAleatorio();
 	}
 
 	@Override

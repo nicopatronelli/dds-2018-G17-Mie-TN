@@ -18,11 +18,7 @@
 					"longitud" : 250
 				}, 
 				"transformador" : {},
-				"categoria" : 
-				{
-					"cargoFijo" : 0.2, 
-					"cargoVariable" : 0.1
-				},
+				"categoria" : Categoria.R2,
 				"dispositivos" : []
 			}
 		]
@@ -46,11 +42,7 @@
 					"longitud" : 150
 				}, 
 				"transformador" : {},
-				"categoria" : 
-				{
-					"cargoFijo" : 0.2, 
-					"cargoVariable" : 0.1
-				},
+				"categoria" : Categoria.RJQ,
 				"dispositivos" : []
 			}
 		]

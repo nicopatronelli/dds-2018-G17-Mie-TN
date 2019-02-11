@@ -1,0 +1,136 @@
+<html>
+	<head>	
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+		<title> Portal de Clientes SGE </title>
+ 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+		<title> Portal de Clientes SGE </title>
+ 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<!-- Inicio menu superior-->
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/home">SGE</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a>Clientes</a></li>
+					<li><a href="/domicilio/estado">Estado domicilio principal</a></li>
+					<li><a href="/consumo/periodo">Consumo consumo período</a></li>
+					<li><a href="/dispositivo/archivo">Carga archivo dispositivos</a></li>
+					<li><a href="/simplex">Ejecución de Simplex</a></li>
+					<li><a href="#">ABM Dispositivos</a></li>
+					<li><a href="/mapa">Mapa</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/home"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- Fin menu superior -->
+		
+		<!-- Inicio contenido de la página -->
+		<div class="container">
+			<h2>Estado del domicilio principal</h2>
+			</br>
+			<h4>Últimas mediciones</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Temperatura</th>
+							<th>Humedad</th>
+							<th>Nivel de luz solar</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr> 
+						<td>25°C</td>
+						<td>70%</td>
+						<td>60%</td>						
+					</tr>					
+					</tbody>
+					<tr> 
+						<td>28°C</td>
+						<td>72%</td>
+						<td>62%</td>						
+					</tr>	
+					<tr> 
+						<td>22°C</td>
+						<td>68%</td>
+						<td>54%</td>						
+					</tr>						
+				</table>
+			<h4>Consumo del último período</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Consumo</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr> 
+						<td>0.135 Kwh</td>						
+					</tr>					
+				</table>
+			<h4>Estado de los dispositivos</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Dispositivo</th>
+							<th>Estado</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr> 
+						<td>Aire 3500 Inteligente</td>
+						<td>Encendido</td>						
+					</tr>					
+					</tbody>
+					<tr> 
+						<td>LED 32 Inteligente</td>
+						<td>Apagado</td>					
+					</tr>	
+					<tr> 
+						<td>Heladera con freezer Inteligente</td>
+						<td>Encendido</td>					
+					</tr>
+					<tr> 
+						<td>Lavarropas auto 5kg Inteligente</td>
+						<td>Apagado</td>					
+					</tr>
+					<tr> 
+						<td>TV 31 Estandar</td>
+						<td>Apagado</td>					
+					</tr>	
+				</table>
+			<h4>Reglas activas</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Regla</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr> 
+						<td>Encender aire si la temperatura pasa los 25°C</td>						
+					</tr>					
+					</tbody>
+					<tr> 
+						<td>Encender luces patio si el nivel de luz solar es menor a 20%</td>				
+					</tr>	
+				</table>		
+		</div>
+		<!-- Fin contenido de la página -->
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</body>
+</html>

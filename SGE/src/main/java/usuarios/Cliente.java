@@ -3,13 +3,11 @@ package usuarios;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,35 +17,28 @@ import dispositivos.DispositivoInteligente;
 import domicilio.DomicilioServicio;
 import domicilio.Posicion;
 import geoposicionamiento.Transformador;
-import hibernate.PersistEntity;
 import simplex.SimplexFacadeSGE;
 
 @Entity
 @Table(name = "Clientes")
-public class Cliente extends PersistEntity<Cliente>{
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_cliente")
-	private Long id;
-	
-	private String nombre;
-	
-	private String apellido;
+@AttributeOverride(name = "id", column = @Column(name = "id_cliente"))
+public class Cliente extends Usuario {
 	
 	@Column(name = "tipo_documento")
 	private String tipoDocumento;
 	
 	@Column(name = "numero_documento")
-	private int nroDocumento;
-	
-	private String usuario;
-	
-	private String password;
+	private Integer nroDocumento;
 	
 	@Column(name = "cantidad_puntos")
-	private int cantidadPuntos;
+	private Integer cantidadPuntos;
 	
 	@Column(name = "ahorro_automatico")
-	private boolean ahorroAutomatico;
+	private Boolean ahorroAutomatico;
+	
+	private static final int BONUS_INTELIGENTE = 15; 
+	
+	private static final int BONUS_CONVERSION = 10; 
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER) @JoinColumn(name = "cliente_id")
 	private List<DomicilioServicio> domicilios;
@@ -57,16 +48,12 @@ public class Cliente extends PersistEntity<Cliente>{
 	}
 	
 	public Cliente(String nombre, String apellido, String tipoDocumento, int nroDocumento, 
-			String nombreUsuario, String password) {
-		
-		this.nombre = nombre;
-		this.apellido = apellido;
+			String usuario, String password) {
+		super(nombre, apellido, usuario, password);
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
-		this.usuario = nombreUsuario;
-		this.password = password;
-		this.cantidadPuntos = 0;
-		this.ahorroAutomatico = false;
+		this.cantidadPuntos = 0; // Por negocio inicia en cero 
+		this.ahorroAutomatico = false; // Por defecto lo inicializamos en false 
 		this.domicilios = new ArrayList<DomicilioServicio>();
 		super.inicializarEntityManager();
 	}
@@ -81,12 +68,12 @@ public class Cliente extends PersistEntity<Cliente>{
 	
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivoInteligente, DomicilioServicio unDomicilio) {
 		unDomicilio.registrarDispositivo(nuevoDispositivoInteligente);
-		this.cantidadPuntos = this.cantidadPuntos + 15; // Un cliente recibe 15 puntos por cada dispositivo inteligente que registre en SGE
+		this.cantidadPuntos = this.cantidadPuntos + BONUS_INTELIGENTE; // Un cliente recibe 15 puntos por cada dispositivo inteligente que registre en SGE
 	}
 	
 	public void adaptarDispositivoEstandar(DispositivoEstandar unDispositivoEstandar, DomicilioServicio unDomicilio) throws CloneNotSupportedException {
 		unDomicilio.adaptarDispositivoEstandar(unDispositivoEstandar); // Delego en el domicilio la adaptación del dispositivo
-		this.cantidadPuntos = this.cantidadPuntos + 10; // Un cliente recibe 10 puntos por cada dispositivo estandar que adapta a inteligente
+		this.cantidadPuntos = this.cantidadPuntos + BONUS_CONVERSION; // Un cliente recibe 10 puntos por cada dispositivo estandar que adapta a inteligente
 	}
 	
 	public boolean tieneAlgunDispositivoEncendido() {
@@ -94,15 +81,15 @@ public class Cliente extends PersistEntity<Cliente>{
 	}
 
 	public int cantidadDispositivosEncendidos() {
-		return domicilios.stream().mapToInt(domicilio -> domicilio.cantidadDispositivosEncendidos()).sum();
+		return this.domicilios.stream().mapToInt(domicilio -> domicilio.cantidadDispositivosEncendidos()).sum();
 	}
 
 	public int cantidadDispositivosApagados() {
-		return domicilios.stream().mapToInt(domicilio -> domicilio.cantidadDispositivosApagados()).sum();
+		return this.domicilios.stream().mapToInt(domicilio -> domicilio.cantidadDispositivosApagados()).sum();
 	}
 
 	public int cantidadTotalDispositivos() {
-		return domicilios.stream().mapToInt(domicilio -> domicilio.cantidadTotalDispositivos()).sum();
+		return this.domicilios.stream().mapToInt(domicilio -> domicilio.cantidadTotalDispositivos()).sum();
 	}
 	
 	public double[] recomendacionConsumo(DomicilioServicio unDomicilio) {
@@ -133,26 +120,10 @@ public class Cliente extends PersistEntity<Cliente>{
 		return domicilios;
 	}
 	
-	public Long getId() {
-		return id;
-	}
-	
-	public String getNombreApellido() {
-		return nombre + apellido;
-	}
-	
 	public String toString() {
 		return "Cliente [nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento
 				+ ", nroDocumento=" + nroDocumento + ", usuario=" + usuario + ", password=" + password
 				+ ", cantidadPuntos=" + cantidadPuntos + ", ahorroAutomatico=" + ahorroAutomatico + "]";
-	}
-	
-	public String getUsuario() {
-		return usuario;
-	}
-	
-	public String getPassword() {
-		return password;
 	}
 	
 } 

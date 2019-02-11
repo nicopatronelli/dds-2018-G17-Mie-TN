@@ -43,7 +43,7 @@ public class PersistEntity<T> {
 	}
 	
 	public T obtenerEntidadPorAtributo(String atributo, String valorAtributo) {
-		String query = "FROM " + this.getClass().getName() +" WHERE " + atributo + " = " + "'" + valorAtributo + "'";
+		String query = "FROM " + this.getClass().getName() +" WHERE " + atributo + " = '" + valorAtributo + "'";
 		List<T> temp = manager.createQuery(query).getResultList();
 		if ( temp.isEmpty() ) // No se encontro la entidad
 			return null;
@@ -51,6 +51,4 @@ public class PersistEntity<T> {
 			return temp.get(0);
 	}
 	
-	
-	
-}
+} // FIN Clase PersistEntity

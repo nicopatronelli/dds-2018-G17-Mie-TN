@@ -41,13 +41,9 @@ public class EntradaDispositivoInteligente {
 	 */
 	
 	@Override
-	public String toString() {
-		return "FECHA:" + fechaHora + " ESTADO:" + estado;
-	}
+	public String toString() { return "FECHA:" + fechaHora + " ESTADO:" + estado; }
 	
-	public EstadoHistorial getEstado() {
-		return estado;
-	}
+	public EstadoHistorial getEstado() { return estado; }
 	
 	public boolean encendidoOApagado() {
 		return estado.equals(EstadoHistorial.ENCENDIDO) 

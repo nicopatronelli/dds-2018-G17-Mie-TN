@@ -1,10 +1,6 @@
 package domicilio;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Embeddable
 public class Posicion {

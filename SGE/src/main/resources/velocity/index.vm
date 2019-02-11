@@ -4,20 +4,18 @@
 		<title> SGE - Sistema de Gestión Energética </title>
 	</head>
 	<body>
-		<div class="jumbotron">		
+		<div class="jumbotron bg-dark text-white">		
 			<h1>Bienvenido a SGE</h1> 
 			<p>Ingresa como:</p> 
-			<a href="/login/usuarios">
+			<a href="/login/clientes">
 				<button type="button" class="btn btn-primary">Cliente</button>
 			</a>
 			<a href="/login/admins">
 				<button type="button" class="btn btn-secondary">Administrador</button>
 			</a>
+			
 		</div> 
-		
-<!-- 		<footer>
-			<p class="font-italic">>SGE - Sistema de Gestión Energética 2018</p>
-		</footer> -->
+
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

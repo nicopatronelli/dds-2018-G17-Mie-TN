@@ -1,6 +1,5 @@
 package dispositivos;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.Table;
@@ -76,11 +74,6 @@ public class DispositivoInteligente extends Dispositivo {
 	 *  FIN - Métodos de ESTADO
 	 */
 	
-	/* A diferencia de los dispositivos estandares, donde calculamos un consumo aproximado nosotros (SGE), 
-	 * son los fabricantes de los dispositivos inteligentes los que nos van a proporcionar el consumo 
-	 * de los mismos (INTERFAZ EXTERNA con SGE). 
-	 */
-	
 	@Override
 	public boolean esInteligente() {
 		return true;
@@ -113,12 +106,11 @@ public class DispositivoInteligente extends Dispositivo {
 		.setParameter("fecha_inicio", fechaInicial)
 		.setParameter("fecha_final", fechaFinal);
 		
-		query.execute();
+		query.execute(); 
 		
 		Double horasEncendido = (Double) query.getOutputParameterValue("resultado");
 
 		return horasEncendido * this.consumoKwPorHora;
-		
 	}
 	
 	// El consumo instantáneo nos lo provee el fabricante 
@@ -144,17 +136,13 @@ public class DispositivoInteligente extends Dispositivo {
 
 	// GETTERS Y SETTERS
 
-	public void setFabricante(FabricanteDispositivoInteligente fabricante) {
-		this.fabricante = fabricante;
+	public void setFabricante(FabricanteDispositivoInteligente fabricante) { 
+		this.fabricante = fabricante; 
 	}
 
-	public FabricanteDispositivoInteligente getFabricante() {
-		return fabricante;
-	}
+	public FabricanteDispositivoInteligente getFabricante() { return fabricante; }
 	
-	public List<EntradaDispositivoInteligente> getHistorial(){
-		return historial;
-	}
+	public List<EntradaDispositivoInteligente> getHistorial(){ return historial; }
 	
 	public List<EntradaDispositivoInteligente> intervalosEncendido(){
 		return this.getHistorial().stream().filter(entrada -> entrada.encendidoOApagado()).collect(Collectors.toList());

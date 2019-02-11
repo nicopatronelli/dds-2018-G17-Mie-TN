@@ -1,4 +1,4 @@
-package sensor;
+package sensores;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import regla.ReglaObservador;
+import reglas.ReglaObservador;
 
 @Entity
 //@Table(name = "Sensores")
@@ -27,30 +27,30 @@ public abstract class SensorObservado {
 	private Long id;
 	
 	@Column(name = "cantidad_mangitud_medida")
-	protected int magnitudMedida; // Cada sensor mide una unica magnitud física 
+	protected double magnitudMedida; // Cada sensor mide una unica magnitud física 
 	
 	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "sensor_id")
-	protected List<ReglaObservador> listaObservadores; // El sensor tiene una lista de reglas
+	protected List<ReglaObservador> reglas; // El sensor tiene una lista de reglas
 	
 	public SensorObservado() {
 		// Constructor vacío para Hibernate
 	}
 	
-	protected SensorObservado(int magnitudMedida) {
+	protected SensorObservado(double magnitudMedida) {
 		this.magnitudMedida = magnitudMedida;
-		this.listaObservadores = new ArrayList<ReglaObservador>();
+		this.reglas = new ArrayList<ReglaObservador>();
 	}
 	
-	public void agregarObservador(ReglaObservador observador) {
-		listaObservadores.add(observador);
+	public void agregarRegla(ReglaObservador regla) {
+		reglas.add(regla);
 	}
 	
-	public void quitarObservador(ReglaObservador observador) {
-		listaObservadores.remove(observador);
+	public void quitarRegla(ReglaObservador regla) {
+		reglas.remove(regla);
 	}
 	
-	public void notificarObservadores() {
-		listaObservadores.forEach(observador->observador.revisarRegla(magnitudMedida));
+	public void notificarReglas() {
+		reglas.forEach(regla->regla.revisarRegla(magnitudMedida));
 	}
 	
 }

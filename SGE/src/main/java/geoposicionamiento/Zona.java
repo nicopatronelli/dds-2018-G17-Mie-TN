@@ -20,15 +20,15 @@ public class Zona {
 	private Long idPK;*/
 	
 	@Id @Column(name = "id_zona")
-	private int id; 
+	private Long id; 
 	
 	private String nombre; // Descripción de la zona 
 	
-	private double latitud;
+	private Double latitud;
 	
-	private double longitud;
+	private Double longitud;
 	
-	private double radio;
+	private Double radio;
 	
 	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "zona_id")
 	List<Transformador> transformadores; // Una zona geografica engloba 1 o más transformadores 
@@ -43,7 +43,7 @@ public class Zona {
 	
 	// GETTERS Y SETTERS
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	

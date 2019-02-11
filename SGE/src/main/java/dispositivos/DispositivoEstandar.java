@@ -18,7 +18,7 @@ public class DispositivoEstandar extends Dispositivo {
 	private int horasDeUsoDiarias; // Lo informa el cliente
 	
 	@OneToOne(cascade = { CascadeType.ALL })
-	private DispositivoInteligente adaptador = null;
+	private DispositivoInteligente adaptador;
 	
 	protected DispositivoEstandar() {
 		// Constructor vacío para Hibernate

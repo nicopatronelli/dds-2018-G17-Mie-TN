@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,25 +22,14 @@ import dispositivos.FabricanteDispositivoInteligente;
 import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
-import hibernate.PersistEntity;
 import mocks.FabricanteSGE;
 
 @Entity
 @Table(name = "Administradores")
-public class Administrador extends PersistEntity {
+@AttributeOverride(name = "id", column = @Column(name = "id_admin"))
+public class Administrador extends Usuario {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id_admin")
-	private Long id;
-	
-	private String nombre;
-	
-	private String apellido;
-	
-	private String usuario;
-	
-	private String password;
-	
-	private String direccion;
+	private String direccion; // ¿Para qué se usa?
 	
 	@Column(name = "fecha_alta")
 	private LocalDate fechaAlta;
@@ -66,10 +53,7 @@ public class Administrador extends PersistEntity {
 	
  	public Administrador(String nombre, String apellido, String usuario, String password, String direccion,
 			LocalDate fechaAlta) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.usuario = usuario;
-		this.password = password;
+ 		super(nombre, apellido, usuario, password);
 		this.direccion = direccion;
 		this.fechaAlta = fechaAlta;
 		super.inicializarEntityManager();
@@ -110,6 +94,10 @@ public class Administrador extends PersistEntity {
 		}
 	}
 	
+	public int cantidadTransformadoresActivos() {
+		return transformadores.size();
+	}
+	
 	private Dispositivo crearDispositivo(String keyDispositivo) throws CloneNotSupportedException {
 		Dispositivo dispositivo = gestorDispositivos.obtenerDispositivo(keyDispositivo);
 		dispositivo.iniciarEntityManager();
@@ -134,10 +122,6 @@ public class Administrador extends PersistEntity {
 		return adaptador;
 	}
 	
-	public int cantidadTransformadoresActivos() {
-		return transformadores.size();
-	}
-	
 	// Método auxiliar (no de negocio) 
 	public Cliente[] cargarClientes() {
 		Cliente[] clientes = CargaDatosJson.cargarClientes("src/test/resources/data/json/Clientes.json");
@@ -154,11 +138,4 @@ public class Administrador extends PersistEntity {
 		return zonas;
 	}
 	
-	public String getUsuario() {
-		return usuario;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
 }

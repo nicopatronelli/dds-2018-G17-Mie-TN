@@ -1,20 +1,12 @@
 package casosDePruebaMinimos;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.ParameterMode;
-import javax.persistence.Persistence;
-import javax.persistence.StoredProcedureQuery;
+import static utils.AdministradorUtil.adminDePrueba;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dispositivos.Dispositivo;
 import dispositivos.DispositivoInteligente;
-import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
-
-import static commons.TestUtil.*;
 
 public class ConsumoPromedioDispositivo {
 	
@@ -30,7 +22,7 @@ public class ConsumoPromedioDispositivo {
 		 * su funcionamiento a lo largo de un período (un mes) cargando estados en la tabla 
 		 * estados_dispositivos_inteligentes
 		 */
-		Administrador admin = crearAdministrador();
+		Administrador admin = adminDePrueba();
 		dispIntel = (DispositivoInteligente) admin.recuperarDispositivoPorId(DispositivoInteligente.class, 1L);
 		dispIntel.inicializarEntityManager();
 	}

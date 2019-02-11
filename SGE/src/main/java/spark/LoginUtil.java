@@ -5,9 +5,10 @@ import static spark.RequestUtil.obtenerParamUsuario;
 
 import usuarios.Administrador;
 import usuarios.Cliente;
+import usuarios.Usuario;
 
 public class LoginUtil {
-    
+	
     public static boolean autenticacionClienteEsCorrecta(Request request) {
 		// Obtengo el usuario y contraseña ingresados en los campos input
     	String usuario = obtenerParamUsuario(request);

@@ -1,4 +1,4 @@
-package regla;
+package reglas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +36,15 @@ public abstract class ReglaObservador {
 		actuadores.add(actuador);
 	}
 	
-	public void revisarRegla(int magnitudMedida) {
+	public void eliminarActuador(Actuador actuador) {
+		actuadores.remove(actuador);
+	}
+	
+	public void revisarRegla(double magnitudMedida) {
 		if ( seCumpleRegla(magnitudMedida) ) // Template Method
 			actuadores.forEach(actuador -> actuador.ejecutarActuador());
 	} 
 	
-	abstract protected boolean seCumpleRegla(int magnitudMedida);
+	abstract protected boolean seCumpleRegla(double magnitudMedida);
 	
 }

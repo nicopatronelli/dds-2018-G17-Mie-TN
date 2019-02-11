@@ -30,7 +30,7 @@ public class SensorReglaActuadorDispositivoInteligenteTest {
 		sensor = new SensorDeTemperatura(15); // Supongamos que la temperatura ambiente actual es de 15°C
 		regla = new ReglaTemperaturaMayor20Grados();
 		actuador = new ActuadorEncender(aireInteligente);
-		sensor.agregarObservador(regla);
+		sensor.agregarRegla(regla);
 		regla.agregarActuador(actuador);
 		
 	}

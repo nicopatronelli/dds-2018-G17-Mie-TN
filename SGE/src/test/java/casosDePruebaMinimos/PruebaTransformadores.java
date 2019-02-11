@@ -1,24 +1,13 @@
 package casosDePruebaMinimos;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dispositivos.DispositivoEstandar;
-import dispositivos.DispositivoInteligente;
-import domicilio.DomicilioServicio;
 import geoposicionamiento.Transformador;
-import geoposicionamiento.Zona;
-import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
-import usuarios.Cliente;
 
 public class PruebaTransformadores {
 	

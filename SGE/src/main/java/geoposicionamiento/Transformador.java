@@ -48,7 +48,7 @@ public class Transformador extends PersistEntity<Transformador> {
 	}
 	
 	public void agregarDomicilio(DomicilioServicio domicilio) {
-		domicilios.add(domicilio);
+		domicilios.add(domicilio);      
 	}
 	
 	public double energiaConsumida() {

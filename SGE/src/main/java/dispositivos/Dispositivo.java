@@ -78,7 +78,7 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 		this.manager = emf.createEntityManager();
 	}
 
-	// GETTERS Y SETTERS
+	// GETTERS Y SETTERS  
 	
 	public int getUsoMensualMinimoEnHoras() {
 		return usoMensualMinimoEnHoras;

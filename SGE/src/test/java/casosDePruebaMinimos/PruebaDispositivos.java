@@ -1,13 +1,14 @@
 package casosDePruebaMinimos;
 
+import static utils.AdministradorUtil.adminDePrueba;
+import static utils.DispositivoUtil.simularFuncionamientoDispositivo;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import dispositivos.DispositivoInteligente;
 import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
-
-import static commons.TestUtil.*;
 
 /*
  * CASO DE PRUEBA 2
@@ -19,7 +20,7 @@ public class PruebaDispositivos {
 	
 	@BeforeClass
 	public static void initalize() throws CloneNotSupportedException {
-		admin = crearAdministrador();
+		admin = adminDePrueba();
 		dispositivoInteligente = admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-JD256"));
 		simularFuncionamientoDispositivo(dispositivoInteligente);
