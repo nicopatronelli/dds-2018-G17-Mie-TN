@@ -18,7 +18,7 @@
 					"longitud" : 250
 				}, 
 				"transformador" : {},
-				"categoria" : Categoria.R2,
+				"categoria" : "Categoria.R2",
 				"dispositivos" : []
 			}
 		]
@@ -42,7 +42,7 @@
 					"longitud" : 150
 				}, 
 				"transformador" : {},
-				"categoria" : Categoria.RJQ,
+				"categoria" : "Categoria.R2",
 				"dispositivos" : []
 			}
 		]

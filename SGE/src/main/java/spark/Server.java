@@ -15,7 +15,7 @@ public class Server {
 		port(8080);
 		
 		// Pantalla de inicio (elección de tipo de usuario: cliente o administrador)
-		get("/home", LoginController.serveHomePage);
+		get("/index", LoginController.serveIndexPage);
 		
 		// Mostramos la pantalla de login para ingresar con usuario y contraseña
 		get("/login/clientes", LoginController.serveLoginClientsPage);
@@ -25,7 +25,7 @@ public class Server {
 		post("/login/clientes", LoginController.handleLoginClientsPost);
 		post("/login/admins", LoginController.handleLoginAdminsPost);
 		
-		get("/consumo/domicilios", DomiciliosController.serveDomiciliosPage);
+		get("/admin/domicilios", DomiciliosController.serveDomiciliosPage);
 		
 		get("/dispositivo/alta", DomiciliosController.serveAltaDispositivoPage);
 		

@@ -15,7 +15,7 @@ public class PruebaUsuario {
 	Cliente cliente;
 	
 	@Before
-	public void initialize() {
+	public void initialize() throws CloneNotSupportedException {
 		// Creo un nuevo cliente y lo persisto
 		cliente = crearCliente();
 		cliente.guardar();

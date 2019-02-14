@@ -21,6 +21,7 @@ public class PersistEntity<T> {
 		manager.getTransaction().commit();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public T recuperar(Long id) {
 		return (T) manager.find(this.getClass(), id);
 	}

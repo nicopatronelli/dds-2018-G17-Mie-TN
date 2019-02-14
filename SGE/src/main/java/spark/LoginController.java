@@ -15,11 +15,13 @@ import static spark.LoginUtil.*;
 
 public class LoginController {
 	
-	public static Route serveHomePage = (Request request, Response response) -> {
+	public static Route serveIndexPage = (Request request, Response response) -> {
         // En este caso el modelo esta vacío porque simplemente vamos a mostrar la pantalla de inicio
 		Map<String, Object> model = new HashMap<>();
 		return ViewUtil.render(request, model, "/velocity/index.vm");
 	};
+	
+	// Muestro la pantalla de login para clientes o admins 
 	
     public static Route serveLoginClientsPage = (Request request, Response response) -> {
         Map<String, Object> model = new HashMap<>();
@@ -34,13 +36,13 @@ public class LoginController {
         model.put("primerLogin", true);
         return ViewUtil.render(request, model, "/velocity/login.html");
     };
+
+    // Procesamos el login de los usuarios 
     
     public static Route handleLoginClientsPost = (Request request, Response response) -> {
-    	
     	// Verifico que el usuario y contraseña son correctas 
         Map<String, Object> model = new HashMap<>();
         if (autenticacionClienteEsCorrecta(request)) {
-            //model.put("autenticacionExitosa", true);
         	return ViewUtil.render(request, model, "/velocity/cliente.html");
         }
         model.put("autenticacionExitosa", false);
@@ -50,11 +52,9 @@ public class LoginController {
     };
 
     public static Route handleLoginAdminsPost = (Request request, Response response) -> {
-    	
     	// Verifico que el usuario y contraseña son correctas 
         Map<String, Object> model = new HashMap<>();
         if (autenticacionAdminEsCorrecta(request)) {
-            model.put("autenticacionExitosa", true);
         	return ViewUtil.render(request, model, "/velocity/admin.html");
         }
         model.put("autenticacionExitosa", false);

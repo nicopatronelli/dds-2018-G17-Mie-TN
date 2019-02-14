@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.Table;
@@ -24,7 +25,6 @@ public class DispositivoInteligente extends Dispositivo {
 	@Column(name = "consumo_generado")
 	private double consumoGenerado;
 	
-	//@OneToOne(cascade = { CascadeType.ALL }) 
 	@Transient
 	private FabricanteDispositivoInteligente fabricante;
 	
@@ -117,8 +117,9 @@ public class DispositivoInteligente extends Dispositivo {
 	public double consumoInstantaneo() {
 		if (this.estaApagado())
 			return 0;
-		else 
-			return this.fabricante.consumoInstantaneo(fabricante.getIdFabricante());
+		else
+			return this.consumoKwPorHora * 10 / 8;
+			//return this.fabricante.consumoInstantaneo(fabricante.getIdFabricante());
 	}
 	
 	public String getIdFabricante() {

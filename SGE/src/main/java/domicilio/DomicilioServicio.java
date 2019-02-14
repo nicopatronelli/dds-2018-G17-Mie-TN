@@ -22,10 +22,11 @@ import javax.persistence.Table;
 import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import geoposicionamiento.Transformador;
+import hibernate.PersistEntity;
 
 @Entity
 @Table(name = "Domicilios")
-public class DomicilioServicio {
+public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_domicilio")
 	private int id;
@@ -41,7 +42,7 @@ public class DomicilioServicio {
 	@Embedded 
 	private Posicion posicion;
 	
-	@OneToMany @JoinColumn(name = "domicilio_id")
+	@OneToMany(cascade = { CascadeType.ALL })  @JoinColumn(name = "domicilio_id")
 	private List<Dispositivo> dispositivos;
 	
 	@ManyToOne(cascade = { CascadeType.ALL }) 
@@ -57,6 +58,7 @@ public class DomicilioServicio {
 		this.categoria = categoria;
 		this.dispositivos = new ArrayList<Dispositivo>();
 		this.posicion = posicion;
+		super.inicializarEntityManager();
 	}
 	
 	// Sobrecarga de constructores (Borrar este sino pincha)

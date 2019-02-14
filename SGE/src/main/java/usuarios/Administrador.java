@@ -29,8 +29,6 @@ import mocks.FabricanteSGE;
 @AttributeOverride(name = "id", column = @Column(name = "id_admin"))
 public class Administrador extends Usuario {
 	
-	private String direccion; // ¿Para qué se usa?
-	
 	@Column(name = "fecha_alta")
 	private LocalDate fechaAlta;
 	
@@ -54,7 +52,6 @@ public class Administrador extends Usuario {
  	public Administrador(String nombre, String apellido, String usuario, String password, String direccion,
 			LocalDate fechaAlta) {
  		super(nombre, apellido, usuario, password);
-		this.direccion = direccion;
 		this.fechaAlta = fechaAlta;
 		super.inicializarEntityManager();
 	}

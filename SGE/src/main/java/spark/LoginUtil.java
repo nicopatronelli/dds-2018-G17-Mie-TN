@@ -11,8 +11,8 @@ public class LoginUtil {
 	
     public static boolean autenticacionClienteEsCorrecta(Request request) {
 		// Obtengo el usuario y contraseña ingresados en los campos input
-    	String usuario = obtenerParamUsuario(request);
-    	String password = obtenerParamPassword(request);
+    	String usuario = request.queryParams("username");
+    	String password = request.queryParams("pass");
     	
     	Cliente cliente = new Cliente();
     	cliente.inicializarEntityManager();
@@ -26,8 +26,8 @@ public class LoginUtil {
     
     public static boolean autenticacionAdminEsCorrecta(Request request) {
 		// Obtengo el usuario y contraseña ingresados en los campos input
-    	String usuario = obtenerParamUsuario(request);
-    	String password = obtenerParamPassword(request);
+    	String usuario = request.queryParams("username");
+    	String password = request.queryParams("pass");
     	
     	Administrador admin = new Administrador();
     	admin.inicializarEntityManager();
