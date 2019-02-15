@@ -1,6 +1,6 @@
 package casosDePruebaMinimos;
 
-import static utils.ClienteUtil.crearCliente;
+import static utils.ClienteUtil.crearClienteA;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,7 +17,7 @@ public class PruebaUsuario {
 	@Before
 	public void initialize() throws CloneNotSupportedException {
 		// Creo un nuevo cliente y lo persisto
-		cliente = crearCliente();
+		cliente = crearClienteA();
 		cliente.guardar();
 		
 		// Recupero el cliente recién persistido

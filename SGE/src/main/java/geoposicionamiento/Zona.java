@@ -30,7 +30,7 @@ public class Zona {
 	
 	private Double radio;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "zona_id")
+	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "zona_id")
 	List<Transformador> transformadores; // Una zona geografica engloba 1 o más transformadores 
 	
 	public void agregarTransformador(Transformador transformador) {

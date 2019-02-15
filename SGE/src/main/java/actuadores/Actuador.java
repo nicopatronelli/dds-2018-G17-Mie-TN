@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import dispositivos.Dispositivo;
+import dispositivos.DispositivoInteligente;
 
 // Los actuadores son los comandos (patrón command) 
 @Entity

@@ -45,7 +45,7 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	@OneToMany(cascade = { CascadeType.ALL })  @JoinColumn(name = "domicilio_id")
 	private List<Dispositivo> dispositivos;
 	
-	@ManyToOne(cascade = { CascadeType.ALL }) 
+	@ManyToOne(cascade = CascadeType.ALL ) 
 	private Transformador transformador;
 	
 	public DomicilioServicio() {

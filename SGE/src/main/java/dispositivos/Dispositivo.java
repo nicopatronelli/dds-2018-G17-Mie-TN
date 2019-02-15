@@ -11,17 +11,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Persistence;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import hibernate.PersistEntity;
 import usuarios.Cliente;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "dispositivos")
 public abstract class Dispositivo extends PersistEntity<Dispositivo> implements Cloneable  {
 	
-	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id_dispositivo")
+	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id")
 	protected Long id;
 	
 	@Column(name = "nombre_generico")
@@ -72,11 +75,11 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 		return super.clone();
 	}
 	
-	// Para Hibernate
+/*	// Para Hibernate
 	public void iniciarEntityManager() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
 		this.manager = emf.createEntityManager();
-	}
+	}*/
 
 	// GETTERS Y SETTERS  
 	

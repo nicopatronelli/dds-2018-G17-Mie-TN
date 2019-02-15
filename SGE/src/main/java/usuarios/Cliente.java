@@ -55,7 +55,6 @@ public class Cliente extends Usuario {
 		this.cantidadPuntos = 0; // Por negocio inicia en cero 
 		this.ahorroAutomatico = false; // Por defecto lo inicializamos en false 
 		this.domicilios = new ArrayList<DomicilioServicio>();
-		super.inicializarEntityManager();
 	}
 	
 	public void agregarDomicilio(DomicilioServicio domicilio) {

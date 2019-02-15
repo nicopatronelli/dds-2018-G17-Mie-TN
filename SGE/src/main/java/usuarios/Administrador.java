@@ -35,10 +35,10 @@ public class Administrador extends Usuario {
 	@Transient
 	private GestorDispositivos gestorDispositivos = new GestorDispositivos();;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "administrador_id")
+	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
 	private List<Transformador> transformadores;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST}) @JoinColumn(name = "administrador_id")
+	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
 	private List<Zona> zonas;
 	
 	public Administrador() {
@@ -53,7 +53,6 @@ public class Administrador extends Usuario {
 			LocalDate fechaAlta) {
  		super(nombre, apellido, usuario, password);
 		this.fechaAlta = fechaAlta;
-		super.inicializarEntityManager();
 	}
 	
  	public <T> Dispositivo recuperarDispositivoPorId(Class <T> clase, Long dispositivoId) {
@@ -91,13 +90,16 @@ public class Administrador extends Usuario {
 		}
 	}
 	
+	public void asignarTransformador(Cliente cliente) {
+		cliente.asignarTransformadores(transformadores);
+	}
+	
 	public int cantidadTransformadoresActivos() {
 		return transformadores.size();
 	}
 	
 	private Dispositivo crearDispositivo(String keyDispositivo) throws CloneNotSupportedException {
 		Dispositivo dispositivo = gestorDispositivos.obtenerDispositivo(keyDispositivo);
-		dispositivo.iniciarEntityManager();
 		return dispositivo;
 	}
 	
