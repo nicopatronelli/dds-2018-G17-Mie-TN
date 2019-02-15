@@ -28,6 +28,7 @@ public class EstadoAhorroDeEnergia implements EstadoDispositivoInteligente {
 		 dispositivoInteligente.cambiarEstado(new EstadoEncendido());
 		 dispositivoInteligente.getFabricante().encender(dispositivoInteligente.getIdFabricante()); // Le digo al fabricante que encienda el dispositivo
 		 dispositivoInteligente.actualizarHistorial(EstadoHistorial.ENCENDIDO); // 
+		 dispositivoInteligente.setEstado(EstadoHistorial.ENCENDIDO);
 	}
 	
 	public void apagar(DispositivoInteligente dispositivoInteligente) {
@@ -35,6 +36,7 @@ public class EstadoAhorroDeEnergia implements EstadoDispositivoInteligente {
 		 dispositivoInteligente.cambiarEstado(new EstadoApagado());
 		 dispositivoInteligente.getFabricante().apagar(dispositivoInteligente.getIdFabricante()); // Le digo al fabricante que apague el dispositivo
 		 dispositivoInteligente.actualizarHistorial(EstadoHistorial.APAGADO);
+		 dispositivoInteligente.setEstado(EstadoHistorial.APAGADO);
 	}
 	
 	public void activarAhorroDeEnergia(DispositivoInteligente dispositivoInteligente) {

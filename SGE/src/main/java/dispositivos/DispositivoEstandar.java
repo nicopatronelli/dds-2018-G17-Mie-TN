@@ -38,7 +38,7 @@ public class DispositivoEstandar extends Dispositivo {
 		if (adaptador != null)
 			return adaptador.esInteligente();
 		else
-			return false;
+			return false; // Si no está adaptado no es inteligente
 	}
 	
 	@Override 
@@ -93,6 +93,16 @@ public class DispositivoEstandar extends Dispositivo {
 	@Override
 	public List<EntradaDispositivoInteligente> getHistorial() {
 		return adaptador.getHistorial();
+	}
+
+	@Override
+	public EstadoHistorial estado() {
+		return null;
+	}
+
+	@Override
+	public int horasDeUsoDiarias() {
+		return horasDeUsoDiarias;
 	}
 
 }

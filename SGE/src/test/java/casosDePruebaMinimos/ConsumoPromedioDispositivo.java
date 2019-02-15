@@ -30,7 +30,7 @@ public class ConsumoPromedioDispositivo {
 	@Test
 	public void consumoPromedioDispositivo() {
 		Double consumo = dispIntel.consumoEntre("2018-10-18", "2018-11-18");
-		System.out.println("El consumo promedio del " + dispIntel.getNombre() + " es " + consumo/30 + " kwh");
+		System.out.println("El consumo promedio del " + dispIntel.nombre() + " es " + consumo/30 + " kwh");
 	}
 	
 }

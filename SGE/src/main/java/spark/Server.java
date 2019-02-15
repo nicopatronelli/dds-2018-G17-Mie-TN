@@ -18,12 +18,15 @@ public class Server {
 		get("/index", LoginController.serveIndexPage);
 		
 		// Mostramos la pantalla de login para ingresar con usuario y contraseña
-		get("/login/clientes", LoginController.serveLoginClientsPage);
-		get("/login/admins", LoginController.serveLoginAdminsPage);
+		get("/login/cliente", LoginController.serveLoginClientsPage);
+		get("/login/admin", LoginController.serveLoginAdminsPage);
 		
 		// Procesamos el usuario y contraseña ingresados para ver si son correctos 
-		post("/login/clientes", LoginController.handleLoginClientsPost);
-		post("/login/admins", LoginController.handleLoginAdminsPost);
+		post("/login/cliente", LoginController.handleLoginClientsPost);
+		post("/login/admin", LoginController.handleLoginAdminsPost);
+		
+		// Listamos los dispositivos del cliente actual 
+		get("/cliente/dispositivos", ClienteController.listarDispositivos);
 		
 		get("/admin/domicilios", DomiciliosController.serveDomiciliosPage);
 		

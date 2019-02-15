@@ -109,6 +109,10 @@ public class Cliente extends Usuario {
 		domicilioActual.nuevaPosicion(nuevaPosicion);
 	}
 	
+	public DomicilioServicio domicilioPrincipal() {
+		return domicilios().get(0);
+	}
+	
 	/* GETTERS Y SETTERS */
 	
 	public int cantidadDePuntos() {

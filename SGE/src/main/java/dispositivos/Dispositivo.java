@@ -24,7 +24,7 @@ import usuarios.Cliente;
 @Table(name = "dispositivos")
 public abstract class Dispositivo extends PersistEntity<Dispositivo> implements Cloneable  {
 	
-	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id")
+	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id_dispositivo")
 	protected Long id;
 	
 	@Column(name = "nombre_generico")
@@ -52,6 +52,8 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 	public void adaptarDispositivo() throws CloneNotSupportedException {
 	}
 	
+	abstract public EstadoHistorial estado();
+	
 	abstract public boolean esInteligente(); 
 	
 	abstract public boolean estaEncendido();
@@ -69,6 +71,8 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 	abstract public double consumoInstantaneo();
 	
 	abstract public boolean estaAdaptado();
+	
+	abstract public int horasDeUsoDiarias();
 	
 	// Para prototype
 	public Object clone() throws CloneNotSupportedException {
@@ -99,7 +103,7 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 		this.usoMensualMaximoEnHoras = usoMensualMaximoEnHoras;
 	}
 	
-	public double getConsumoKwPorHora() {
+	public double consumoKwPorHora() {
 		return consumoKwPorHora;
 	}
 	
@@ -115,7 +119,7 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 		this.esBajoConsumo = valor; 
 	}
 	
-	public String getNombre() {
+	public String nombre() {
 		return nombreGenerico;
 	}
 	
@@ -123,7 +127,7 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 		this.nombreGenerico = nombre;
 	}
 	
-	public Long getId() {
+	public Long id() {
 		return id;
 	}
 		

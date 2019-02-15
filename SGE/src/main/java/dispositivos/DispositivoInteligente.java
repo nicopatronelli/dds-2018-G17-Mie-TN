@@ -1,6 +1,7 @@
 package dispositivos;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,6 +9,8 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,6 +26,9 @@ import estadosDispositivoInteligente.EstadoDispositivoInteligente;
 @Table(name = "Dispositivos_Inteligentes")
 public class DispositivoInteligente extends Dispositivo {
 	
+	@Enumerated(EnumType.STRING) @Column(name = "estado")
+	private EstadoHistorial estadoActual;
+	
 	@Column(name = "consumo_generado")
 	private double consumoGenerado;
 	
@@ -32,7 +38,7 @@ public class DispositivoInteligente extends Dispositivo {
 	@Transient
 	private EstadoDispositivoInteligente estado;
 	
-	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "dispositivo_inteligente_id")
+	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "id_dispositivo_inteligente")
 	private List<EntradaDispositivoInteligente> historial;
 	
 	public DispositivoInteligente() {
@@ -95,25 +101,6 @@ public class DispositivoInteligente extends Dispositivo {
 		return 0;
 	}
 	
-	public double consumoEntre(String fechaInicial, String fechaFinal) {
-		
-		StoredProcedureQuery query =  manager
-		.createStoredProcedureQuery("horas_encendido")
-		.registerStoredProcedureParameter("id_disp_intel", Long.class, ParameterMode.IN)
-		.registerStoredProcedureParameter("fecha_inicio", String.class, ParameterMode.IN)
-		.registerStoredProcedureParameter("fecha_final", String.class, ParameterMode.IN)
-		.registerStoredProcedureParameter("resultado", Double.class, ParameterMode.OUT)
-		.setParameter("id_disp_intel", this.id)
-		.setParameter("fecha_inicio", fechaInicial)
-		.setParameter("fecha_final", fechaFinal);
-		
-		query.execute(); 
-		
-		Double horasEncendido = (Double) query.getOutputParameterValue("resultado");
-
-		return horasEncendido * this.consumoKwPorHora;
-	}
-	
 	// El consumo instantáneo nos lo provee el fabricante 
 	public double consumoInstantaneo() {
 		if (this.estaApagado())
@@ -129,6 +116,8 @@ public class DispositivoInteligente extends Dispositivo {
 	
 	public void iniciarEstadoApagado() { 
 		this.estado = new EstadoApagado();
+		historial = new ArrayList<EntradaDispositivoInteligente>();
+		actualizarHistorial(EstadoHistorial.APAGADO);
 	}
 	
 	@Override
@@ -148,6 +137,40 @@ public class DispositivoInteligente extends Dispositivo {
 	
 	public List<EntradaDispositivoInteligente> intervalosEncendido(){
 		return this.getHistorial().stream().filter(entrada -> entrada.encendidoOApagado()).collect(Collectors.toList());
+	}
+
+	@Override
+	public EstadoHistorial estado() {
+		return estadoActual;
+	}
+	
+	public EstadoHistorial setEstado(EstadoHistorial estado) {
+		return estadoActual = estado;
+	}
+
+	@Override
+	public int horasDeUsoDiarias() {
+		return 0;
+	}
+	
+	public double consumoEntre(Dispositivo dispositivo, String fechaInicial, String fechaFinal) {
+		
+		
+		StoredProcedureQuery query =  pe.manager()
+		.createStoredProcedureQuery("minutos_encendido")
+		.registerStoredProcedureParameter("id_dispositivo", Long.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("fecha_inicio", String.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("fecha_final", String.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("resultado", Double.class, ParameterMode.OUT)
+		.setParameter("id_disp_intel", dispositivo.id())
+		.setParameter("fecha_inicio", fechaInicial)
+		.setParameter("fecha_final", fechaFinal);
+		
+		query.execute(); 
+		
+		Double minutosEncendido = (Double) query.getOutputParameterValue("resultado");
+
+		return (minutosEncendido / 60) * dispositivo.consumoKwPorHora();
 	}
 	
 }

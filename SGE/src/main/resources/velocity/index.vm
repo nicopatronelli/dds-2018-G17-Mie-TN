@@ -7,10 +7,10 @@
 		<div class="jumbotron bg-dark text-white">		
 			<h1>Bienvenido a SGE</h1> 
 			<p>Ingresa como:</p> 
-			<a href="/login/clientes">
+			<a href="/login/cliente">
 				<button type="button" class="btn btn-primary">Cliente</button>
 			</a>
-			<a href="/login/admins">
+			<a href="/login/admin">
 				<button type="button" class="btn btn-secondary">Administrador</button>
 			</a>
 			

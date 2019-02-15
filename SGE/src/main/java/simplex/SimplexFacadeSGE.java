@@ -28,7 +28,7 @@ public class SimplexFacadeSGE {
 		double coeficientesConsumo[] = new double[cantDispositivos]; // Los coeficientes son el consumo de cada dispositivo
 		
 		for(int i = 0; i < cantDispositivos; i++){
-			coeficientesConsumo[i] = unDomicilio.getDispositivos().get(i).getConsumoKwPorHora();
+			coeficientesConsumo[i] = unDomicilio.dispositivos().get(i).consumoKwPorHora();
 		}
 		
 		// 1er reestricción (reestricción principal) 
@@ -37,7 +37,7 @@ public class SimplexFacadeSGE {
 		// Reestricciones por cada dispositivo 
 		for(int i = 0; i < cantDispositivos; i++){
 			
-			Dispositivo dispositivoActual = unDomicilio.getDispositivos().get(i);
+			Dispositivo dispositivoActual = unDomicilio.dispositivos().get(i);
 			double coeficienteDispositivo[] =  new double[cantDispositivos];
 			Arrays.fill(coeficienteDispositivo, 0);
 			coeficienteDispositivo[i] = 1;

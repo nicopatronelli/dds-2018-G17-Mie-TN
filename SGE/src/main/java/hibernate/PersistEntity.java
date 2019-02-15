@@ -40,6 +40,12 @@ public class PersistEntity<T> {
 		manager.getTransaction().commit();
 	}
 	
+	public void actualizar(T objeto) {
+		manager.getTransaction().begin();
+		manager.merge(objeto);
+		manager.getTransaction().commit();		
+	}
+	
 	@SuppressWarnings("unchecked")
 	public T recuperar(Long id, Class<T> clase) {
 		return (T) manager.find(clase, id);
@@ -49,14 +55,17 @@ public class PersistEntity<T> {
 		return manager.createQuery(query).getResultList();
 	}
 	
-
-	public T obtenerEntidadPorAtributo(String atributo, String valorAtributo) {
-		String query = "FROM " + this.getClass().getName() +" WHERE " + atributo + " = '" + valorAtributo + "'";
-		List<T> temp = manager.createQuery(query).getResultList();
-		if ( temp.isEmpty() ) // No se encontro la entidad
+	public T obtenerEntidadPorAtributo(String atributo, String valorAtributo, Class<T> clase) {
+		String query = "FROM " + clase.getName() +" WHERE " + atributo + " = '" + valorAtributo + "'";
+		List<T> resultados = manager.createQuery(query).getResultList();
+		if ( resultados.isEmpty() ) // No se encontro la entidad
 			return null;
 		else 
-			return temp.get(0);
+			return resultados.get(0);
+	}
+	
+	public EntityManager manager() {
+		return manager;
 	}
 	
 } // FIN Clase PersistEntity

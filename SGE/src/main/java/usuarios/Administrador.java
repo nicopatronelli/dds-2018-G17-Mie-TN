@@ -103,7 +103,7 @@ public class Administrador extends Usuario {
 		return dispositivo;
 	}
 	
-	public Dispositivo obtenerDispositivoEstandar(String keyDispositivo, int horasDeUsoDiarias) throws CloneNotSupportedException {
+	public DispositivoEstandar obtenerDispositivoEstandar(String keyDispositivo, int horasDeUsoDiarias) throws CloneNotSupportedException {
 		DispositivoEstandar dispositivoEstandar = (DispositivoEstandar)crearDispositivo(keyDispositivo);
 		dispositivoEstandar.setHorasDeUsoDiarias(horasDeUsoDiarias);
 		return dispositivoEstandar;

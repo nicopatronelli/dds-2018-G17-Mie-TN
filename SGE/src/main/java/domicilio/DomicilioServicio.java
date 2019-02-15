@@ -11,6 +11,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,11 +43,8 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	@Embedded 
 	private Posicion posicion;
 	
-	@OneToMany(cascade = { CascadeType.ALL })  @JoinColumn(name = "domicilio_id")
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)  @JoinColumn(name = "id_domicilio")
 	private List<Dispositivo> dispositivos;
-	
-	@ManyToOne(cascade = CascadeType.ALL ) 
-	private Transformador transformador;
 	
 	public DomicilioServicio() {
 		// Constructor vacío para Hibernate
@@ -58,7 +56,6 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 		this.categoria = categoria;
 		this.dispositivos = new ArrayList<Dispositivo>();
 		this.posicion = posicion;
-		super.inicializarEntityManager();
 	}
 	
 	// Sobrecarga de constructores (Borrar este sino pincha)
@@ -72,6 +69,10 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	// No devolvemos List<DispositivoInteligente> porque un dispositivo estandar adaptado también es inteligente 
 	public List<Dispositivo> dispositivosInteligentes(){		
 		return this.dispositivos.stream().filter(dispositivo -> dispositivo.esInteligente()).collect(Collectors.toList()); 
+	}
+	
+	public List<Dispositivo> dispositivosEstandares(){		
+		return this.dispositivos.stream().filter(dispositivo -> !(dispositivo.esInteligente())).collect(Collectors.toList()); 
 	}
 	
 	public int cantidadDispositivosInteligentes() {
@@ -119,8 +120,6 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 				transformadorAsignado = transformador;
 			}
 		} // fin for 
-		
-		this.setTransformador(transformadorAsignado); // Asigno el transformador más cercano al domicilio 
 		transformadorAsignado.agregarDomicilio(this); // Agrego el domicilio actual a la lista de domicilios del transformador
 	}
 	
@@ -140,7 +139,7 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 		this.posicion = posicion;
 	}
 
-	public List<Dispositivo> getDispositivos() {
+	public List<Dispositivo> dispositivos() {
 		return dispositivos;
 	}
 
@@ -160,7 +159,4 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 				" Longitud: " + posicion.getLongitud());
 	}
 	
-	public void setTransformador(Transformador transformador) {
-		this.transformador = transformador;
-	}
 } 

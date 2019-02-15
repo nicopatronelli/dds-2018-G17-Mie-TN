@@ -1,6 +1,7 @@
 package hibernate;
 
 import usuarios.Administrador;
+import usuarios.Cliente;
 
 public class RepositorioAdmins {
 
@@ -29,6 +30,10 @@ public class RepositorioAdmins {
 	
 	public Administrador recuperarPorId(Long idAdmin) {
 		return pe.recuperar(idAdmin, Administrador.class);
+	}
+	
+	public Administrador recuperarPorUsuario(String nombreUsuario) {
+		return pe.obtenerEntidadPorAtributo("usuario", nombreUsuario, Administrador.class);
 	}
 
 }

@@ -32,7 +32,7 @@ public class ConversionDispositivoPersistenciaTest {
 	@Test
 	public void unDispositivoEstandarPersistidoSinConvertirNoEstaAdaptado() {
 	
-		dispositivoEstandar = dispositivoEstandar.recuperar(dispositivoEstandar.getId());
+		dispositivoEstandar = dispositivoEstandar.recuperar(dispositivoEstandar.id());
 		System.out.println("El dispositivo estandar está adaptado: " + dispositivoEstandar.estaAdaptado());
 		Assert.assertFalse(dispositivoEstandar.estaAdaptado());
 	}
@@ -42,7 +42,7 @@ public class ConversionDispositivoPersistenciaTest {
 		
 		dispositivoEstandar.adaptarDispositivo();
 		//dispositivoEstandar.guardar();
-		dispositivoEstandar = dispositivoEstandar.recuperar(dispositivoEstandar.getId());
+		dispositivoEstandar = dispositivoEstandar.recuperar(dispositivoEstandar.id());
 		System.out.println("El dispositivo estandar está adaptado: " + dispositivoEstandar.estaAdaptado());
 		Assert.assertTrue(dispositivoEstandar.estaAdaptado());
 	}

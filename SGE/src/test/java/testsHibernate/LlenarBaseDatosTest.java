@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 
 import static utils.ClienteUtil.crearClienteA;
@@ -44,16 +45,20 @@ public class LlenarBaseDatosTest {
 		// Admin
 		admin = new Administrador("Jim", "Beach", "Jimmy", "Queen123", "FakeStreet 123", LocalDate.now());
 		
-		// Creamos algunos dispositivos
+		// Creamos un dispositivo inteligente 
 		DispositivoInteligente dispositivoInteligenteA = admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-JD256"));
 		domicilioPrincipal.registrarDispositivo(dispositivoInteligenteA);
+		dispositivoInteligenteA.encender();
+		
+		// Creamos un dispositivo estandar
+		DispositivoEstandar dispositivoEstandarA = admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 4);
+		domicilioPrincipal.registrarDispositivo(dispositivoEstandarA);
 		
 		// Zonas y transformadores
 		admin.cargarZonas("src/test/resources/data/json/Zonas.json");
 		admin.cargarTransformadores("src/test/resources/data/json/Transformadores.json"); 
-		//admin.asignarTransformador(cliente);
-		//domicilioPrincipal.setTransformador(admin.getTransformadores().get(0));
+		admin.asignarTransformador(cliente);
 	}
 
 	@Test
@@ -61,16 +66,19 @@ public class LlenarBaseDatosTest {
 		RepositorioAdmins repoAdmins = new RepositorioAdmins();
 		RepositorioClientes repoClientes = new RepositorioClientes();
 		repoAdmins.abrir();
-		repoAdmins.guardar(admin);
-		repoAdmins.cerrar();
 		repoClientes.abrir();
+		repoAdmins.guardar(admin);
 		repoClientes.guardar(cliente);
 		repoClientes.cerrar();
-		repoClientes.abrir();
-		Cliente mismoCliente = repoClientes.recuperarPorId(1L);
+		repoAdmins.cerrar();
+		//repoClientes.cerrar();
+		//repoClientes.abrir();
+		//Cliente mismoCliente = repoClientes.recuperarPorId(1L);
+		//admin.asignarTransformador(mismoCliente);
+		//repoClientes.actualizar(mismoCliente);
 		//System.out.println("Los datos del cliente son " + mismoCliente.toString());
-		repoClientes.borrar(mismoCliente);
-		repoClientes.cerrar();
+		//repoClientes.borrar(mismoCliente);
+
 		Assert.assertTrue(true);
 	}
 

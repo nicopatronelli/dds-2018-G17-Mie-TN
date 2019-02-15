@@ -33,7 +33,12 @@ public class Transformador extends PersistEntity<Transformador> {
 	@Transient
 	private int zonaId; // Zona a la que pertenece 
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "transformador")  
+	@OneToMany(cascade = CascadeType.ALL) 
+    @JoinTable(
+            name="transformador_por_domicilio",
+            joinColumns = @JoinColumn( name="id_transformador"),
+            inverseJoinColumns = @JoinColumn( name="id_domicilio")
+    )
 	List<DomicilioServicio> domicilios; // Lista de domicilios a los que suministra energía 
 	
 	public Transformador() {

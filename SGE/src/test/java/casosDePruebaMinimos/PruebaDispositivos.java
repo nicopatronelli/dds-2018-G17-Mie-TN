@@ -29,18 +29,18 @@ public class PruebaDispositivos {
 
 	@Test
 	public void mostrarEstadosPorLosQuePasoUnDispositivoInteligente() {
-		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.getId());
+		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.id());
 		System.out.println("Los intervalos que estuvo encendido el dispositivo inteligente son:" 
 		+ dispositivoInteligente.intervalosEncendido().toString());
 	}
 	
 	@Test
 	public void modificarUnAtributoDeUnDispositivo() {
-		System.out.println("El nombre actual del dispositivo es " + dispositivoInteligente.getNombre());
+		System.out.println("El nombre actual del dispositivo es " + dispositivoInteligente.nombre());
 		dispositivoInteligente.cambiarNombre("Mi Dispositivo");
 		dispositivoInteligente.guardar();
-		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.getId());
-		System.out.println("El nuevo nombre del dispositivo es " + dispositivoInteligente.getNombre());
+		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.id());
+		System.out.println("El nuevo nombre del dispositivo es " + dispositivoInteligente.nombre());
 	}
 		
 }

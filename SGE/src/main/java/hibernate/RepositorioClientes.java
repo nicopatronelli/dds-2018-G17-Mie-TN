@@ -27,7 +27,15 @@ public class RepositorioClientes {
 		pe.borrar(cliente);
 	}
 	
+	public void actualizar(Cliente cliente) {
+		pe.actualizar(cliente);
+	}
+	
 	public Cliente recuperarPorId(Long idCliente) {
 		return pe.recuperar(idCliente, Cliente.class);
+	}
+
+	public Cliente recuperarPorUsuario(String nombreUsuario) {
+		return pe.obtenerEntidadPorAtributo("usuario", nombreUsuario, Cliente.class);
 	}
 }
