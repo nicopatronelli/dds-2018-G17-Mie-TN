@@ -39,17 +39,23 @@ public class LlenarBaseDatosTest {
 		DomicilioServicio domicilioPrincipal = new DomicilioServicio("4232-4817", LocalDate.of(2018, 06, 12), categoriaR2, posicion);
 		
 		// Cliente
-		cliente = new Cliente("John", "Deacon", "DNI", 10512789, "Johnny", "queen123");
+		cliente = new Cliente("John", "Deacon", "DNI", 10512789, "Johnny", "123");
 		cliente.agregarDomicilio(domicilioPrincipal);
 		
 		// Admin
-		admin = new Administrador("Jim", "Beach", "Jimmy", "Queen123", "FakeStreet 123", LocalDate.now());
+		admin = new Administrador("Jim", "Beach", "Jimmy", "123", "FakeStreet 123", LocalDate.now());
 		
 		// Creamos un dispositivo inteligente 
 		DispositivoInteligente dispositivoInteligenteA = admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-JD256"));
 		domicilioPrincipal.registrarDispositivo(dispositivoInteligenteA);
 		dispositivoInteligenteA.encender();
+		
+		// Creamos otro dispositivo inteligente 
+		DispositivoInteligente dispositivoInteligenteB = admin.obtenerDispositivoInteligente("Aire 2200 Inteligente", 
+				new FabricanteSamsungMock("SAMSUNG-JD256"));
+		domicilioPrincipal.registrarDispositivo(dispositivoInteligenteB);
+		dispositivoInteligenteB.encender();
 		
 		// Creamos un dispositivo estandar
 		DispositivoEstandar dispositivoEstandarA = admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 4);

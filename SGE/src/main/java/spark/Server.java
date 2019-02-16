@@ -27,7 +27,12 @@ public class Server {
 		
 		// Listamos los dispositivos del cliente actual 
 		get("/cliente/dispositivos", ClienteController.listarDispositivos);
+		//post("/cliente/dispositivos", DispositivoController.encender);
+		post("/dispositivo/encender", DispositivoController.encender);
+		post("/dispositivo/apagar", DispositivoController.apagar);
+		post("/dispositivo/ahorro", DispositivoController.ahorro);
 		
+		/*** ESTOS NO ***/
 		get("/admin/domicilios", DomiciliosController.serveDomiciliosPage);
 		
 		get("/dispositivo/alta", DomiciliosController.serveAltaDispositivoPage);

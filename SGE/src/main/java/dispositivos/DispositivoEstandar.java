@@ -105,4 +105,9 @@ public class DispositivoEstandar extends Dispositivo {
 		return horasDeUsoDiarias;
 	}
 
+	@Override
+	public double consumoUltimoPeriodo() {
+		return 0;
+	}
+
 }

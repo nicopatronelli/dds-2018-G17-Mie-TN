@@ -74,6 +74,8 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 	
 	abstract public int horasDeUsoDiarias();
 	
+	abstract public double consumoUltimoPeriodo();
+	
 	// Para prototype
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();

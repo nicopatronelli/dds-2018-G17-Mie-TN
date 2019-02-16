@@ -9,12 +9,15 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.ParameterMode;
+import javax.persistence.Persistence;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -153,24 +156,42 @@ public class DispositivoInteligente extends Dispositivo {
 		return 0;
 	}
 	
-	public double consumoEntre(Dispositivo dispositivo, String fechaInicial, String fechaFinal) {
+	public double consumoEntre(String fechaInicial, String fechaFinal) {
 		
-		
-		StoredProcedureQuery query =  pe.manager()
-		.createStoredProcedureQuery("minutos_encendido")
-		.registerStoredProcedureParameter("id_dispositivo", Long.class, ParameterMode.IN)
-		.registerStoredProcedureParameter("fecha_inicio", String.class, ParameterMode.IN)
-		.registerStoredProcedureParameter("fecha_final", String.class, ParameterMode.IN)
-		.registerStoredProcedureParameter("resultado", Double.class, ParameterMode.OUT)
-		.setParameter("id_disp_intel", dispositivo.id())
-		.setParameter("fecha_inicio", fechaInicial)
-		.setParameter("fecha_final", fechaFinal);
-		
-		query.execute(); 
-		
-		Double minutosEncendido = (Double) query.getOutputParameterValue("resultado");
+		try {	
+			
+		    EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
+			EntityManager manager = emf.createEntityManager();
+			
+			StoredProcedureQuery query =  manager()
+			.createStoredProcedureQuery("minutos_encendido")
+			.registerStoredProcedureParameter("id_dispositivo", Long.class, ParameterMode.IN)
+			.registerStoredProcedureParameter("fecha_inicio", String.class, ParameterMode.IN)
+			.registerStoredProcedureParameter("fecha_final", String.class, ParameterMode.IN)
+			.registerStoredProcedureParameter("resultado", Double.class, ParameterMode.OUT)
+			.setParameter("id_dispositivo", this.id())
+			.setParameter("fecha_inicio", fechaInicial)
+			.setParameter("fecha_final", fechaFinal);
+			
+			query.execute(); 
+			
+			Double minutosEncendido = (Double) query.getOutputParameterValue("resultado");
+			Double horasEncendido = minutosEncendido / 60;
+			Double consumoEntre = horasEncendido * this.consumoKwPorHora();
+		    double scale = Math.pow(10, 4);
+		    
+		    return Math.round(consumoEntre * scale) / scale;
+		}
+		finally {
+			//manager.close();
+			//emf.close();
+		}
 
-		return (minutosEncendido / 60) * dispositivo.consumoKwPorHora();
+	}
+
+	@Override
+	public double consumoUltimoPeriodo() {
+		return consumoEntre("2018-12-01", "2018-12-31");
 	}
 	
 }

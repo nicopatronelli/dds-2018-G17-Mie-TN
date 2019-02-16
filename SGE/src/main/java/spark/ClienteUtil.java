@@ -25,7 +25,7 @@ public class ClienteUtil {
         	return cliente.domicilioPrincipal().dispositivos();
     	}
     	finally {
-    		repoClientes.cerrar();
+    		//repoClientes.cerrar();
     	}
     	
 	}

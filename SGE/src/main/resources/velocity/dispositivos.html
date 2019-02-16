@@ -21,8 +21,8 @@
                         <thead> <!-- INICIO tabla de dispositivos inteligentes del cliente-->
                             <tr> <!-- Encabezado de la tabla -->
                                 <th>Dispositivo</th>
+                                <th>Consumo último mes (en kw)</th>                    
                                 <th>Estado</th>
-                                <th>Consumo último mes</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,7 +31,23 @@
                             #if($dispositivo.esInteligente())
                                 <tr> 
                                     <td>$dispositivo.nombre()</td>
-                                    <td>$dispositivo.estado()</td>						
+                                    <td>$dispositivo.consumoUltimoPeriodo()</td>   
+                                    <td>$dispositivo.estado()</td>
+                                    <td>
+                                        <form action="/dispositivo/encender" id="encender" method="post"> 
+                                                <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Encender</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="/dispositivo/apagar" id="apagar" method="post"> 
+                                                <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Apagar</button>
+                                        </form>
+                                    </td>   
+                                    <td>
+                                        <form action="/dispositivo/ahorro" id="ahorro" method="post"> 
+                                                <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Ahorro de energía</button>
+                                        </form>
+                                    </td>   
                                 </tr>
                             #end
                         #end 
