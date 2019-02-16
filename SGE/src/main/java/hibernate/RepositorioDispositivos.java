@@ -4,6 +4,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 
 import dispositivos.Dispositivo;
+import mocks.FabricanteSamsungMock;
 import usuarios.Cliente;
 
 public class RepositorioDispositivos {
@@ -37,7 +38,8 @@ public class RepositorioDispositivos {
 	
 	private Dispositivo recuperarPorIdBase(Long idDispositivo) {
 		Dispositivo dispositivo = pe.recuperar(idDispositivo, Dispositivo.class);
-		dispositivo.estado();
+		dispositivo.inicializarEstado();
+		dispositivo.setFabricante(new FabricanteSamsungMock("SAMSUNG-JD256"));
 		return dispositivo;
 	}
 	

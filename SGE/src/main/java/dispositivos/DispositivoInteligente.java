@@ -22,8 +22,10 @@ import javax.persistence.StoredProcedureQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import estadosDispositivoInteligente.EstadoAhorroDeEnergia;
 import estadosDispositivoInteligente.EstadoApagado;
 import estadosDispositivoInteligente.EstadoDispositivoInteligente;
+import estadosDispositivoInteligente.EstadoEncendido;
 
 @Entity
 @Table(name = "Dispositivos_Inteligentes")
@@ -80,6 +82,26 @@ public class DispositivoInteligente extends Dispositivo {
 		estado = nuevoEstado;
 	}
 	
+	/* Para instanciar el estado correspondiente cuando recuperamos un dispositivo inteligente
+	de la base de datos */
+	@Override
+	public void inicializarEstado() {
+		
+		switch(estadoActual) {
+			case ENCENDIDO : 
+				estado = new EstadoEncendido();
+				break;
+			case APAGADO :
+				estado = new EstadoApagado();
+				break;
+			case AHORRO_DE_ENERGIA :
+				estado = new EstadoAhorroDeEnergia();
+				break;
+			default:
+				break;
+		}
+	}
+	
 	/*
 	 *  FIN - Métodos de ESTADO
 	 */
@@ -96,12 +118,6 @@ public class DispositivoInteligente extends Dispositivo {
 	
 	public void mostrarHistorial() {
 		System.out.println(historial.toString());
-	}
-	
-	public float energiaConsumidaDuranteUltimasHoras(int horas) {
-		//this.historial
-		// Lo tenemos que hacer nosotros guardando el estado de los dispositivos 
-		return 0;
 	}
 	
 	// El consumo instantáneo nos lo provee el fabricante 
@@ -129,7 +145,7 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 
 	// GETTERS Y SETTERS
-
+	@Override
 	public void setFabricante(FabricanteDispositivoInteligente fabricante) { 
 		this.fabricante = fabricante; 
 	}

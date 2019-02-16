@@ -36,10 +36,16 @@ public class Application {
 		
 		// Listamos los dispositivos del cliente actual 
 		get("/cliente/dispositivos", ClienteController.listarDispositivos);
-		//post("/cliente/dispositivos", DispositivoController.encender);
+		
+		/* Brindamos la opción de encender/apagar/ahorro a los dispositivos del 
+		 *  cliente. Como es una acción que tiene efecto usamos post. 
+		 */
 		post("/dispositivo/encender", DispositivoController.encender);
 		post("/dispositivo/apagar", DispositivoController.apagar);
 		post("/dispositivo/ahorro", DispositivoController.ahorro);
+		
+		// Ejecución de simplex
+		get("/cliente/simplex", ClienteController.ejecutarSimplex);
 		
 		/*** ESTOS NO ***/
 		get("/admin/domicilios", DomiciliosController.serveDomiciliosPage);

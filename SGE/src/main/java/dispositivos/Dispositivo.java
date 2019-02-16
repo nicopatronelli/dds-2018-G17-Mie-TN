@@ -45,6 +45,9 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 	@Column(name = "es_inteligente")
 	protected boolean esInteligente;
 	
+	@Transient
+	protected double horasDeUsoRecomendadas;
+	
 	protected Dispositivo() {
 		// Constructor vacío para Hibernate
 	}
@@ -135,4 +138,7 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 		
 	abstract public List<EntradaDispositivoInteligente> getHistorial();
 	
+	public void inicializarEstado(){}
+	
+	public void setFabricante(FabricanteDispositivoInteligente fabricante) {}
 }

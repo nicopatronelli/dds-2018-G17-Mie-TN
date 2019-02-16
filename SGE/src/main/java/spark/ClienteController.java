@@ -23,4 +23,12 @@ public class ClienteController {
         return ViewUtil.render(request, model, "/velocity/dispositivos.html");
     };
     
+    public static Route ejecutarSimplex = (Request request, Response response) -> {
+    	
+    	Map<String, Object> model = new HashMap<>();
+    	model.put("dispositivos", recuperarDispositivos(request));
+    	request.session().attribute("currentUser", obtenerUsuarioActual(request));
+        return ViewUtil.render(request, model, "/velocity/dispositivos.html");
+    };
+    
 }

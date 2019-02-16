@@ -1,6 +1,7 @@
 package spark;
 
 import static spark.RequestUtil.*;
+import static spark.DispositivoUtil.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,37 +15,26 @@ public class DispositivoController {
 	
 	
     public static Route encender = (Request request, Response response) -> {
-    	
-    	Map<String, Object> model = new HashMap<>();
-    	
-    	String idDispositivo = request.queryParams("idDispositivo");
-    	System.out.println("El usuario actual es " + obtenerUsuarioActual(request));
-    	
-    	RepositorioDispositivos repoDispositivos = new RepositorioDispositivos();
-    	repoDispositivos.abrir();
-    	Dispositivo dispositivo = repoDispositivos.recuperarPorId(idDispositivo);
-    	dispositivo.encender();
-    	//repoDispositivos.actualizar(dispositivo);
-    	
-        return ViewUtil.render(request, model, "/velocity/dispositivos.html");
+    
+    	//System.out.println("El usuario actual es " + obtenerUsuarioActual(request));
+    	encenderDispositivo(request);
+    	response.redirect("/cliente/dispositivos");
+    	return null;
     };
     
 	
     public static Route apagar = (Request request, Response response) -> {
     	
-    	Map<String, Object> model = new HashMap<>();
-    	
-    	System.out.println("El id del dispositivo es " + request.queryParams("idDispositivo"));
-    	System.out.println("El usuario actual es " + obtenerUsuarioActual(request));
-    	
-        return ViewUtil.render(request, model, "/velocity/dispositivos.html");
+    	apagarDispositivo(request);
+    	response.redirect("/cliente/dispositivos");
+    	return null;
     };
     
     public static Route ahorro = (Request request, Response response) -> {
     	
-    	Map<String, Object> model = new HashMap<>();
-    	
-        return ViewUtil.render(request, model, "/velocity/dispositivos.html");
+    	activarAhorroDeEnergiaDispositivo(request);
+    	response.redirect("/cliente/dispositivos");
+    	return null;
     };
     
     

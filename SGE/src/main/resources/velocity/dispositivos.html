@@ -20,9 +20,11 @@
                     <table class="table">
                         <thead> <!-- INICIO tabla de dispositivos inteligentes del cliente-->
                             <tr> <!-- Encabezado de la tabla -->
+                                <th>Id</th>
                                 <th>Dispositivo</th>
                                 <th>Consumo último mes (en kw)</th>                    
                                 <th>Estado</th>
+                                <th>Acciones disponibles</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,33 +32,46 @@
                         #foreach($dispositivo in $dispositivos)
                             #if($dispositivo.esInteligente())
                                 <tr> 
+                                    <td>$dispositivo.id()</td>
                                     <td>$dispositivo.nombre()</td>
-                                    <td>$dispositivo.consumoUltimoPeriodo()</td>   
-                                    <td>$dispositivo.estado()</td>
+                                    <td>$dispositivo.consumoUltimoPeriodo()</td>  
+                                    #set($estado = $dispositivo.estado())                                    
+                                    #if($estado == "AHORRO_DE_ENERGIA") 
+                                    <td>AHORRO DE ENERGIA</td>
+                                    #else
+                                    <td>$estado</td>
+                                    #end
                                     <td>
-                                        <form action="/dispositivo/encender" id="encender" method="post"> 
-                                                <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Encender</button>
-                                        </form>
+                                        #if($estado == "APAGADO" || $estado == "AHORRO_DE_ENERGIA")
+                                            <form action="/dispositivo/encender" id="encender" method="post"> 
+                                                    <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary myclass">Encender</button>
+                                            </form>
+                                        #end
                                     </td>
                                     <td>
-                                        <form action="/dispositivo/apagar" id="apagar" method="post"> 
-                                                <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Apagar</button>
-                                        </form>
+                                        #if($estado == "ENCENDIDO" || $estado == "AHORRO_DE_ENERGIA")
+                                            <form action="/dispositivo/apagar" id="apagar" method="post"> 
+                                                    <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Apagar</button>
+                                            </form>
+                                        #end
                                     </td>   
                                     <td>
-                                        <form action="/dispositivo/ahorro" id="ahorro" method="post"> 
-                                                <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Ahorro de energía</button>
-                                        </form>
+                                        #if($estado == "ENCENDIDO" || $estado == "AHORRO_DE_ENERGIA")
+                                            <form action="/dispositivo/ahorro" id="ahorro" method="post"> 
+                                                    <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Ahorro de energía</button>
+                                            </form>
+                                        #end
                                     </td>   
                                 </tr>
                             #end
                         #end 
                     </table> <!-- FIN tabla de dispositivos inteligentes del cliente-->    
                 <br>
-                <h4> Dispositivos Estandares </h4>
+                <h4> Dispositivos Estándares </h4>
                     <table class="table">
                         <thead> <!-- INICIO tabla de dispositivos estandares del cliente-->
                             <tr> <!-- Encabezado de la tabla -->
+                                <th>Id</th>
                                 <th>Dispositivo</th>
                                 <th>Horas de uso diarias</th>
                             </tr>
@@ -66,6 +81,7 @@
                         #foreach($dispositivo in $dispositivos)
                             #if(!$dispositivo.esInteligente())
                                 <tr> 
+                                    <td>$dispositivo.id()</td>
                                     <td>$dispositivo.nombre()</td>
                                     <td>$dispositivo.horasDeUsoDiarias()</td>						
                                 </tr>
