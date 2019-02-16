@@ -7,7 +7,16 @@ import java.util.Map;
 
 import spark.template.velocity.VelocityTemplateEngine;
 
-public class Server {
+public class Application {
+	
+	// Para Heroku
+    /*static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 8080; //return default port if heroku-port isn't set (i.e. on localhost)
+    }*/
 	
 	public static void main(String[] args) {
 		

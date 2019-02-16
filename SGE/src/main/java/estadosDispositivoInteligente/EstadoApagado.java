@@ -25,7 +25,7 @@ public class EstadoApagado implements EstadoDispositivoInteligente {
 
 	public void encender(DispositivoInteligente dispositivoInteligente) {
 		// Si el dispositivo está apagado y se le envía el mensaje encender() debe cambiar su estado a encendido
-		 dispositivoInteligente.cambiarEstado(new EstadoEncendido());
+		 dispositivoInteligente.setEstado(new EstadoEncendido());
 		 dispositivoInteligente.getFabricante().encender(dispositivoInteligente.getIdFabricante()); // Le digo al fabricante que encienda el dispositivo
 		 dispositivoInteligente.actualizarHistorial(EstadoHistorial.ENCENDIDO);
 		 dispositivoInteligente.setEstado(EstadoHistorial.ENCENDIDO);

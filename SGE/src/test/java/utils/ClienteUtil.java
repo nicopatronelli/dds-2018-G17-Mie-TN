@@ -22,7 +22,7 @@ public class ClienteUtil {
 		Cliente nuevoCliente = new Cliente("John", "Deacon", "DNI", 10512789, "Johnny", "queen123");
 		nuevoCliente.agregarDomicilio(domicilioPrincipal);
 		Transformador transformador = new Transformador(100, 200, 1);
-		domicilioPrincipal.setTransformador(transformador);
+		//domicilioPrincipal.setTransformador(transformador);
 		
 		// Creamos algunos dispositivos
 		Administrador admin = adminDePrueba();

@@ -25,14 +25,14 @@ public class ConversionDispositivoPersistenciaTest {
 		
 		admin = new Administrador("Jim", "Beach", "Jimmy", "Queen123", "FakeStreet 123", LocalDate.now());
 		dispositivoEstandar = (DispositivoEstandar) admin.obtenerDispositivoEstandar("TV 33 Estandar", 4);
-		dispositivoEstandar.guardar();
+		//dispositivoEstandar.guardar();
 
 	}
 	
 	@Test
 	public void unDispositivoEstandarPersistidoSinConvertirNoEstaAdaptado() {
 	
-		dispositivoEstandar = dispositivoEstandar.recuperar(dispositivoEstandar.id());
+		//dispositivoEstandar = dispositivoEstandar.recuperar(dispositivoEstandar.id());
 		System.out.println("El dispositivo estandar está adaptado: " + dispositivoEstandar.estaAdaptado());
 		Assert.assertFalse(dispositivoEstandar.estaAdaptado());
 	}
@@ -42,7 +42,7 @@ public class ConversionDispositivoPersistenciaTest {
 		
 		dispositivoEstandar.adaptarDispositivo();
 		//dispositivoEstandar.guardar();
-		dispositivoEstandar = dispositivoEstandar.recuperar(dispositivoEstandar.id());
+		//dispositivoEstandar = dispositivoEstandar.recuperar(dispositivoEstandar.id());
 		System.out.println("El dispositivo estandar está adaptado: " + dispositivoEstandar.estaAdaptado());
 		Assert.assertTrue(dispositivoEstandar.estaAdaptado());
 	}

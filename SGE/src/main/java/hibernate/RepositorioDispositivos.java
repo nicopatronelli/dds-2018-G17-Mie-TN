@@ -35,10 +35,23 @@ public class RepositorioDispositivos {
 		pe.actualizar(dispositivo);
 	}
 	
-	public Dispositivo recuperarPorId(Long idDispositivo) {
-		return pe.recuperar(idDispositivo, Dispositivo.class);
+	private Dispositivo recuperarPorIdBase(Long idDispositivo) {
+		Dispositivo dispositivo = pe.recuperar(idDispositivo, Dispositivo.class);
+		dispositivo.estado();
+		return dispositivo;
 	}
+	
+	public Dispositivo recuperarPorId(Long idDispositivo) {
+		return recuperarPorIdBase(idDispositivo);
+	}
+	
+	// Sobrecarga del método para recibir el id del dispositivo como String 
+	public Dispositivo recuperarPorId(String idDispositivo) {
+		return recuperarPorIdBase(Long.parseLong(idDispositivo));
+	}
+	
 
+	
 	/*public Cliente recuperarPorUsuario(String nombreUsuario) {
 		return pe.obtenerEntidadPorAtributo("usuario", nombreUsuario, Cliente.class);
 	}*/

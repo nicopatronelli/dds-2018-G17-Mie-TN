@@ -23,7 +23,7 @@ public class PruebaTransformadores {
 		admin.cargarTransformadores("src/test/resources/data/json/Transformadores.json"); 
 		cantidadTransformadores = admin.getTransformadores().size();
 		// Los persistimos en la base de datos 
-		admin.guardar();
+		//admin.guardar();
 	}
 	
 	@Test

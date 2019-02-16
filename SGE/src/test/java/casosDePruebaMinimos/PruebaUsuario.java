@@ -18,10 +18,10 @@ public class PruebaUsuario {
 	public void initialize() throws CloneNotSupportedException {
 		// Creo un nuevo cliente y lo persisto
 		cliente = crearClienteA();
-		cliente.guardar();
+		//cliente.guardar();
 		
 		// Recupero el cliente recién persistido
-		cliente = (Cliente) cliente.recuperar(cliente.getId());
+		//cliente = (Cliente) cliente.recuperar(cliente.getId());
 		cliente.mostrarDomicilios();
 		
 		// Cambio la posicion de un domicilio 
@@ -29,12 +29,12 @@ public class PruebaUsuario {
 		cliente.domicilios().get(0).nuevaPosicion(nuevaPosicion);
 		
 		// Grabo los cambios
-		cliente.guardar();
+		//cliente.guardar();
 	}
 	
 	@Test
 	public void cambioDeGeoposicionamientoCorrecto() {
-		cliente = (Cliente) cliente.recuperar(cliente.getId());
+		//cliente = (Cliente) cliente.recuperar(cliente.getId());
 		cliente.mostrarDomicilios();
 		Assert.assertTrue(cliente.domicilios().get(0).getPosicion().equals(nuevaPosicion));
 	}

@@ -76,7 +76,7 @@ public class DispositivoInteligente extends Dispositivo {
 		estado.activarAhorroDeEnergia(this);
 	}
 	
-	public void cambiarEstado(EstadoDispositivoInteligente nuevoEstado) {
+	public void setEstado(EstadoDispositivoInteligente nuevoEstado) {
 		estado = nuevoEstado;
 	}
 	

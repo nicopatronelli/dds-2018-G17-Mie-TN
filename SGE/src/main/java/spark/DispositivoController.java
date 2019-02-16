@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dispositivos.Dispositivo;
+import hibernate.RepositorioDispositivos;
+
 public class DispositivoController {
 	
 	
@@ -14,8 +17,14 @@ public class DispositivoController {
     	
     	Map<String, Object> model = new HashMap<>();
     	
-    	System.out.println("El id del dispositivo es " + request.queryParams("idDispositivo"));
+    	String idDispositivo = request.queryParams("idDispositivo");
     	System.out.println("El usuario actual es " + obtenerUsuarioActual(request));
+    	
+    	RepositorioDispositivos repoDispositivos = new RepositorioDispositivos();
+    	repoDispositivos.abrir();
+    	Dispositivo dispositivo = repoDispositivos.recuperarPorId(idDispositivo);
+    	dispositivo.encender();
+    	//repoDispositivos.actualizar(dispositivo);
     	
         return ViewUtil.render(request, model, "/velocity/dispositivos.html");
     };

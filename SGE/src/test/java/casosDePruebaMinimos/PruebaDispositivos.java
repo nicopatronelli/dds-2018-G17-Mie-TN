@@ -24,12 +24,12 @@ public class PruebaDispositivos {
 		dispositivoInteligente = admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-JD256"));
 		simularFuncionamientoDispositivo(dispositivoInteligente);
-		dispositivoInteligente.guardar();
+		//dispositivoInteligente.guardar();
 	}
 
 	@Test
 	public void mostrarEstadosPorLosQuePasoUnDispositivoInteligente() {
-		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.id());
+		//dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.id());
 		System.out.println("Los intervalos que estuvo encendido el dispositivo inteligente son:" 
 		+ dispositivoInteligente.intervalosEncendido().toString());
 	}
@@ -38,8 +38,8 @@ public class PruebaDispositivos {
 	public void modificarUnAtributoDeUnDispositivo() {
 		System.out.println("El nombre actual del dispositivo es " + dispositivoInteligente.nombre());
 		dispositivoInteligente.cambiarNombre("Mi Dispositivo");
-		dispositivoInteligente.guardar();
-		dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.id());
+		//dispositivoInteligente.guardar();
+		//dispositivoInteligente = (DispositivoInteligente) dispositivoInteligente.recuperar(dispositivoInteligente.id());
 		System.out.println("El nuevo nombre del dispositivo es " + dispositivoInteligente.nombre());
 	}
 		
