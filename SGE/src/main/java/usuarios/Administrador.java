@@ -4,13 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -36,6 +39,9 @@ public class Administrador extends Usuario {
 	private GestorDispositivos gestorDispositivos = new GestorDispositivos();
 	
 	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
+	private List<DispositivoDisponible> dispositivosDisponibles;
+	
+	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
 	private List<Transformador> transformadores;
 	
 	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
@@ -47,12 +53,14 @@ public class Administrador extends Usuario {
 	
 	public Administrador(String nombre) {
 		this.nombre = nombre;
+		this.cargarDispositivos();
 	}
 	
  	public Administrador(String nombre, String apellido, String usuario, String password, String direccion,
 			LocalDate fechaAlta) {
  		super(nombre, apellido, usuario, password);
 		this.fechaAlta = fechaAlta;
+		this.cargarDispositivos();
 	}
 	
  	public <T> Dispositivo recuperarDispositivoPorId(Class <T> clase, Long dispositivoId) {
@@ -98,8 +106,8 @@ public class Administrador extends Usuario {
 		return transformadores.size();
 	}
 	
-	private Dispositivo crearDispositivo(String keyDispositivo) throws CloneNotSupportedException {
-		Dispositivo dispositivo = gestorDispositivos.obtenerDispositivo(keyDispositivo);
+	private DispositivoDisponible crearDispositivo(String keyDispositivo) throws CloneNotSupportedException {
+		DispositivoDisponible dispositivo = gestorDispositivos.obtenerDispositivo(keyDispositivo);
 		return dispositivo;
 	}
 	
@@ -119,6 +127,10 @@ public class Administrador extends Usuario {
 	public DispositivoInteligente obtenerAdaptador(DispositivoEstandar dispositivoEstandar) throws CloneNotSupportedException {
 		DispositivoInteligente adaptador = (DispositivoInteligente) obtenerDispositivoInteligente("Adaptador SGE", new FabricanteSGE("01A_SGE"));
 		return adaptador;
+	}
+	
+	public void cargarDispositivos() {
+		dispositivosDisponibles = gestorDispositivos.dispositivosDisponibles();
 	}
 	
 	// Método auxiliar (no de negocio) 

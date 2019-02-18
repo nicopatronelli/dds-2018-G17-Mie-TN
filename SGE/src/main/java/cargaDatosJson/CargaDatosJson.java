@@ -13,6 +13,7 @@ import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
 import spark.DispositivoArchivo;
 import usuarios.Cliente;
+import usuarios.DispositivoDisponible;
 
 public class CargaDatosJson {
 		
@@ -96,19 +97,19 @@ public class CargaDatosJson {
 		return dispositivosEstandares;
 	}
 	
-	public static DispositivoArchivo[] cargarDispositivos(String pathJsonDispEst) {
+	public static DispositivoDisponible[] cargarDispositivosDisponibles(String pathJsonDisp) {
 		
 		String jsonDisp = null;
 		try {
-			jsonDisp = CargaDatosJson.archivoAString(pathJsonDispEst);
+			jsonDisp = CargaDatosJson.archivoAString(pathJsonDisp);
 		} catch (IOException e) {
 			System.out.println("No se pudo abrir el archivo JSON");
 		}
 		
 		Gson gson = new Gson();
-		DispositivoArchivo[] dispositivos = gson.fromJson(jsonDisp, DispositivoArchivo[].class);
+		DispositivoDisponible[] dispositivosDisponibles = gson.fromJson(jsonDisp, DispositivoDisponible[].class);
 		
-		return dispositivos;
+		return dispositivosDisponibles;
 	}
 
 }
