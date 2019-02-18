@@ -1,6 +1,7 @@
 package simplex;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.math3.optim.PointValuePair;
 import org.apache.commons.math3.optim.linear.Relationship;
@@ -18,7 +19,7 @@ import static commons.Matematica.*;
 
 public class SimplexFacadeSGE {
 	
-	public static double[] recomendacionConsumo(DomicilioServicio unDomicilio) {
+	public static double recomendacionHorasConsumo(DomicilioServicio unDomicilio) {
 		
 		SimplexFacade simplexFacade = new SimplexFacade(GoalType.MAXIMIZE, true); // FIJO 
 		int cantDispositivos = unDomicilio.cantidadTotalDispositivos();
@@ -50,15 +51,15 @@ public class SimplexFacadeSGE {
 		
 		// Ejecuto el Simplex
 		PointValuePair solucionSimplex = simplexFacade.resolver(); // Resuelvo con simplex 
+
+		double recomendacionHorasTotales = redondear(solucionSimplex.getValue()); // El Z de la función económica (valor óptimo en horas que se le recomienda al usuario consumir)
 		
-		double recomendacionHoras[] = new double[cantDispositivos+1]; // + 1 para guardar el valor Z
-		recomendacionHoras[0] = redondear(solucionSimplex.getValue()); // El Z de la función económica (valor óptimo en horas que se le recomienda al usuario consumir)
-		
+		List<Dispositivo> dispositivos = unDomicilio.dispositivos();
 		for(int i = 0; i < cantDispositivos; i++) {
-			recomendacionHoras[i+1] = redondear(solucionSimplex.getPoint()[i]);
+			dispositivos.get(i).setHorasDeUsoRecomendadas(redondear(solucionSimplex.getPoint()[i]));
 		}
 		
-		return recomendacionHoras; // Retorno un array con el valor de Z y las horas recomendadas de uso de cada dispositivo inteligente
+		return recomendacionHorasTotales; 
 		
 	}
 	

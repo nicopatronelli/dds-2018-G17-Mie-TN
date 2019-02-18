@@ -31,7 +31,7 @@ import estadosDispositivoInteligente.EstadoEncendido;
 @Table(name = "Dispositivos_Inteligentes")
 public class DispositivoInteligente extends Dispositivo {
 	
-	@Enumerated(EnumType.STRING) @Column(name = "estado")
+	@Enumerated(EnumType.STRING) @Column(name = "estado_actual")
 	private EstadoHistorial estadoActual;
 	
 	@Column(name = "consumo_generado")
@@ -122,10 +122,17 @@ public class DispositivoInteligente extends Dispositivo {
 	
 	// El consumo instantáneo nos lo provee el fabricante 
 	public double consumoInstantaneo() {
-		if (this.estaApagado())
-			return 0;
-		else
+		
+		switch(estadoActual) {
+		case ENCENDIDO : 
 			return this.consumoKwPorHora * 10 / 8;
+		case APAGADO :
+			return 0;
+		case AHORRO_DE_ENERGIA :
+			return this.consumoKwPorHora * 4 / 8;
+		default:
+			return 0;
+		}
 			//return this.fabricante.consumoInstantaneo(fabricante.getIdFabricante());
 	}
 	
@@ -134,7 +141,11 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 	
 	public void iniciarEstadoApagado() { 
-		this.estado = new EstadoApagado();
+		// Inicializamos el estado actual en APAGADO
+		estado = new EstadoApagado();
+		estadoActual = EstadoHistorial.APAGADO; 
+		
+		// Inicializamos el historial de estados e insertamos la primer entrada como APAGADO
 		historial = new ArrayList<EntradaDispositivoInteligente>();
 		actualizarHistorial(EstadoHistorial.APAGADO);
 	}

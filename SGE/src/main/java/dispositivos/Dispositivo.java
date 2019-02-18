@@ -45,9 +45,9 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 	@Column(name = "es_inteligente")
 	protected boolean esInteligente;
 	
-	@Transient
+	@Column(name = "horas_uso_recomendadas")
 	protected double horasDeUsoRecomendadas;
-	
+
 	protected Dispositivo() {
 		// Constructor vacío para Hibernate
 	}
@@ -136,6 +136,14 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 		return id;
 	}
 		
+	public double horasDeUsoRecomendadas() {
+		return horasDeUsoRecomendadas;
+	}
+
+	public void setHorasDeUsoRecomendadas(double horasDeUsoRecomendadas) {
+		this.horasDeUsoRecomendadas = horasDeUsoRecomendadas;
+	}
+	
 	abstract public List<EntradaDispositivoInteligente> getHistorial();
 	
 	public void inicializarEstado(){}

@@ -14,37 +14,28 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<!-- Inicio menu superior-->
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/home">SGE</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a>Clientes</a></li>
-					<li><a href="/domicilio/estado">Estado domicilio principal</a></li>
-					<li><a href="/consumo/periodo">Consumo consumo período</a></li>
-					<li><a href="/dispositivo/archivo">Carga archivo dispositivos</a></li>
-					<li><a href="/simplex">Ejecución de Simplex</a></li>
-					<li><a href="#">ABM Dispositivos</a></li>
-					<li><a href="/mapa">Mapa</a></li>				
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/home"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
-				</ul>
-			</div>
-		</nav>
-		<!-- Fin menu superior -->
+       <!-- Inicio menu superior-->
+        #parse("/velocity/navbar_cliente.html")
+        #@navBarCliente()
+        #end
+        <!-- Fin menu superior -->
 		
 		<!-- Inicio contenido de la página -->
 		<div class="container">
 		<h2>Carga de archivo de dispositivos</h2>
-			<form>
+			<form action="/dispositivo/archivo" method="post" enctype="multipart/form-data">
 			  <div class="custom-file">
-				<input type="file" class="custom-file-input" id="customFile">
+				<input type="file" name="uploaded_file" class="custom-file-input" id="customFile">
 				<label class="custom-file-label" for="customFile"></label>
+                <br>
+                <button type="submit" value="" class="btn btn-primary">Enviar</button>
 			  </div>
 			</form>
+            <br>
+            #if($botonCargaPresionado && $cargaExitosa)
+                <div class="alert alert-success" role="alert"><p>La carga del archivo de nuevos dispositivos ha sido exitosa.</p></div> 
+                <p>Puede comprobar el estado de los nuevos dispositivos pulsado la opción "Dispositivos" del menú superior</p>
+            #end
 		</div>
 		<!-- Fin contenido de la página -->
 		

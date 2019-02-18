@@ -6,10 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import com.google.gson.Gson;
 
+import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 import geoposicionamiento.Transformador;
 import geoposicionamiento.Zona;
+import spark.DispositivoArchivo;
 import usuarios.Cliente;
 
 public class CargaDatosJson {
@@ -32,7 +34,6 @@ public class CargaDatosJson {
 		Cliente[] clientes = gson.fromJson(jsonClientes, Cliente[].class);
 		
 		return clientes;
-	
 	}
 	
 	public static Transformador[] cargarTransformadores(String pathJsonTransformadores) {
@@ -48,7 +49,6 @@ public class CargaDatosJson {
 		Transformador[] transformadores = gson.fromJson(jsonTransformadores, Transformador[].class);
 		
 		return transformadores;
-	
 	}	
 	
 	public static Zona[] cargarZonas(String pathJsonZonas) {
@@ -64,7 +64,6 @@ public class CargaDatosJson {
 		Zona[] zonas = gson.fromJson(jsonZonas, Zona[].class);
 		
 		return zonas;
-	
 	}
 	
 	public static DispositivoInteligente[] cargarDispositivosInteligentes(String pathJsonDispInt) {
@@ -80,7 +79,6 @@ public class CargaDatosJson {
 		DispositivoInteligente[] dispositivosInteligentes = gson.fromJson(jsonDispInt, DispositivoInteligente[].class);
 		
 		return dispositivosInteligentes;
-		
 	}
 	
 	public static DispositivoEstandar[] cargarDispositivosEstandares(String pathJsonDispEst) {
@@ -96,7 +94,21 @@ public class CargaDatosJson {
 		DispositivoEstandar[] dispositivosEstandares = gson.fromJson(jsonDispEst, DispositivoEstandar[].class);
 		
 		return dispositivosEstandares;
+	}
+	
+	public static DispositivoArchivo[] cargarDispositivos(String pathJsonDispEst) {
 		
+		String jsonDisp = null;
+		try {
+			jsonDisp = CargaDatosJson.archivoAString(pathJsonDispEst);
+		} catch (IOException e) {
+			System.out.println("No se pudo abrir el archivo JSON");
+		}
+		
+		Gson gson = new Gson();
+		DispositivoArchivo[] dispositivos = gson.fromJson(jsonDisp, DispositivoArchivo[].class);
+		
+		return dispositivos;
 	}
 
 }

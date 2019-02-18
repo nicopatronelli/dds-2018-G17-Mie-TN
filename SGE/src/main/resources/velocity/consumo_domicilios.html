@@ -7,24 +7,34 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
+        <!-- Inicio menu superior-->
         #parse("/velocity/navbar_admin.html")
         #@navBarAdmin()
         #end
+        <!-- Fin menu superior -->
+        
 		<div class="container">
 			<h2>Consumo por domicilio</h2>
 			<table class="table">
 				<thead> <!-- Inicio tabla de consumo por domicilio-->	
 				  <tr> <!-- Encabezado de la tabla -->
-					<th>Domicilio</th>
+                    <th>Id</th>
+                    <th>Nombre</th>
+					<th>Domicilio (Posicion)</th>
+                    <th>Categoria</th>
 					<th>Consumo</th>
+                    <th>Cantidad dispositivos encendidos</th>
 				  </tr>
 				</thead>
 				<tbody> 
 				<!-- Filas de la tabla -->
-				#foreach($domicilio in $domicilios)
+				#foreach($cliente in $clientes)
 				  <tr> 
-					<td>$domicilio.getNombre()</td>
-					<td>$domicilio.getConsumo()</td>
+                    <td>$cliente.domicilioPrincipal().id()</td>
+                    <td>$cliente.getNombreApellido()</td>
+					<td>$cliente.domicilioPrincipal().coordenadas()</td>
+					<td>$cliente.domicilioPrincipal().categoria()</td>
+					<td>$cliente.domicilioPrincipal().consumoInteligenteDomicilio()</td>
 				  </tr>
 				#end
 				</tbody>

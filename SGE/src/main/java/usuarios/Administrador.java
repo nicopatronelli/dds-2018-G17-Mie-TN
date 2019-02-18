@@ -33,7 +33,7 @@ public class Administrador extends Usuario {
 	private LocalDate fechaAlta;
 	
 	@Transient
-	private GestorDispositivos gestorDispositivos = new GestorDispositivos();;
+	private GestorDispositivos gestorDispositivos = new GestorDispositivos();
 	
 	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
 	private List<Transformador> transformadores;

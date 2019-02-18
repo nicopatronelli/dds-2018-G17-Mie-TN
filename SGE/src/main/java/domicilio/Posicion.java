@@ -19,11 +19,11 @@ public class Posicion {
 
 	// GETTERS Y SETTERS
 	
-	public double getLatitud() {
+	public double latitud() {
 		return latitud;
 	}
 	
-	public double getLongitud() {
+	public double longitud() {
 		return longitud;
 	}
 	

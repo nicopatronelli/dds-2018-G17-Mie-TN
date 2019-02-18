@@ -51,7 +51,7 @@ public class PersistEntity<T> {
 		return (T) manager.find(clase, id);
 	}
 
-	public List ejecutarQuery(String query) {
+	public List<T> ejecutarQuery(String query) {
 		return manager.createQuery(query).getResultList();
 	}
 	

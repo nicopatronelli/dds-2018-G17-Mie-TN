@@ -38,7 +38,7 @@ public abstract class Usuario extends PersistEntity<Usuario> {
 
 	/* GETTERS Y SETTERS */ 
 	
-	public Long getId() {
+	public Long id() {
 		return id;
 	}
 	
@@ -51,7 +51,7 @@ public abstract class Usuario extends PersistEntity<Usuario> {
 	}
 	
 	public String getNombreApellido() {
-		return nombre + apellido;
+		return nombre + " " + apellido;
 	}
 	
 }

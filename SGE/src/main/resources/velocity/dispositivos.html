@@ -17,9 +17,10 @@
 		<div class="container">
 			<h2>Dispositivos registrados</h2>
                 <h4> Dispositivos Inteligentes </h4>
-                    <table class="table">
-                        <thead> <!-- INICIO tabla de dispositivos inteligentes del cliente-->
-                            <tr> <!-- Encabezado de la tabla -->
+                    <!-- INICIO tabla de dispositivos inteligentes del cliente-->
+                    <table class="table"> 
+                        <thead> <!-- Encabezado de la tabla -->
+                            <tr> 
                                 <th>Id</th>
                                 <th>Dispositivo</th>
                                 <th>Consumo último mes (en kw)</th>                    
@@ -56,7 +57,7 @@
                                         #end
                                     </td>   
                                     <td>
-                                        #if($estado == "ENCENDIDO" || $estado == "AHORRO_DE_ENERGIA")
+                                        #if($estado == "ENCENDIDO")
                                             <form action="/dispositivo/ahorro" id="ahorro" method="post"> 
                                                     <button type="submit" name="idDispositivo" value="$dispositivo.id()" class="btn btn-primary">Ahorro de energía</button>
                                             </form>
@@ -65,7 +66,9 @@
                                 </tr>
                             #end
                         #end 
-                    </table> <!-- FIN tabla de dispositivos inteligentes del cliente-->    
+                        </tbody>
+                    </table>
+                    <!-- FIN tabla de dispositivos inteligentes del cliente-->    
                 <br>
                 <h4> Dispositivos Estándares </h4>
                     <table class="table">

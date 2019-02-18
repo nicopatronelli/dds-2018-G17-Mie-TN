@@ -1,11 +1,25 @@
 package spark;
 
+import static spark.RequestUtil.obtenerUsuarioActual;
 import static spark.Spark.*;
 
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.MultipartConfigElement;
 
+import cargaDatosJson.CargaDatosJson;
+import dispositivos.Dispositivo;
+import hibernate.RepositorioClientes;
+import mocks.FabricanteSamsungMock;
 import spark.template.velocity.VelocityTemplateEngine;
+import usuarios.Administrador;
+import usuarios.Cliente;
 
 public class Application {
 	
@@ -20,8 +34,14 @@ public class Application {
 	
 	public static void main(String[] args) {
 		
-		Spark.staticFiles.location("/public");
+		staticFiles.location("/public");
+        staticFiles.externalLocation("upload");
 		port(8080);
+		
+		// Creamos un directorio donde guardar los archivos que se carguen externamente
+        //File uploadDir = new File("upload");
+        //uploadDir.mkdir(); // create the upload directory if it doesn't exist
+        //staticFiles.externalLocation("upload");
 		
 		// Pantalla de inicio (elección de tipo de usuario: cliente o administrador)
 		get("/index", LoginController.serveIndexPage);
@@ -44,19 +64,25 @@ public class Application {
 		post("/dispositivo/apagar", DispositivoController.apagar);
 		post("/dispositivo/ahorro", DispositivoController.ahorro);
 		
-		// Ejecución de simplex
-		get("/cliente/simplex", ClienteController.ejecutarSimplex);
+		// Ejecución de simplex (CLIENTE)
+		get("/simplex", ClienteController.serveSimplexPage);
+		get("/simplex/ejecutar", ClienteController.ejecutarSimplex);
+		get("/simplex/eficiente", ClienteController.hogarEficiente);
+		
+		// Listar hogares y consumos (ADMIN)
+		get("/admin/domicilios", DomiciliosController.serveDomiciliosPage);
+		
+		// Carga de archivo de dispositivos (CLIENTE)
+		get("/dispositivo/archivo", ClienteController.serveCargaArchivoDispositivosPage);
+		post("/dispositivo/archivo", ClienteController.cargarArchivoDispositivos);
 		
 		/*** ESTOS NO ***/
-		get("/admin/domicilios", DomiciliosController.serveDomiciliosPage);
 		
 		get("/dispositivo/alta", DomiciliosController.serveAltaDispositivoPage);
 		
 		get("/domicilio/estado", DomiciliosController.serveEstadoDomicilioPage);
 		
-		get("/dispositivo/archivo", DomiciliosController.serveCargaArchivoDispositivosPage);
-		
-		get("/simplex", DomiciliosController.serveSimplexPage);
+
 
 		get("/consumo/periodo", DomiciliosController.serveConsumoPeriodoPage);
 		

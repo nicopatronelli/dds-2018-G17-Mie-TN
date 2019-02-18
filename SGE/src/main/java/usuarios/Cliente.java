@@ -91,8 +91,8 @@ public class Cliente extends Usuario {
 		return this.domicilios.stream().mapToInt(domicilio -> domicilio.cantidadTotalDispositivos()).sum();
 	}
 	
-	public double[] recomendacionConsumo(DomicilioServicio unDomicilio) {
-		return SimplexFacadeSGE.recomendacionConsumo(unDomicilio);
+	public double recomendacionHorasConsumo(DomicilioServicio unDomicilio) {
+		return SimplexFacadeSGE.recomendacionHorasConsumo(unDomicilio);
 	}
 	
 	public void asignarTransformadores(List<Transformador> transformadores) {

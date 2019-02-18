@@ -81,7 +81,10 @@ public class DispositivoEstandar extends Dispositivo {
 
 	@Override
 	public double consumoInstantaneo() {
-		return adaptador.consumoInstantaneo();
+		if (!adaptador.equals(null))
+			return adaptador.consumoInstantaneo();
+		else
+			return 0;
 	}
 
 	// GETTERS Y SETTERS
@@ -107,7 +110,7 @@ public class DispositivoEstandar extends Dispositivo {
 
 	@Override
 	public double consumoUltimoPeriodo() {
-		return 0;
+		return this.consumoDiarioEstimado() * 30;
 	}
 
 }

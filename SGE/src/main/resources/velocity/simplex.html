@@ -14,34 +14,65 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<!-- Inicio menu superior-->
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/home">SGE</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a>Clientes</a></li>
-					<li><a href="/domicilio/estado">Estado domicilio principal</a></li>
-					<li><a href="/consumo/periodo">Consumo consumo período</a></li>
-					<li><a href="/dispositivo/archivo">Carga archivo dispositivos</a></li>
-					<li><a href="/simplex">Ejecución de Simplex</a></li>
-					<li><a href="#">ABM Dispositivos</a></li>
-					<li><a href="/mapa">Mapa</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/home"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
-				</ul>
-			</div>
-		</nav>
-		<!-- Fin menu superior -->
+        <!-- Inicio menu superior-->
+        #parse("/velocity/navbar_cliente.html")
+        #@navBarCliente()
+        #end
+        <!-- Fin menu superior -->
 		
 		<!-- Inicio contenido de la página -->
 		<div class="container">
-		<h2>Ejecución de Simplex</h2>
-			<form>
-				<button type="submit" class="btn btn-primary">Ejecutar</button>
-			</form>
+            <h2>Ejecución de Simplex:</h2>
+            <p>Presiona el botón Ejecutar Simplex para correr el Algoritmo Simplex y conocer
+            las horas de uso recomendadas para cada uno de tus dispositivos y las horas 
+            totales recomendadas de uso en tu domicilio.</p>
+            <a href="/simplex/ejecutar">
+                <button type="submit" class="btn btn-primary">Ejecutar Simplex</button>
+            </a>
+            <br>
+            #if($ejecutarSimplex)
+                <h3>Resultados: </h3>
+                    <!-- INICIO tabla resultados Simplex -->    
+                    <table class="table">
+                        <thead> <!-- Encabezado de la tabla -->
+                            <tr> 
+                                <th>Id</th>
+                                <th>Dispositivo</th>
+                                <th>Horas de uso recomendadas</th>                    
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Filas de la tabla -->
+                        #foreach($dispositivo in $dispositivos)
+                            <tr>
+                                <td>$dispositivo.id()</td>
+                                <td>$dispositivo.nombre()</td>       
+                                <td>$dispositivo.horasDeUsoRecomendadas()</td>                                
+                            </tr>
+                        </tbody>
+                        #end
+                    </table>
+                    <!-- FIN tabla resultados Simplex --> 
+                    <br>
+                    <p>La cantidad de horas mensuales recomendadas para su domicilio es de $horasRecomendadas horas.</p>
+            #end
+            <br>
+            <h2>Hogar eficiente:</h2>
+            <p>Presiona el botón Verificar Hogar Eficiente para comprobar si tu domicilio es un Hogar Eficiente.
+            Recuerda que la normativa vigente establece un consumo mensual máximo de 612 kwh para determinar si
+            un hogar es eficiente.</p>
+            <a href="/simplex/eficiente">
+                <button type="submit" class="btn btn-secondary">Verificar Hogar Eficiente</button>
+            </a>
+            <br>
+            #if($hogarEficiente)
+                <p> El consumo total de su domicilio en el último período fue de: $resultadoHogarEficiente kwh</p>
+                #if($resultadoHogarEficiente <= 612)
+                    <div class="alert alert-success" role="alert"><p> Felicitaciones, su hogar es EFICIENTE.</p></div> 
+                #else
+                    <div class="alert alert-warning" role="alert"><p> Lamentablemente, su hogar no cumple con la normativa vigente para ser considerado eficiente. </p></div> 
+                #end 
+            #end
 		</div>
 		<!-- Fin contenido de la página -->
 		

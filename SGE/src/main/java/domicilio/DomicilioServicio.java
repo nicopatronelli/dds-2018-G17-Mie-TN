@@ -25,12 +25,14 @@ import dispositivos.DispositivoEstandar;
 import geoposicionamiento.Transformador;
 import hibernate.PersistEntity;
 
+import static commons.Matematica.*;
+
 @Entity
 @Table(name = "Domicilios")
 public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "id_domicilio")
-	private int id;
+	private Long id;
 	
 	private String telefono;
 	
@@ -107,6 +109,11 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	public double consumoInteligenteDomicilio() {
 		return this.dispositivosInteligentes().stream().mapToDouble(dispositivo->dispositivo.consumoInstantaneo()).sum();
 	}
+	
+	// Consumo ultimo periodo
+	public double consumoUltimoPeriodo() {
+		return redondear(this.dispositivos().stream().mapToDouble(dispositivo->dispositivo.consumoUltimoPeriodo()).sum());
+	}
 
 	public void asignarTransformadorMasCercano(List<Transformador> transformadores) {
 		
@@ -125,11 +132,15 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	
 	// Método auxiliar
 	private double distanciaEntreDomicilioTransformador(Transformador unTransformador) {
-		return Math.sqrt(Math.pow(this.getPosicion().getLatitud() - unTransformador.getLatitud(), 2) 
-				+ Math.pow(this.getPosicion().getLongitud() - unTransformador.getLongitud(), 2));
+		return Math.sqrt(Math.pow(this.getPosicion().latitud() - unTransformador.getLatitud(), 2) 
+				+ Math.pow(this.getPosicion().longitud() - unTransformador.getLongitud(), 2));
 	}
 
 	// GETTERS Y SETTERS 
+	
+	public String coordenadas() {
+		return "( " + posicion.latitud() + ", " + posicion.longitud() + " )";
+	}
 	
 	public Posicion getPosicion() {
 		return posicion;
@@ -143,7 +154,7 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 		return dispositivos;
 	}
 
-	public Categoria getCategoria() {
+	public Categoria categoria() {
 		return categoria;
 	}
 	
@@ -155,8 +166,12 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 		System.out.println("El id del domicilio es: " + id);
 		System.out.println("El telefono del domicilio es: " + telefono);
 		System.out.println("La posicion del domicilio es: ");
-		System.out.println("Latitud: " + posicion.getLatitud() + 
-				" Longitud: " + posicion.getLongitud());
+		System.out.println("Latitud: " + posicion.latitud() + 
+				" Longitud: " + posicion.longitud());
 	}
 	
+	public Long id() {
+		return id;
+	}
+
 } 

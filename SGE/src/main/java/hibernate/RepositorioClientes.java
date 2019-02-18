@@ -1,5 +1,7 @@
 package hibernate;
 
+import java.util.List;
+
 import usuarios.Cliente;
 
 public class RepositorioClientes {
@@ -37,5 +39,11 @@ public class RepositorioClientes {
 
 	public Cliente recuperarPorUsuario(String nombreUsuario) {
 		return pe.obtenerEntidadPorAtributo("usuario", nombreUsuario, Cliente.class);
+	}
+	
+	public List<Cliente> recuperarTodosLosClientes(){
+		String query = "FROM Cliente"; // Me traigo todos los clientes de la BD
+		List<Cliente> clientes = pe.ejecutarQuery(query);
+		return clientes;
 	}
 }

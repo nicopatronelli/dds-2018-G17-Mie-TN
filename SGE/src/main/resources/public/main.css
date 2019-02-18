@@ -41,3 +41,10 @@ body {
   background-color: #4CAF50;
   color: white;
 }
+
+.flexbox-centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
