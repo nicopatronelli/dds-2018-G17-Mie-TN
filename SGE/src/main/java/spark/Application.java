@@ -76,9 +76,11 @@ public class Application {
 		get("/dispositivo/archivo", ClienteController.serveCargaArchivoDispositivosPage);
 		post("/dispositivo/archivo", ClienteController.cargarArchivoDispositivos);
 		
-		/*** ESTOS NO ***/
+		// Alta nuevo dispositivo (ADMIN)
+		get("/dispositivo/alta", DispositivoController.serveAltaDispositivoPage);
+		post("/dispositivo/alta", DispositivoController.altaNuevoDispositivo);
 		
-		get("/dispositivo/alta", DomiciliosController.serveAltaDispositivoPage);
+		/*** ESTOS NO ***/
 		
 		get("/domicilio/estado", DomiciliosController.serveEstadoDomicilioPage);
 		

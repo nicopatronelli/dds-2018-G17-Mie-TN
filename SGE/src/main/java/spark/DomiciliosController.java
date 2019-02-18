@@ -18,11 +18,6 @@ public class DomiciliosController {
         return ViewUtil.render(request, model, "/velocity/consumo_domicilios.html");
     };
     
-    public static Route serveAltaDispositivoPage = (Request request, Response response) -> {
-    	Map<String, Object> model = new HashMap<>();
-        return ViewUtil.render(request, model, "/velocity/alta_dispositivo.html");
-    };
-    
     public static Route serveEstadoDomicilioPage = (Request request, Response response) -> {
     	Map<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, "/velocity/estado_domicilio.html");
