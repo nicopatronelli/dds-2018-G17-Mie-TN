@@ -1,0 +1,11 @@
+[
+	{
+		"nombreGenerico" : "Batidora 22W Inteligente",
+		"consumoKwPorHora" : 0.025,
+		"usoMensualMinimoEnHoras" : 2, 
+		"usoMensualMaximoEnHoras" : 10,
+		"esBajoConsumo" : true,
+		"esInteligente" : true,
+        "horasUsoDiarias" : 1
+	}
+]

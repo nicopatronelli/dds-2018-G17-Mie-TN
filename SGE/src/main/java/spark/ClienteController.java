@@ -90,7 +90,7 @@ public class ClienteController {
         }
         
         // El archivo subido está en tempFile
-        DispositivoArchivo[] dispositivosCargados = CargaDatosJson.cargarDispositivos(tempFile.toString());
+        DispositivoArchivo[] dispositivosCargados = CargaDatosJson.cargarDispositivosArchivo(tempFile.toString());
         RepositorioClientes repoClientes = new RepositorioClientes();
         repoClientes.abrir();
         Cliente cliente = repoClientes.recuperarPorUsuario(obtenerUsuarioActual(request));

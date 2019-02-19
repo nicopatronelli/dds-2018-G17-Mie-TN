@@ -51,8 +51,12 @@
 						</label>
 				</div>
 				<br/>
-			<button type="submit" class="btn btn-default">Enviar</button>
-		  </form>
+                <button type="submit" class="btn btn-default">Enviar</button>
+            </form>
+            <br>
+            #if($dispositivoCargado)
+                <div class="alert alert-success" role="alert"><p>Nuevo dispositivo cargado con éxito.</p></div> 
+            #end
 		</div>
 		<!-- Fin contenido de la página -->
 		

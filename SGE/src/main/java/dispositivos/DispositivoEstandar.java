@@ -24,6 +24,18 @@ public class DispositivoEstandar extends Dispositivo {
 	protected DispositivoEstandar() {
 		// Constructor vacío para Hibernate
 	}
+	
+	public DispositivoEstandar(String nombreGenerico, double consumoKwPorHora, 
+			int usoMensualMinimoEnHoras, int usoMensualMaximoEnHoras, 
+			boolean esBajoConsumo, boolean esInteligente) {
+		
+		this.nombreGenerico = nombreGenerico;
+		this.consumoKwPorHora = consumoKwPorHora;
+		this.usoMensualMinimoEnHoras = usoMensualMinimoEnHoras;
+		this.usoMensualMaximoEnHoras = usoMensualMaximoEnHoras;
+		this.esBajoConsumo = esBajoConsumo;
+		this.esInteligente = esInteligente;
+	}
 
 	public double consumoDiarioEstimado() {
 		return this.consumoKwPorHora * this.horasDeUsoDiarias;

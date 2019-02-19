@@ -97,6 +97,21 @@ public class CargaDatosJson {
 		return dispositivosEstandares;
 	}
 	
+	public static DispositivoArchivo[] cargarDispositivosArchivo(String pathJsonDispEst) {
+		
+		String jsonDisp = null;
+		try {
+			jsonDisp = CargaDatosJson.archivoAString(pathJsonDispEst);
+		} catch (IOException e) {
+			System.out.println("No se pudo abrir el archivo JSON");
+		}
+		
+		Gson gson = new Gson();
+		DispositivoArchivo[] dispositivos = gson.fromJson(jsonDisp, DispositivoArchivo[].class);
+		
+		return dispositivos;
+	}
+	
 	public static DispositivoDisponible[] cargarDispositivosDisponibles(String pathJsonDisp) {
 		
 		String jsonDisp = null;

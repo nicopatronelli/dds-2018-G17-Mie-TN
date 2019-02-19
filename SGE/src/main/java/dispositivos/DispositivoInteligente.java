@@ -50,6 +50,18 @@ public class DispositivoInteligente extends Dispositivo {
 		// Constructor vacío para Hibernate
 	}
 	
+	public DispositivoInteligente(String nombreGenerico, double consumoKwPorHora, 
+			int usoMensualMinimoEnHoras, int usoMensualMaximoEnHoras, 
+			boolean esBajoConsumo, boolean esInteligente) {
+		
+		this.nombreGenerico = nombreGenerico;
+		this.consumoKwPorHora = consumoKwPorHora;
+		this.usoMensualMinimoEnHoras = usoMensualMinimoEnHoras;
+		this.usoMensualMaximoEnHoras = usoMensualMaximoEnHoras;
+		this.esBajoConsumo = esBajoConsumo;
+		this.esInteligente = esInteligente;
+	}
+	
 	/*  							
 	 * INICIO - Métodos de ESTADO	
 	 */	

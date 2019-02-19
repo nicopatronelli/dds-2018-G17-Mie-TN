@@ -36,6 +36,16 @@ public class DispositivoDisponible implements Cloneable {
 		// Constructor vacío para Hibernate
 	}
 	
+	public DispositivoDisponible(String nombreGenerico, double consumoKwPorHora, int usoMensualMinimoEnHoras,
+			int usoMensualMaximoEnHoras, boolean esBajoConsumo, boolean esInteligente) {
+		this.nombreGenerico = nombreGenerico;
+		this.consumoKwPorHora = consumoKwPorHora;
+		this.usoMensualMinimoEnHoras = usoMensualMinimoEnHoras;
+		this.usoMensualMaximoEnHoras = usoMensualMaximoEnHoras;
+		this.esBajoConsumo = esBajoConsumo;
+		this.esInteligente = esInteligente;
+	}
+
 	public String nombre() {
 		return nombreGenerico;
 	}

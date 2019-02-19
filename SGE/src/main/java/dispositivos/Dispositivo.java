@@ -25,7 +25,7 @@ import usuarios.Cliente;
 @Table(name = "dispositivos")
 public abstract class Dispositivo extends PersistEntity<Dispositivo> implements Cloneable  {
 	
-	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id_dispositivo")
+	@Id @GeneratedValue @Column(name = "id_dispositivo")
 	protected Long id;
 	
 	@Column(name = "nombre_generico")

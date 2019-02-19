@@ -28,6 +28,10 @@ public class RepositorioAdmins {
 		pe.borrar(admin);
 	}
 	
+	public void actualizar(Administrador admin) {
+		pe.actualizar(admin);
+	}
+	
 	public Administrador recuperarPorId(Long idAdmin) {
 		return pe.recuperar(idAdmin, Administrador.class);
 	}

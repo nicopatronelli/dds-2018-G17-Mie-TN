@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import cargaDatosJson.CargaDatosJson;
-import dispositivos.Dispositivo;
-import geoposicionamiento.Transformador;
+import hibernate.RepositorioAdmins;
+import spark.FlagNuevoDispositivoDisponible;
+
+import static spark.FlagNuevoDispositivoDisponible.*;
 
 // Patrón Prototype 
 public class GestorDispositivos {
@@ -35,18 +37,44 @@ public class GestorDispositivos {
 	// Paso el array que me devuelve Gson a el HashMap que necesito 
 	public GestorDispositivos() {
 		
-		DispositivoDisponible[] dispositivosInteligentes = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosInteligentes.json");
+		/*if (FlagNuevoDispositivoDisponible.nuevoDispositivoCargado()) {
+			// Si ya se cargó un nuevo dispositivo busco los nuevos dispositivos de la base de datos
+			
+			RepositorioAdmins repoAdmin = new RepositorioAdmins();
+			Administrador admin = repoAdmin.recuperarPorUsuario(FlagNuevoDispositivoDisponible.usuarioAdmin());
+			
+			for(DispositivoDisponible disponible : admin.dispositivosDisponibles()) {
+				this.dispositivosDisponibles.put(disponible.nombre(), disponible);
+			}
+			
+		}else {
+			// Si todavía no se cargo ningún nuevo dispositivo busco los dispositivos disponibles de los Json
+			DispositivoDisponible[] dispositivosInteligentes = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosInteligentes.json");
+			
+			for( int i = 0; i < dispositivosInteligentes.length; i++ ) {
+				dispositivosDisponibles.put(dispositivosInteligentes[i].nombre(), dispositivosInteligentes[i]);
+			}
+			
+			DispositivoDisponible[] dispositivosEstandares = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosEstandares.json");
+			
+			for( int i = 0; i < dispositivosEstandares.length; i++ ) {
+				dispositivosDisponibles.put(dispositivosEstandares[i].nombre(), dispositivosEstandares[i]);
+			}
+		}*/
 		
-		for( int i = 0; i < dispositivosInteligentes.length; i++ ) {
-			dispositivosDisponibles.put(dispositivosInteligentes[i].nombre(), dispositivosInteligentes[i]);
-		}
-		
-		DispositivoDisponible[] dispositivosEstandares = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosEstandares.json");
-		
-		for( int i = 0; i < dispositivosEstandares.length; i++ ) {
-			dispositivosDisponibles.put(dispositivosEstandares[i].nombre(), dispositivosEstandares[i]);
-		}
-		
+			// Si todavía no se cargo ningún nuevo dispositivo busco los dispositivos disponibles de los Json
+			DispositivoDisponible[] dispositivosInteligentes = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosInteligentes.json");
+			
+			for( int i = 0; i < dispositivosInteligentes.length; i++ ) {
+				dispositivosDisponibles.put(dispositivosInteligentes[i].nombre(), dispositivosInteligentes[i]);
+			}
+			
+			DispositivoDisponible[] dispositivosEstandares = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosEstandares.json");
+			
+			for( int i = 0; i < dispositivosEstandares.length; i++ ) {
+				dispositivosDisponibles.put(dispositivosEstandares[i].nombre(), dispositivosEstandares[i]);
+			}
+
 	} // fin GestorDispositivos()
 	
 	

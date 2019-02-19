@@ -56,6 +56,7 @@ public class LoginController {
     	// Verifico que el usuario y contraseña son correctas 
         Map<String, Object> model = new HashMap<>();
         if (autenticacionAdminEsCorrecta(request)) {
+        	request.session().attribute("currentUser", obtenerParamUsuario(request));
         	return ViewUtil.render(request, model, "/velocity/admin.html");
         }
         model.put("autenticacionExitosa", false);

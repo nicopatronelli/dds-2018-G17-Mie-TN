@@ -1,5 +1,7 @@
 package spark;
 
+import static spark.RequestUtil.obtenerParamUsuario;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

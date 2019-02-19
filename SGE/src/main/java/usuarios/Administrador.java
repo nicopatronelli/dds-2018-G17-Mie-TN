@@ -112,13 +112,21 @@ public class Administrador extends Usuario {
 	}
 	
 	public DispositivoEstandar obtenerDispositivoEstandar(String keyDispositivo, int horasDeUsoDiarias) throws CloneNotSupportedException {
-		DispositivoEstandar dispositivoEstandar = (DispositivoEstandar)crearDispositivo(keyDispositivo);
+		DispositivoDisponible disponible = crearDispositivo(keyDispositivo);
+		DispositivoEstandar dispositivoEstandar = new DispositivoEstandar(disponible.nombre(), 
+				disponible.consumoKwPorHora(), disponible.usoMensualMinimoEnHoras(), 
+				disponible.usoMensualMaximoEnHoras(), disponible.esBajoConsumo(),
+				disponible.esInteligente());
 		dispositivoEstandar.setHorasDeUsoDiarias(horasDeUsoDiarias);
 		return dispositivoEstandar;
 	}
 	
 	public DispositivoInteligente obtenerDispositivoInteligente(String keyDispositivo, FabricanteDispositivoInteligente fabricante) throws CloneNotSupportedException {
-		DispositivoInteligente dispositivoInteligente = (DispositivoInteligente)crearDispositivo(keyDispositivo);
+		DispositivoDisponible disponible = crearDispositivo(keyDispositivo);
+		DispositivoInteligente dispositivoInteligente = new DispositivoInteligente(disponible.nombre(), 
+				disponible.consumoKwPorHora(), disponible.usoMensualMinimoEnHoras(), 
+				disponible.usoMensualMaximoEnHoras(), disponible.esBajoConsumo(),
+				disponible.esInteligente());
 		dispositivoInteligente.iniciarEstadoApagado();
 		dispositivoInteligente.setFabricante(fabricante);
 		return dispositivoInteligente;
@@ -131,6 +139,14 @@ public class Administrador extends Usuario {
 	
 	public void cargarDispositivos() {
 		dispositivosDisponibles = gestorDispositivos.dispositivosDisponibles();
+	}
+	
+	public void agregarDispositivoDisponible(DispositivoDisponible disponible) {
+		dispositivosDisponibles.add(disponible);
+	}
+	
+	public List<DispositivoDisponible> dispositivosDisponibles(){
+		return dispositivosDisponibles;
 	}
 	
 	// Método auxiliar (no de negocio) 
