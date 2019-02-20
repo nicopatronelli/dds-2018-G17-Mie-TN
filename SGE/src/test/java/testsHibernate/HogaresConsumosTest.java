@@ -37,7 +37,11 @@ public class HogaresConsumosTest {
 	@Test
 	public void test() {
 		
-		System.out.println("El resultado es " + cliente.domicilioPrincipal().consumoInteligenteDomicilio());
+		//System.out.println("El resultado es " + cliente.domicilioPrincipal().dispositivosInteligentes().get(0).consumoUltimoPeriodo());
+		//System.out.println("El resultado es " + cliente.domicilioPrincipal().dispositivosInteligentes().get(0).consumoEntre("2016/12/05", "2018/12/31"));
+
+		System.out.println("El resultado es " + cliente.domicilioPrincipal().consumoEnPeriodo("2016/12/05", "2018/12/31"));
+		
 
 	}
 

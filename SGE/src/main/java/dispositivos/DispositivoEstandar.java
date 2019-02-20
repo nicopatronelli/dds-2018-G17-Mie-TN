@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import usuarios.Administrador;
 
 @Entity
-@Table(name = "Dispositivos_estandares")
+//@Table(name = "Dispositivos_estandares")
 public class DispositivoEstandar extends Dispositivo {
 	
 	@Column(name = "horas_de_uso_diarias")
@@ -122,7 +122,13 @@ public class DispositivoEstandar extends Dispositivo {
 
 	@Override
 	public double consumoUltimoPeriodo() {
-		return this.consumoDiarioEstimado() * 30;
+		//return this.consumoDiarioEstimado() * 30;
+		return 0;
+	}
+	
+	@Override
+	public double consumoEntre(String fechaInicial, String fechaFinal) {
+		return 0;
 	}
 
 }

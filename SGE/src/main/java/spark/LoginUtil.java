@@ -30,7 +30,7 @@ public class LoginUtil {
         	return cliente.getPassword().equals(password);
     	}
     	finally {
-    		repoClientes.cerrar();
+    		//repoClientes.cerrar();
     	}
     } // Fin autenticacionClienteEsCorrecta()
     
@@ -53,7 +53,7 @@ public class LoginUtil {
         	return admin.getPassword().equals(password);
     	}
     	finally {
-    		repoAdmins.cerrar();
+    		//repoAdmins.cerrar();
     	}
     	
     } // Fin autenticacionAdminEsCorrecta()

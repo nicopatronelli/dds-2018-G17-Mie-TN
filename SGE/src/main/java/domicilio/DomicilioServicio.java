@@ -115,7 +115,12 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	public double consumoUltimoPeriodo() {
 		return redondear(this.dispositivos().stream().mapToDouble(dispositivo->dispositivo.consumoUltimoPeriodo()).sum());
 	}
-
+	
+	// Consumo periodo determinado
+	public double consumoEnPeriodo(String fechaInicial, String fechaFinal) {
+		return redondear(this.dispositivos().stream().mapToDouble(dispositivo->dispositivo.consumoEntre(fechaInicial, fechaFinal)).sum());
+	}
+	
 	public void asignarTransformadorMasCercano(List<Transformador> transformadores) {
 		
 		final double MIN_DISTANCIA_POSIBLE = 100000000; 

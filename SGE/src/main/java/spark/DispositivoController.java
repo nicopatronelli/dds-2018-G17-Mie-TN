@@ -64,8 +64,8 @@ public class DispositivoController {
     	model.put("dispositivoCargado", true);
     	
     	// Marcamos a true el flag de que se cargó un nuevo dispositivo disponible para instanciar 
-    	FlagNuevoDispositivoDisponible.setFlagTrue();
-    	FlagNuevoDispositivoDisponible.setUsuarioAdmin(obtenerUsuarioActual(request));
+    	//FlagNuevoDispositivoDisponible.setFlagTrue();
+    	//FlagNuevoDispositivoDisponible.setUsuarioAdmin(obtenerUsuarioActual(request));
     	
         return ViewUtil.render(request, model, "/velocity/alta_dispositivo.html");
     };

@@ -38,4 +38,12 @@ public class RequestUtil {
     	return request.queryParams("esIntel"); 
     }
     
+    public static String obtenerFechaDesde(Request request) {
+    	return request.queryParams("fechaDesde");
+    }
+    
+    public static String obtenerFechaHasta(Request request) {
+    	return request.queryParams("fechaHasta");
+    }
+    
 }

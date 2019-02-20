@@ -14,8 +14,8 @@ import static spark.FlagNuevoDispositivoDisponible.*;
 // Patrón Prototype 
 public class GestorDispositivos {
 	
-	private Map<String, DispositivoDisponible> dispositivosDisponibles = new HashMap<>();
-	
+	private Map<String, DispositivoDisponible> dispositivosDisponibles = new HashMap<String, DispositivoDisponible>();
+		
 	/* Versión JSON */
 /*	public GestorDispositivos() {
 		
@@ -35,7 +35,23 @@ public class GestorDispositivos {
 */	
 	/* Versión BD */
 	// Paso el array que me devuelve Gson a el HashMap que necesito 
-	public GestorDispositivos() {
+	public GestorDispositivos(List<DispositivoDisponible> listaDisponibles) {
+		
+		for(DispositivoDisponible disponible : listaDisponibles) {
+			this.dispositivosDisponibles.put(disponible.nombre(), disponible);
+		}
+		
+		// Si ya se cargó un nuevo dispositivo busco los nuevos dispositivos de la base de datos
+		
+		/*RepositorioAdmins repoAdmins = new RepositorioAdmins();
+		//System.out.println("El admin a buscar es: 0 " + FlagNuevoDispositivoDisponible.usuarioAdmin());
+		//Administrador admin = repoAdmin.recuperarPorUsuario(FlagNuevoDispositivoDisponible.usuarioAdmin());
+		repoAdmins.abrir();
+		Administrador admin = repoAdmins.recuperarPorUsuario("Jimmy");*/
+		
+		/*for(DispositivoDisponible disponible : admin.dispositivosDisponibles()) {
+			this.dispositivosDisponibles.put(disponible.nombre(), disponible);
+		}*/
 		
 		/*if (FlagNuevoDispositivoDisponible.nuevoDispositivoCargado()) {
 			// Si ya se cargó un nuevo dispositivo busco los nuevos dispositivos de la base de datos
@@ -60,10 +76,10 @@ public class GestorDispositivos {
 			for( int i = 0; i < dispositivosEstandares.length; i++ ) {
 				dispositivosDisponibles.put(dispositivosEstandares[i].nombre(), dispositivosEstandares[i]);
 			}
-		}*/
+		}
 		
 			// Si todavía no se cargo ningún nuevo dispositivo busco los dispositivos disponibles de los Json
-			DispositivoDisponible[] dispositivosInteligentes = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosInteligentes.json");
+			/*DispositivoDisponible[] dispositivosInteligentes = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosInteligentes.json");
 			
 			for( int i = 0; i < dispositivosInteligentes.length; i++ ) {
 				dispositivosDisponibles.put(dispositivosInteligentes[i].nombre(), dispositivosInteligentes[i]);
@@ -73,7 +89,7 @@ public class GestorDispositivos {
 			
 			for( int i = 0; i < dispositivosEstandares.length; i++ ) {
 				dispositivosDisponibles.put(dispositivosEstandares[i].nombre(), dispositivosEstandares[i]);
-			}
+			}*/
 
 	} // fin GestorDispositivos()
 	
@@ -85,6 +101,12 @@ public class GestorDispositivos {
 	// Retornamos una lista (a partir del map) con los dispositivos disponibles
 	public List<DispositivoDisponible> dispositivosDisponibles(){
 		return new ArrayList<DispositivoDisponible>(dispositivosDisponibles.values());
+	}
+	
+	public void setDispositivosDisponibles(List<DispositivoDisponible> dispositivosDisponibles) {
+		for(DispositivoDisponible disponible : dispositivosDisponibles) {
+			this.dispositivosDisponibles.put(disponible.nombre(), disponible);
+		}
 	}
 	
 }

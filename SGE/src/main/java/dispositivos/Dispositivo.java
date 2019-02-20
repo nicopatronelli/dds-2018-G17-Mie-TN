@@ -80,6 +80,8 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 	
 	abstract public double consumoUltimoPeriodo();
 	
+	abstract public double consumoEntre(String fechaInicial, String fechaFinal);
+	
 	// Para prototype
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
@@ -150,4 +152,5 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 	public void inicializarEstado(){}
 	
 	public void setFabricante(FabricanteDispositivoInteligente fabricante) {}
+	
 }

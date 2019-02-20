@@ -80,6 +80,10 @@ public class Application {
 		get("/dispositivo/alta", DispositivoController.serveAltaDispositivoPage);
 		post("/dispositivo/alta", DispositivoController.altaNuevoDispositivo);
 		
+		// Reportes (ADMIN)
+		get("/reporte/consumoTotalPorhogar", AdminController.servePageReporteConsumoTotalPorDomicilio);		
+		get("/reporte/consumoTotalPorhogarResultado", AdminController.generarReporteConsumoTotalPorDomicilio);
+		
 		/*** ESTOS NO ***/
 		
 		get("/domicilio/estado", DomiciliosController.serveEstadoDomicilioPage);

@@ -1,5 +1,7 @@
 package hibernate;
 
+import java.util.List;
+
 import usuarios.Administrador;
 import usuarios.Cliente;
 
@@ -38,6 +40,12 @@ public class RepositorioAdmins {
 	
 	public Administrador recuperarPorUsuario(String nombreUsuario) {
 		return pe.obtenerEntidadPorAtributo("usuario", nombreUsuario, Administrador.class);
+	}
+	
+	public Administrador recuperarAdminPrincipal() {
+		String query = "FROM Administrador"; // Me traigo todos los admins de la BD
+		List<Administrador> admins = pe.ejecutarQuery(query);
+		return admins.get(0); // Retorno el primer Admin (que considero como principal)
 	}
 
 }

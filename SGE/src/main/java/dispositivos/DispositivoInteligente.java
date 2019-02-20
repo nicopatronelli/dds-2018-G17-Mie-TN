@@ -26,9 +26,10 @@ import estadosDispositivoInteligente.EstadoAhorroDeEnergia;
 import estadosDispositivoInteligente.EstadoApagado;
 import estadosDispositivoInteligente.EstadoDispositivoInteligente;
 import estadosDispositivoInteligente.EstadoEncendido;
+import static commons.Matematica.*;
 
 @Entity
-@Table(name = "Dispositivos_Inteligentes")
+//@Table(name = "Dispositivos_Inteligentes")
 public class DispositivoInteligente extends Dispositivo {
 	
 	@Enumerated(EnumType.STRING) @Column(name = "estado_actual")
@@ -133,15 +134,16 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 	
 	// El consumo instantáneo nos lo provee el fabricante 
+	@Override
 	public double consumoInstantaneo() {
 		
 		switch(estadoActual) {
 		case ENCENDIDO : 
-			return this.consumoKwPorHora * 10 / 8;
+			return redondear(this.consumoKwPorHora * 10 / 8);
 		case APAGADO :
 			return 0;
 		case AHORRO_DE_ENERGIA :
-			return this.consumoKwPorHora * 4 / 8;
+			return redondear(this.consumoKwPorHora * 4 / 8);
 		default:
 			return 0;
 		}

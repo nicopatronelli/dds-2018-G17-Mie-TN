@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -36,9 +37,9 @@ public class Administrador extends Usuario {
 	private LocalDate fechaAlta;
 	
 	@Transient
-	private GestorDispositivos gestorDispositivos = new GestorDispositivos();
+	private GestorDispositivos gestorDispositivos;
 	
-	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER) @JoinColumn(name = "administrador_id")
 	private List<DispositivoDisponible> dispositivosDisponibles;
 	
 	@OneToMany(cascade = {CascadeType.ALL}) @JoinColumn(name = "administrador_id")
@@ -48,19 +49,19 @@ public class Administrador extends Usuario {
 	private List<Zona> zonas;
 	
 	public Administrador() {
-		// Constructor sin argumentos para Hibernate
+		// Constructor vacío para Hibernate
 	}
 	
 	public Administrador(String nombre) {
 		this.nombre = nombre;
-		this.cargarDispositivos();
+		//this.cargarDispositivos();
 	}
 	
  	public Administrador(String nombre, String apellido, String usuario, String password, String direccion,
-			LocalDate fechaAlta) {
+			LocalDate fechaAlta, List<DispositivoDisponible> listaDisponibles) {
  		super(nombre, apellido, usuario, password);
 		this.fechaAlta = fechaAlta;
-		this.cargarDispositivos();
+		this.dispositivosDisponibles = listaDisponibles;
 	}
 	
  	public <T> Dispositivo recuperarDispositivoPorId(Class <T> clase, Long dispositivoId) {
@@ -163,6 +164,15 @@ public class Administrador extends Usuario {
 
 	public List<Zona> getZonas() {
 		return zonas;
+	}
+	
+	public GestorDispositivos gestor() {
+		return gestorDispositivos;
+	}
+	
+	// Tenemos que inicializar el gestor de dispositivos con un mensaje porque Hibernate utiliza el constructor vacío
+	public void inicializarGestorDispositivos() {
+		this.gestorDispositivos = new GestorDispositivos(this.dispositivosDisponibles);
 	}
 	
 }

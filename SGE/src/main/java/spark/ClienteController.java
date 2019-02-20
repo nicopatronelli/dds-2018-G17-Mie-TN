@@ -18,6 +18,7 @@ import javax.servlet.MultipartConfigElement;
 
 import cargaDatosJson.CargaDatosJson;
 import dispositivos.Dispositivo;
+import hibernate.RepositorioAdmins;
 import hibernate.RepositorioClientes;
 import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
@@ -94,7 +95,11 @@ public class ClienteController {
         RepositorioClientes repoClientes = new RepositorioClientes();
         repoClientes.abrir();
         Cliente cliente = repoClientes.recuperarPorUsuario(obtenerUsuarioActual(request));
-        Administrador admin = new Administrador("Administrador temporal");
+        RepositorioAdmins repoAdmins = new RepositorioAdmins();
+        repoAdmins.abrir();
+        Administrador admin = repoAdmins.recuperarAdminPrincipal();
+        admin.inicializarGestorDispositivos();
+        
         // Obtenemos los dispositivos y los registramos en el domicilio principal del cliente
         for(int i = 0; i < dispositivosCargados.length; i++) {
         	if (dispositivosCargados[i].esInteligente()) {

@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import cargaDatosJson.CargaDatosJson;
+import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 
@@ -11,7 +13,9 @@ import static utils.ClienteUtil.crearClienteA;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static utils.AdministradorUtil.adminDePrueba;
 
@@ -24,6 +28,7 @@ import hibernate.RepositorioClientes;
 import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
 import usuarios.Cliente;
+import usuarios.DispositivoDisponible;
 
 public class LlenarBaseDatosTest {
 	
@@ -33,6 +38,28 @@ public class LlenarBaseDatosTest {
 	@Before 
 	public void init() throws CloneNotSupportedException {
 		
+		/***** INICIO - Admin *****/
+		// Cargamos los dispositivos disponibles desde los JSON 
+		Map<String, DispositivoDisponible> dispositivosDisponibles = new HashMap<String, DispositivoDisponible>();
+		DispositivoDisponible[] dispositivosInteligentes = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosInteligentes.json");
+		
+		for( int i = 0; i < dispositivosInteligentes.length; i++ ) {
+			dispositivosDisponibles.put(dispositivosInteligentes[i].nombre(), dispositivosInteligentes[i]);
+		}
+		
+		DispositivoDisponible[] dispositivosEstandares = CargaDatosJson.cargarDispositivosDisponibles("src/main/resources/DispositivosEstandares.json");
+		
+		for( int i = 0; i < dispositivosEstandares.length; i++ ) {
+			dispositivosDisponibles.put(dispositivosEstandares[i].nombre(), dispositivosEstandares[i]);
+		}
+		// En este punto, el map dispositivosDisponibles está cargado con los dispositivos disponibles y sus keys
+		
+		ArrayList<DispositivoDisponible> listaDisponibles = new ArrayList<DispositivoDisponible>(dispositivosDisponibles.values());
+		admin = new Administrador("Jim", "Beach", "Jimmy", "123", "FakeStreet 123", LocalDate.now(), listaDisponibles);
+		admin.inicializarGestorDispositivos();
+		
+		/***** FIN - Admin *****/
+		
 		// Domicilio 
 		Categoria categoriaR2 = Categoria.R2;
 		Posicion posicion = new Posicion(250, 350);
@@ -41,9 +68,6 @@ public class LlenarBaseDatosTest {
 		// Cliente
 		cliente = new Cliente("John", "Deacon", "DNI", 10512789, "Johnny", "123");
 		cliente.agregarDomicilio(domicilioPrincipal);
-		
-		// Admin
-		admin = new Administrador("Jim", "Beach", "Jimmy", "123", "FakeStreet 123", LocalDate.now());
 		
 		// Creamos un dispositivo inteligente 
 		DispositivoInteligente dispositivoInteligenteA = admin.obtenerDispositivoInteligente("LED 32 Inteligente", 
@@ -77,13 +101,6 @@ public class LlenarBaseDatosTest {
 		repoClientes.guardar(cliente);
 		repoClientes.cerrar();
 		repoAdmins.cerrar();
-		//repoClientes.cerrar();
-		//repoClientes.abrir();
-		//Cliente mismoCliente = repoClientes.recuperarPorId(1L);
-		//admin.asignarTransformador(mismoCliente);
-		//repoClientes.actualizar(mismoCliente);
-		//System.out.println("Los datos del cliente son " + mismoCliente.toString());
-		//repoClientes.borrar(mismoCliente);
 
 		Assert.assertTrue(true);
 	}

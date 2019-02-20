@@ -16,6 +16,7 @@
 		<!-- Inicio contenido de la página -->
 		<div class="container">
 			<h2>Dispositivos registrados</h2>
+            <br>    
                 <h4> Dispositivos Inteligentes </h4>
                     <!-- INICIO tabla de dispositivos inteligentes del cliente-->
                     <table class="table"> 
@@ -23,7 +24,8 @@
                             <tr> 
                                 <th>Id</th>
                                 <th>Dispositivo</th>
-                                <th>Consumo último mes (en kw)</th>                    
+                                <th>Consumo último mes (en kw)</th>  
+                                <th>Consumo instantáneo</th>
                                 <th>Estado</th>
                                 <th>Acciones disponibles</th>
                             </tr>
@@ -35,7 +37,8 @@
                                 <tr> 
                                     <td>$dispositivo.id()</td>
                                     <td>$dispositivo.nombre()</td>
-                                    <td>$dispositivo.consumoUltimoPeriodo()</td>  
+                                    <td>$dispositivo.consumoUltimoPeriodo()</td> 
+                                    <td>$dispositivo.consumoInstantaneo()</td>        
                                     #set($estado = $dispositivo.estado())                                    
                                     #if($estado == "AHORRO_DE_ENERGIA") 
                                     <td>AHORRO DE ENERGIA</td>
