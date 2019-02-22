@@ -55,7 +55,7 @@ public class ZonaTest {
 		cliente.registrarDispositivoInteligente(dispositivoInteligenteB, domicilio);
 		
 		admin.asignarTransformadores(clientes);
-		transformador = admin.getTransformadores().get(1);
+		transformador = admin.transformadores().get(1);
 		zona = admin.getZonas().get(0);
 		cliente.recomendacionHorasConsumo(domicilio);
 		System.out.println("El resultado del simplex es " + cliente.recomendacionHorasConsumo(domicilio)[1]);

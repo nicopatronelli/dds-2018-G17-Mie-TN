@@ -21,7 +21,7 @@ public class PruebaTransformadores {
 		
 		// Cargamos los transformadores activos que nos envia el ENRE en un json y los distribuimos en sus respectivas zonas
 		admin.cargarTransformadores("src/test/resources/data/json/Transformadores.json"); 
-		cantidadTransformadores = admin.getTransformadores().size();
+		cantidadTransformadores = admin.transformadores().size();
 		// Los persistimos en la base de datos 
 		//admin.guardar();
 	}

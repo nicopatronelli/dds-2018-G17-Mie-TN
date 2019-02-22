@@ -87,12 +87,6 @@ public abstract class Dispositivo extends PersistEntity<Dispositivo> implements 
 		return super.clone();
 	}
 	
-/*	// Para Hibernate
-	public void iniciarEntityManager() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SGE");
-		this.manager = emf.createEntityManager();
-	}*/
-
 	// GETTERS Y SETTERS  
 	
 	public int getUsoMensualMinimoEnHoras() {

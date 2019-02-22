@@ -15,7 +15,7 @@
 		<!-- Inicio contenido de la página -->
 		<div class="container">
 		  <h2>Alta de nuevo dispositivo</h2>
-			<form action="/dispositivo/alta" method="post" id="altaDispForm"> 
+			<form action="/dispositivo/alta" method="post"> 
 				<div class="form-group">
 				  <label for="nombre">Nombre:</label>
 				  <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre del nuevo dispositivo" name="nombre">
@@ -35,19 +35,19 @@
 				<div class="form-group">
 					<label for="bajoConsumo">Es bajo consumo:</label>
 						<label class="radio-inline">
-							<input type="radio" name="bajoConsumo">Si
+							<input type="radio" name="bajoConsumo" checked="checked" value="esBajoConsumo">Si
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="bajoConsumo">No
+							<input type="radio" name="bajoConsumo" value="noEsBajoConsumo">No
 						</label>
 				</div>
-				<div>
+				<div class="form-group">
 					<label for="esIntel">Es inteligente:</label>
 						<label class="radio-inline">
-							<input type="radio" name="esIntel">Si
+							<input type="radio" name="esIntel" checked="checked" value="esInteligente">Si
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="esIntel">No
+							<input type="radio" name="esIntel" value="noEsInteligente">No
 						</label>
 				</div>
 				<br/>

@@ -18,13 +18,15 @@ import com.google.gson.annotations.SerializedName;
 
 import domicilio.DomicilioServicio;
 import hibernate.PersistEntity;
+import static commons.Fecha.*;
+import static commons.Matematica.*;
 
 @Entity
 @Table(name = "Transformadores_activos")
 public class Transformador extends PersistEntity<Transformador> {
 	
 	@Id @Column(name = "id_transformador")
-	private int id;
+	private Long id;
 	
 	private double latitud;
 	
@@ -57,10 +59,26 @@ public class Transformador extends PersistEntity<Transformador> {
 	}
 	
 	public double energiaConsumida() {
-		return this.domicilios.stream().mapToDouble(domicilio->domicilio.consumoInteligenteDomicilio()).sum();
+		return domicilios.stream().mapToDouble(domicilio->domicilio.consumoInteligenteDomicilio()).sum();
+	}
+	
+	public double consumoEnPeriodo(String fechaDesde, String fechaHasta) {
+		return domicilios.stream().mapToDouble(domicilio->domicilio.consumoEnPeriodo(fechaDesde, fechaHasta)).sum();
+	}
+	
+	public double consumoPromedioEntre(String fechaDesde, String fechaHasta) {
+		return redondear(consumoEnPeriodo(fechaDesde, fechaHasta) / diasEntreFechas(fechaDesde, fechaHasta));
+	}
+	
+	public int cantidadDomiciliosAsignados() {
+		return domicilios.size();
 	}
 	
 	// GETTERS Y SETTERS
+	
+	public Long id() {
+		return id;
+	}
 	
 	public double getLatitud() {
 		return latitud;
@@ -69,7 +87,11 @@ public class Transformador extends PersistEntity<Transformador> {
 	public double getLongitud() {
 		return longitud;
 	}
-
+	
+	public String coordenadas() {
+		return "(" + latitud + ", " + longitud + ")";
+	}
+	
 	public int getZonaId() {
 		return zonaId;
 	}

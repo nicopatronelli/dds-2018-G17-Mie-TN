@@ -23,6 +23,7 @@ import hibernate.RepositorioClientes;
 import mocks.FabricanteSamsungMock;
 import usuarios.Administrador;
 import usuarios.Cliente;
+import geoposicionamiento.Transformador;
 
 public class AdminController {
 	
@@ -53,9 +54,30 @@ public class AdminController {
         return ViewUtil.render(request, model, "/velocity/reporte_consumo_total_por_hogar.html");
     };
     
+	public static Route servePageReporteConsumoPromedioPorTransformador = (Request request, Response response) ->{
+    	Map<String, Object> model = new HashMap<>();
+    	model.put("reporteGenerado", false);
+    	//request.session().attribute("currentUser", obtenerUsuarioActual(request));
+        return ViewUtil.render(request, model, "/velocity/reporte_consumo_promedio_por_transformador.html");
+	};
+	
+    public static Route generarReporteConsumoPromedioPorTransformador = (Request request, Response response) -> {
+    	
+    	RepositorioAdmins repoAdmins = new RepositorioAdmins();
+    	repoAdmins.abrir();
+    	Administrador admin = repoAdmins.recuperarPorUsuario(obtenerUsuarioActual(request));
 
+    	String fechaDesde = obtenerFechaDesde(request);
+    	String fechaHasta = obtenerFechaHasta(request);
+    	
+    	Map<String, Object> model = new HashMap<>();
+    	model.put("transformadores", admin.transformadores());
+    	model.put("fechaDesde", fechaDesde);
+    	model.put("fechaHasta", fechaHasta);
+    	model.put("reporteGenerado", true);
+    	//request.session().attribute("currentUser", obtenerUsuarioActual(request));
+    	
+        return ViewUtil.render(request, model, "/velocity/reporte_consumo_promedio_por_transformador.html");
+    };
     
-
-    
-
 }

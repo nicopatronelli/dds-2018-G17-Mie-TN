@@ -55,17 +55,13 @@ public class DispositivoController {
     	DispositivoDisponible nuevoDisponible = new DispositivoDisponible(
     			obtenerNombreDispositivo(request), Double.parseDouble(obtenerConsumoKwh(request)), 
     			Integer.parseInt(obtenerUsoMinimo(request)), Integer.parseInt(obtenerUsoMaximo(request)),
-    			Boolean.parseBoolean(obtenerEsBajoConsumo(request)), Boolean.parseBoolean(obtenerEsInteligente(request)));
+    			obtenerEsBajoConsumo(request), obtenerEsInteligente(request));
     	
     	admin.agregarDispositivoDisponible(nuevoDisponible);
     	repoAdmins.actualizar(admin);
     	
     	Map<String, Object> model = new HashMap<>();
     	model.put("dispositivoCargado", true);
-    	
-    	// Marcamos a true el flag de que se cargó un nuevo dispositivo disponible para instanciar 
-    	//FlagNuevoDispositivoDisponible.setFlagTrue();
-    	//FlagNuevoDispositivoDisponible.setUsuarioAdmin(obtenerUsuarioActual(request));
     	
         return ViewUtil.render(request, model, "/velocity/alta_dispositivo.html");
     };

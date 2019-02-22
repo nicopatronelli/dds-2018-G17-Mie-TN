@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import actuadores.ActuadorEncender;
 import dispositivos.Dispositivo;
+import hibernate.RepositorioAdmins;
 import mocks.FabricanteSamsungMock;
 import mocks.ReglaTemperaturaMayor20Grados;
 import mocks.SensorDeTemperatura;
@@ -23,7 +24,10 @@ public class SensorReglaActuadorDispositivoInteligenteTest {
 	@Before
 	public void init() throws CloneNotSupportedException {
 		
-		admin = new Administrador("Pepito");
+		RepositorioAdmins repoAdmins = new RepositorioAdmins();
+		repoAdmins.abrir();
+		Administrador admin = repoAdmins.recuperarAdminPrincipal();
+		admin.inicializarGestorDispositivos();
 		// El aire inicia apagado 
 		aireInteligente = admin.obtenerDispositivoInteligente("Aire 2200 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-CP3284X"));

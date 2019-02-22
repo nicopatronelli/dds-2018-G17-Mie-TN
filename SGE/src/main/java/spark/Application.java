@@ -38,11 +38,6 @@ public class Application {
         staticFiles.externalLocation("upload");
 		port(8080);
 		
-		// Creamos un directorio donde guardar los archivos que se carguen externamente
-        //File uploadDir = new File("upload");
-        //uploadDir.mkdir(); // create the upload directory if it doesn't exist
-        //staticFiles.externalLocation("upload");
-		
 		// Pantalla de inicio (elección de tipo de usuario: cliente o administrador)
 		get("/index", LoginController.serveIndexPage);
 		
@@ -84,6 +79,12 @@ public class Application {
 		get("/reporte/consumoTotalPorhogar", AdminController.servePageReporteConsumoTotalPorDomicilio);		
 		get("/reporte/consumoTotalPorhogarResultado", AdminController.generarReporteConsumoTotalPorDomicilio);
 		
+		get("/reporte/consumoPromedioPorTransformador", AdminController.servePageReporteConsumoPromedioPorTransformador);		
+		get("/reporte/consumoPromedioPorTransformadorResultado", AdminController.generarReporteConsumoPromedioPorTransformador);
+		
+		// Página no encontrada (Not found)
+        //get("*",                     ViewUtil.notFound);
+		
 		/*** ESTOS NO ***/
 		
 		get("/domicilio/estado", DomiciliosController.serveEstadoDomicilioPage);
@@ -94,9 +95,6 @@ public class Application {
 		
 		get("/mapa", DomiciliosController.serveMapaPage);
 		
-        //get("/login", (req, res) -> new ModelAndView(model, "/velocity/login.hbs"), new VelocityTemplateEngine());
-        //req.queryParams("username");
-		//post("/login", (req, res) -> new ModelAndView(model, "/velocity/login.hbs"), new VelocityTemplateEngine());
 	}
 	
 }

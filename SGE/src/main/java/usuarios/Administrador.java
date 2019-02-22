@@ -54,7 +54,6 @@ public class Administrador extends Usuario {
 	
 	public Administrador(String nombre) {
 		this.nombre = nombre;
-		//this.cargarDispositivos();
 	}
 	
  	public Administrador(String nombre, String apellido, String usuario, String password, String direccion,
@@ -158,7 +157,7 @@ public class Administrador extends Usuario {
 	
 	// GETTERS Y SETTERS 
 
-	public List<Transformador> getTransformadores() {
+	public List<Transformador> transformadores() {
 		return transformadores;
 	}
 

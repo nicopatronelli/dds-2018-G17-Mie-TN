@@ -28,14 +28,23 @@ public class RequestUtil {
     
     public static String obtenerUsoMaximo(Request request) {
     	return request.queryParams("usomax"); 
+
     }
     
-    public static String obtenerEsBajoConsumo(Request request) {
-    	return request.queryParams("bajoConsumo"); 
+    public static boolean obtenerEsBajoConsumo(Request request) {
+    	String radioButtonValue = request.queryParams("bajoConsumo"); 
+    	if (radioButtonValue.equals("esBajoConsumo"))
+    		return true;
+    	else 
+    		return false;
     }
     
-    public static String obtenerEsInteligente(Request request) {
-    	return request.queryParams("esIntel"); 
+    public static boolean obtenerEsInteligente(Request request) {
+    	String radioButtonValue = request.queryParams("esIntel"); 
+    	if (radioButtonValue.equals("esInteligente"))
+    		return true;
+    	else 
+    		return false;
     }
     
     public static String obtenerFechaDesde(Request request) {
