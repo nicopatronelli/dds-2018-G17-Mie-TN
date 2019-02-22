@@ -44,8 +44,9 @@
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	    attribution: ''}).addTo(mapa);
         
-        var transformadorA = L.marker([$transformador.latitud(),$transformador.longitud()]).addTo(mapa).bindPopup("$transformador.consumoInstantaneo()");
-
+        #foreach($transformador in $transformadores)
+            var transformadorA = L.marker([$transformador.latitud(),$transformador.longitud()]).addTo(mapa).bindPopup("$transformador.consumoInstantaneo()");
+        #end
 	});
     <!-- FIN Mapa -->
 	

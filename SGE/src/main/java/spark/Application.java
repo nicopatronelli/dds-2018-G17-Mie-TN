@@ -90,13 +90,7 @@ public class Application {
 		
 		// Página no encontrada (Not found)
         get("*", UtilController.serveNotFoundPage);
-		
-		/*** ESTOS NO ***/
-		
-		get("/domicilio/estado", DomiciliosController.serveEstadoDomicilioPage);
-		
-		get("/consumo/periodo", DomiciliosController.serveConsumoPeriodoPage);
-		
+        
 	}
 	
 }
