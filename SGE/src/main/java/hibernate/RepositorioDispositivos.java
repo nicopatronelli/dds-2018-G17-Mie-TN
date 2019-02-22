@@ -52,9 +52,4 @@ public class RepositorioDispositivos {
 		return recuperarPorIdBase(Long.parseLong(idDispositivo));
 	}
 	
-
-	
-	/*public Cliente recuperarPorUsuario(String nombreUsuario) {
-		return pe.obtenerEntidadPorAtributo("usuario", nombreUsuario, Cliente.class);
-	}*/
 }

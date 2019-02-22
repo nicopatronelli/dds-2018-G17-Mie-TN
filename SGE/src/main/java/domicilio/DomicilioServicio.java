@@ -107,7 +107,7 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	}
 	
 	// Solo considero a los dispositivos inteligentes porque los estándares no pueden darme su consumo instantáneo 
-	public double consumoInteligenteDomicilio() {
+	public double consumoInstantaneo() {
 		return this.dispositivosInteligentes().stream().mapToDouble(dispositivo->dispositivo.consumoInstantaneo()).sum();
 	}
 	
@@ -138,8 +138,8 @@ public class DomicilioServicio extends PersistEntity<DomicilioServicio>{
 	
 	// Método auxiliar
 	private double distanciaEntreDomicilioTransformador(Transformador unTransformador) {
-		return Math.sqrt(Math.pow(this.getPosicion().latitud() - unTransformador.getLatitud(), 2) 
-				+ Math.pow(this.getPosicion().longitud() - unTransformador.getLongitud(), 2));
+		return Math.sqrt(Math.pow(this.getPosicion().latitud() - unTransformador.latitud(), 2) 
+				+ Math.pow(this.getPosicion().longitud() - unTransformador.longitud(), 2));
 	}
 
 	// GETTERS Y SETTERS 

@@ -1,13 +1,16 @@
 package spark;
 
 import static spark.RequestUtil.obtenerParamUsuario;
+import static spark.RequestUtil.obtenerUsuarioActual;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import hibernate.RepositorioAdmins;
 import hibernate.RepositorioClientes;
+import usuarios.Administrador;
 
 public class DomiciliosController {
 	
@@ -33,11 +36,6 @@ public class DomiciliosController {
     public static Route serveConsumoPeriodoPage = (Request request, Response response) -> {
     	Map<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, "/velocity/consumo_periodo.html");
-    };
-    
-    public static Route serveMapaPage = (Request request, Response response) -> {
-    	Map<String, Object> model = new HashMap<>();
-        return ViewUtil.render(request, model, "/velocity/mapa.html");
     };
     
 }

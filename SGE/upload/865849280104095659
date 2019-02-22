@@ -1,0 +1,29 @@
+[
+	{
+		"nombreGenerico" : "TV 21 Estandar",
+		"consumoKwPorHora" : 0.075,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false,
+		"esInteligente" : false,
+        "horasUsoDiarias" : 1
+	},
+    {
+		"nombreGenerico" : "Aire 3500 Inteligente",
+		"consumoKwPorHora" : 1.613,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false,
+		"esInteligente" : true,
+		"horasUsoDiarias" :0
+	},
+    {
+		"nombreGenerico" : "Lavarropas auto 5kg Inteligente",
+		"consumoKwPorHora" : 0.175,
+		"usoMensualMinimoEnHoras" : 6, 
+		"usoMensualMaximoEnHoras" : 30,
+		"esBajoConsumo" : true,
+		"esInteligente" : true,
+		"horasUsoDiarias" : 0
+	}
+]

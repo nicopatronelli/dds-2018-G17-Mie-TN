@@ -86,10 +86,10 @@ public class Application {
 		get("/reporte/consumoPromedioPorTransformadorResultado", AdminController.generarReporteConsumoPromedioPorTransformador);
 		
 		// Mapa público (acceso libre sin necesidad de loguearse)
-		get("/mapa", DomiciliosController.serveMapaPage);
+		get("/mapa", AdminController.serveMapaPage);
 		
 		// Página no encontrada (Not found)
-        //get("*",                     ViewUtil.notFound);
+        get("*", UtilController.serveNotFoundPage);
 		
 		/*** ESTOS NO ***/
 		

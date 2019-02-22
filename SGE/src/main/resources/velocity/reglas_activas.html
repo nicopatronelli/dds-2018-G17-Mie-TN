@@ -16,12 +16,22 @@
 		<!-- Inicio contenido de la página -->
 		<div class="container">
 			<h2>Reglas activas</h2>
-            <br>
-            <ul>
-            #foreach($regla in $reglasActivas)
-                <li>$regla</li>
-            #end
-            </ul>
+            <!-- INICIO tabla de reglas activas del cliente-->
+            <table class="table"> 
+                <thead> <!-- Encabezado de la tabla -->
+                    <tr> 
+                        <th>Descripción</th>
+                    </tr>
+                </thead>           
+                <tbody>
+                    <tr>
+                        #foreach($regla in $reglasActivas)
+                        <td>$regla</td>
+                        #end
+                    </tr>
+                </tbody>
+                <!-- Filas de la tabla -->
+            </table>
         </div>
 		<!-- Fin contenido de la página -->
 		

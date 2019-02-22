@@ -67,7 +67,7 @@ public class LlenarBaseDatosTest {
 		
 		// Domicilio 
 		Categoria categoriaR2 = Categoria.R2;
-		Posicion posicion = new Posicion(250, 350);
+		Posicion posicion = new Posicion(-34.614810436, -58.450436775);
 		DomicilioServicio domicilioPrincipal = new DomicilioServicio("4232-4817", LocalDate.of(2018, 06, 12), categoriaR2, posicion);
 		
 		// Cliente

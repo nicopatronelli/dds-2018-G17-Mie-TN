@@ -58,8 +58,8 @@ public class Transformador extends PersistEntity<Transformador> {
 		domicilios.add(domicilio);      
 	}
 	
-	public double energiaConsumida() {
-		return domicilios.stream().mapToDouble(domicilio->domicilio.consumoInteligenteDomicilio()).sum();
+	public double consumoInstantaneo() {
+		return domicilios.stream().mapToDouble(domicilio->domicilio.consumoInstantaneo()).sum();
 	}
 	
 	public double consumoEnPeriodo(String fechaDesde, String fechaHasta) {
@@ -80,11 +80,11 @@ public class Transformador extends PersistEntity<Transformador> {
 		return id;
 	}
 	
-	public double getLatitud() {
+	public double latitud() {
 		return latitud;
 	}
 	
-	public double getLongitud() {
+	public double longitud() {
 		return longitud;
 	}
 	

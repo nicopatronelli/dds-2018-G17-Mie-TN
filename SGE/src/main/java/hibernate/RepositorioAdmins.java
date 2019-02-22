@@ -47,5 +47,5 @@ public class RepositorioAdmins {
 		List<Administrador> admins = pe.ejecutarQuery(query);
 		return admins.get(0); // Retorno el primer Admin (que considero como principal)
 	}
-
+	
 }

@@ -35,7 +35,7 @@ public class Zona {
 	}
 	
 	public double consumoTotal() {
-		return this.transformadores.stream().mapToDouble(transformador -> transformador.energiaConsumida()).sum();
+		return this.transformadores.stream().mapToDouble(transformador -> transformador.consumoInstantaneo()).sum();
 	}
 	
 	// GETTERS Y SETTERS

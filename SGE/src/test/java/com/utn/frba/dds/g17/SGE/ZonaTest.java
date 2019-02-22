@@ -64,7 +64,7 @@ public class ZonaTest {
 	
 	@Test
 	public void testTransformadorEnergiaConsumida() {
-		System.out.println("El consumo del traffo es :" + transformador.energiaConsumida());
+		System.out.println("El consumo del traffo es :" + transformador.consumoInstantaneo());
 		//Assert.assertEquals(transformador.energiaConsumida(), 0.6, 0.0001);
 	}
 	
