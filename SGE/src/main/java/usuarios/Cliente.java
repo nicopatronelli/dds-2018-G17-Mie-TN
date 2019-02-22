@@ -40,7 +40,7 @@ public class Cliente extends Usuario {
 	
 	private static final int BONUS_CONVERSION = 10; 
 
-	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER) @JoinColumn(name = "cliente_id")
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER) @JoinColumn(name = "id_cliente")
 	private List<DomicilioServicio> domicilios;
 
 	public Cliente() {

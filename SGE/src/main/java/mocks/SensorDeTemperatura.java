@@ -1,17 +1,24 @@
 package mocks;
 
+import javax.persistence.Entity;
+
 import sensores.SensorObservado;
 
+/*@Entity
 public class SensorDeTemperatura extends SensorObservado {
 	
+	public SensorDeTemperatura() {
+		// Constructor vacío para hibernate
+	}
+	
 	public SensorDeTemperatura(int temperaturaActual) {
-		super(temperaturaActual);
+		//super(temperaturaActual);
 	}
 
 	public void revisarTemperatura(int temperaturaAmbiente) {
 		
-		if (temperaturaAmbiente != this.magnitudMedida) {
-			this.magnitudMedida = temperaturaAmbiente;
+		if (temperaturaAmbiente != this.valorMagnitudMedida) {
+			this.valorMagnitudMedida = temperaturaAmbiente;
 			System.out.println("La temperatura ambiente cambio a " + temperaturaAmbiente);
 			super.notificarReglas();
 		}
@@ -19,11 +26,11 @@ public class SensorDeTemperatura extends SensorObservado {
 	} // fin revisarTemperatura()
 	
 	public double getTemperaturaActual() {
-		return magnitudMedida;
+		return valorMagnitudMedida;
 	}
 
 	public void setTemperaturaActual(int temperaturaActual) {
-		this.magnitudMedida = temperaturaActual;
+		this.valorMagnitudMedida = temperaturaActual;
 	}
 	
-}
+}*/

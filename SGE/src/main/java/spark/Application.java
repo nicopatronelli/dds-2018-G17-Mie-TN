@@ -64,13 +64,16 @@ public class Application {
 		get("/simplex/ejecutar", ClienteController.ejecutarSimplex);
 		get("/simplex/eficiente", ClienteController.hogarEficiente);
 		
-		// Listar hogares y consumos (ADMIN)
-		get("/admin/domicilios", DomiciliosController.serveDomiciliosPage);
-		
 		// Carga de archivo de dispositivos (CLIENTE)
 		get("/dispositivo/archivo", ClienteController.serveCargaArchivoDispositivosPage);
 		post("/dispositivo/archivo", ClienteController.cargarArchivoDispositivos);
+
+		// Listado de reglas activas (CLIENTE)
+		get("/reglas", ClienteController.serveReglasActivasPage);
 		
+		// Listar hogares y consumos (ADMIN)
+		get("/admin/domicilios", DomiciliosController.serveDomiciliosPage);
+
 		// Alta nuevo dispositivo (ADMIN)
 		get("/dispositivo/alta", DispositivoController.serveAltaDispositivoPage);
 		post("/dispositivo/alta", DispositivoController.altaNuevoDispositivo);
@@ -82,6 +85,9 @@ public class Application {
 		get("/reporte/consumoPromedioPorTransformador", AdminController.servePageReporteConsumoPromedioPorTransformador);		
 		get("/reporte/consumoPromedioPorTransformadorResultado", AdminController.generarReporteConsumoPromedioPorTransformador);
 		
+		// Mapa público (acceso libre sin necesidad de loguearse)
+		get("/mapa", DomiciliosController.serveMapaPage);
+		
 		// Página no encontrada (Not found)
         //get("*",                     ViewUtil.notFound);
 		
@@ -89,11 +95,7 @@ public class Application {
 		
 		get("/domicilio/estado", DomiciliosController.serveEstadoDomicilioPage);
 		
-
-
 		get("/consumo/periodo", DomiciliosController.serveConsumoPeriodoPage);
-		
-		get("/mapa", DomiciliosController.serveMapaPage);
 		
 	}
 	

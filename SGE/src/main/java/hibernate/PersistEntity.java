@@ -68,4 +68,8 @@ public class PersistEntity<T> {
 		return manager;
 	}
 	
+	public List<String> ejecutarQuerySqlNativo(String query) {	
+		return manager.createNativeQuery(query).getResultList();
+	}
+	
 } // FIN Clase PersistEntity

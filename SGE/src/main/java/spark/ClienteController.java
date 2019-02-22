@@ -117,6 +117,18 @@ public class ClienteController {
     	model.put("botonCargaPresionado", true);
     	model.put("cargaExitosa", true);
         return ViewUtil.render(request, model, "/velocity/carga_archivo_dispositivos.html");
-    	
     };  
+    
+    public static Route serveReglasActivasPage = (Request request, Response response) -> {
+
+    	RepositorioClientes repoClientes = new RepositorioClientes();
+    	repoClientes.abrir();
+    	ArrayList<String> reglas = (ArrayList<String>) repoClientes.reglasActivasPorUsuario(obtenerUsuarioActual(request));
+    	
+    	Map<String, Object> model = new HashMap<>();
+    	model.put("reglasActivas", reglas);
+    	
+        return ViewUtil.render(request, model, "/velocity/reglas_activas.html");
+    }; 
+
 }

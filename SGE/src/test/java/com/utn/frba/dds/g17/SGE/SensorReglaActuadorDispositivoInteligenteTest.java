@@ -7,8 +7,8 @@ import actuadores.ActuadorEncender;
 import dispositivos.Dispositivo;
 import hibernate.RepositorioAdmins;
 import mocks.FabricanteSamsungMock;
-import mocks.ReglaTemperaturaMayor20Grados;
-import mocks.SensorDeTemperatura;
+import reglas.ReglaTemperaturaMayorA20Grados;
+import sensores.SensorObservado;
 import usuarios.Administrador;
 
 import org.junit.Assert;
@@ -17,8 +17,8 @@ public class SensorReglaActuadorDispositivoInteligenteTest {
 	
 	Administrador admin;
 	Dispositivo aireInteligente;
-	SensorDeTemperatura sensor;
-	ReglaTemperaturaMayor20Grados regla;
+	SensorObservado sensor;
+	ReglaTemperaturaMayorA20Grados regla;
 	ActuadorEncender actuador;
 	
 	@Before
@@ -31,8 +31,8 @@ public class SensorReglaActuadorDispositivoInteligenteTest {
 		// El aire inicia apagado 
 		aireInteligente = admin.obtenerDispositivoInteligente("Aire 2200 Inteligente", 
 				new FabricanteSamsungMock("SAMSUNG-CP3284X"));
-		sensor = new SensorDeTemperatura(15); // Supongamos que la temperatura ambiente actual es de 15°C
-		regla = new ReglaTemperaturaMayor20Grados();
+		sensor = new SensorObservado("Temperatura", 15); // Supongamos que la temperatura ambiente actual es de 15°C
+		regla = new ReglaTemperaturaMayorA20Grados();
 		actuador = new ActuadorEncender(aireInteligente);
 		sensor.agregarRegla(regla);
 		regla.agregarActuador(actuador);
@@ -41,14 +41,14 @@ public class SensorReglaActuadorDispositivoInteligenteTest {
 	
 	@Test
 	public void testEncenderAireSiLaTemperaturaEsMayorA20() {
-		sensor.revisarTemperatura(25); // Ahora la temperatura ambiente aumento a 25°C => sensor notifica a sus observadores (regla)
+		sensor.nuevaMedicion(25); // Ahora la temperatura ambiente aumento a 25°C => sensor notifica a sus observadores (regla)
 		Assert.assertTrue(aireInteligente.estaEncendido());
 	}
 	
 	@Test 
 	public void testElAireSigueApagadoSiLaTemperaturaEsMenorOIgualA20() {
 		// Ahora la temperatura ambiente aumento a 18°C => sensor notifica a sus observadores (regla), pero como es menor a 20° no se dispara el actuador
-		sensor.revisarTemperatura(18); 
+		sensor.nuevaMedicion(18); 
 		Assert.assertTrue(aireInteligente.estaApagado());
 	}
 	

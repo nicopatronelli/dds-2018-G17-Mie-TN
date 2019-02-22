@@ -18,26 +18,27 @@ import javax.persistence.Table;
 import reglas.ReglaObservador;
 
 @Entity
-//@Table(name = "Sensores")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class SensorObservado {
+@Table(name = "sensores")
+public class SensorObservado {
 	
-	@Id @GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(name = "id_sensor")
+	@Id @GeneratedValue @Column(name = "id_sensor")
 	private Long id;
 	
-	@Column(name = "cantidad_mangitud_medida")
-	protected double magnitudMedida; // Cada sensor mide una unica magnitud física 
+	private String tipo; // Temperatura, humedad, presencia, etc... 
 	
-	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "sensor_id")
-	protected List<ReglaObservador> reglas; // El sensor tiene una lista de reglas
+	@Column(name = "valor_mangitud_medida")
+	private double valorMagnitudMedida; // Cada sensor mide una unica magnitud física 
+	
+	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "id_sensor")
+	private List<ReglaObservador> reglas; // El sensor tiene una lista de reglas
 	
 	public SensorObservado() {
 		// Constructor vacío para Hibernate
 	}
 	
-	protected SensorObservado(double magnitudMedida) {
-		this.magnitudMedida = magnitudMedida;
+	public SensorObservado(String tipo, double magnitudMedida) {
+		this.tipo = tipo;
+		this.valorMagnitudMedida = magnitudMedida;
 		this.reglas = new ArrayList<ReglaObservador>();
 	}
 	
@@ -50,7 +51,17 @@ public abstract class SensorObservado {
 	}
 	
 	public void notificarReglas() {
-		reglas.forEach(regla->regla.revisarRegla(magnitudMedida));
+		reglas.forEach(regla->regla.revisarRegla(valorMagnitudMedida));
 	}
+	
+	public void nuevaMedicion(double nuevaMedicion) {
+		
+		if (nuevaMedicion != this.valorMagnitudMedida) {
+			this.valorMagnitudMedida = nuevaMedicion;
+			System.out.println("La magnitud medida por el sensor " + id + " cambió al nuevo valor de : " + nuevaMedicion);
+			this.notificarReglas();
+		}
+		
+	} // fin revisarTemperatura()
 	
 }

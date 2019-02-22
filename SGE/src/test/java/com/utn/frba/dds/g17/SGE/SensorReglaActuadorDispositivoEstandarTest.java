@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import actuadores.ActuadorEncender;
 import dispositivos.Dispositivo;
-import mocks.ReglaTemperaturaMayor20Grados;
+import mocks.ReglaTemperaturaMayorA20Grados;
 import mocks.SensorDeTemperatura;
 import usuarios.Administrador;
 
@@ -16,7 +16,7 @@ public class SensorReglaActuadorDispositivoEstandarTest {
 	Administrador admin;
 	Dispositivo ventiladorEstandar;
 	SensorDeTemperatura sensor;
-	ReglaTemperaturaMayor20Grados regla;
+	ReglaTemperaturaMayorA20Grados regla;
 	ActuadorEncender actuador;
 	
 	/* Probamos el mismo caso que en el test SensorReglaActuadorDispositivoInteligenteTest pero 
@@ -32,7 +32,7 @@ public class SensorReglaActuadorDispositivoEstandarTest {
 		ventiladorEstandar = admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 2);
 		ventiladorEstandar.adaptarDispositivo(); // Adaptamos el dispositivo 
 		sensor = new SensorDeTemperatura(15); // Supongamos que la temperatura ambiente actual es de 15°C
-		regla = new ReglaTemperaturaMayor20Grados();
+		regla = new ReglaTemperaturaMayorA20Grados();
 		actuador = new ActuadorEncender(ventiladorEstandar);
 		sensor.agregarRegla(regla);
 		regla.agregarActuador(actuador);

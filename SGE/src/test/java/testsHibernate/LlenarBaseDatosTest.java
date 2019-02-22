@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import actuadores.ActuadorEncender;
 import cargaDatosJson.CargaDatosJson;
 import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
@@ -25,7 +26,10 @@ import domicilio.Posicion;
 import geoposicionamiento.Transformador;
 import hibernate.RepositorioAdmins;
 import hibernate.RepositorioClientes;
+import hibernate.RepositorioSensores;
 import mocks.FabricanteSamsungMock;
+import reglas.ReglaTemperaturaMayorA20Grados;
+import sensores.SensorObservado;
 import usuarios.Administrador;
 import usuarios.Cliente;
 import usuarios.DispositivoDisponible;
@@ -34,6 +38,7 @@ public class LlenarBaseDatosTest {
 	
 	private Administrador admin;
 	private Cliente cliente;
+	private SensorObservado sensorDeTemperatura;
 	
 	@Before 
 	public void init() throws CloneNotSupportedException {
@@ -81,6 +86,15 @@ public class LlenarBaseDatosTest {
 		domicilioPrincipal.registrarDispositivo(dispositivoInteligenteB);
 		dispositivoInteligenteB.encender();
 		
+		//
+		sensorDeTemperatura = new SensorObservado("Temperatura", 15);
+		//SensorDeTemperatura sensor = new SensorDeTemperatura(15); // Supongamos que la temperatura ambiente actual es de 15°C
+		ReglaTemperaturaMayorA20Grados regla = new ReglaTemperaturaMayorA20Grados();
+		ActuadorEncender actuador = new ActuadorEncender(dispositivoInteligenteB);
+		sensorDeTemperatura.agregarRegla(regla);
+		regla.agregarActuador(actuador);
+		//
+		
 		// Creamos un dispositivo estandar
 		DispositivoEstandar dispositivoEstandarA = admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 4);
 		domicilioPrincipal.registrarDispositivo(dispositivoEstandarA);
@@ -95,12 +109,16 @@ public class LlenarBaseDatosTest {
 	public void test() {
 		RepositorioAdmins repoAdmins = new RepositorioAdmins();
 		RepositorioClientes repoClientes = new RepositorioClientes();
+		RepositorioSensores repoSensores = new RepositorioSensores();
 		repoAdmins.abrir();
 		repoClientes.abrir();
+		repoSensores.abrir();
 		repoAdmins.guardar(admin);
 		repoClientes.guardar(cliente);
+		repoSensores.guardar(sensorDeTemperatura);
 		repoClientes.cerrar();
 		repoAdmins.cerrar();
+		repoSensores.cerrar();
 
 		Assert.assertTrue(true);
 	}

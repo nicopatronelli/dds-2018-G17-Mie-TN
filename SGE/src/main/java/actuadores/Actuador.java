@@ -16,14 +16,14 @@ import dispositivos.DispositivoInteligente;
 
 // Los actuadores son los comandos (patrón command) 
 @Entity
-//@Table(name = "Actuadores")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "actuadores")
 public abstract class Actuador {
 	
-	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id_actuador")
+	@Id @GeneratedValue @Column(name = "id_actuador")
 	protected Long id;
 	
-	@OneToOne @JoinColumn(name = "dispositivo_inteligente_id")
+	@OneToOne @JoinColumn(name = "id_dispositivo_inteligente")
 	protected Dispositivo dispositivoInteligente;
 	
 	public Actuador() {

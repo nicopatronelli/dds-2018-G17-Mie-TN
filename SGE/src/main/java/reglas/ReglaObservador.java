@@ -18,18 +18,24 @@ import javax.persistence.Table;
 import actuadores.Actuador;
 
 @Entity
-//@Table(name = "Reglas")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "reglas")
 public abstract class ReglaObservador {
 	
-	@Id @GeneratedValue(strategy = GenerationType.TABLE) @Column(name = "id_regla")
-	private Long id;
+	@Id @GeneratedValue @Column(name = "id_regla")
+	protected Long id;
 	
-	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "regla_id")
-	private List<Actuador> actuadores;
+	protected String descripcion;
 	
-	protected ReglaObservador(){
-		this.actuadores = new ArrayList<Actuador>();
+	@OneToMany(cascade = { CascadeType.ALL }) @JoinColumn(name = "id_regla")
+	protected List<Actuador> actuadores = new ArrayList<Actuador>();
+	
+	protected ReglaObservador() {
+		// Constructor vacío para Hibernate
+	}
+	
+	protected ReglaObservador(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 	public void agregarActuador(Actuador actuador) {

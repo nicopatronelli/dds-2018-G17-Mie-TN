@@ -1,11 +1,14 @@
-package mocks;
+package reglas;
+
+import javax.persistence.Entity;
 
 import reglas.ReglaObservador;
 
-public class ReglaTemperaturaMayor20Grados extends ReglaObservador {
-	
-	public ReglaTemperaturaMayor20Grados(){
-		super();
+@Entity
+public class ReglaTemperaturaMayorA20Grados extends ReglaObservador {
+		
+	public ReglaTemperaturaMayorA20Grados(){
+		super("Encender aire si la temperatura es mayor a 20C");
 	}
 
 	@Override
