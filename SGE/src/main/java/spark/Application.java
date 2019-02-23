@@ -24,20 +24,21 @@ import usuarios.Cliente;
 public class Application {
 	
 	// Para Heroku
-    /*static int getHerokuAssignedPort() {
+    static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
         return 8080; //return default port if heroku-port isn't set (i.e. on localhost)
-    }*/
+    }
 	
 	public static void main(String[] args) {
 		
 		staticFiles.location("/public");
         staticFiles.externalLocation("upload");
-		port(8080);
-		
+		//port(8080);
+        port(getHerokuAssignedPort());
+        
 		// Pantalla de inicio (elección de tipo de usuario: cliente o administrador)
 		get("/index", LoginController.serveIndexPage);
 		

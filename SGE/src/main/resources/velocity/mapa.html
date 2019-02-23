@@ -45,7 +45,7 @@
 	    attribution: ''}).addTo(mapa);
         
         #foreach($transformador in $transformadores)
-            var transformadorA = L.marker([$transformador.latitud(),$transformador.longitud()]).addTo(mapa).bindPopup("$transformador.consumoInstantaneo()");
+            var transformadorA = L.marker([$transformador.latitud(),$transformador.longitud()]).addTo(mapa).bindPopup("Id transformador: $transformador.id() <br> Consumo: $transformador.consumoInstantaneo()");
         #end
 	});
     <!-- FIN Mapa -->
