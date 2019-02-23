@@ -58,7 +58,7 @@ public class ZonaTest {
 		transformador = admin.transformadores().get(1);
 		zona = admin.getZonas().get(0);
 		cliente.recomendacionHorasConsumo(domicilio);
-		System.out.println("El resultado del simplex es " + cliente.recomendacionHorasConsumo(domicilio)[1]);
+		//System.out.println("El resultado del simplex es " + cliente.recomendacionHorasConsumo(domicilio)[1]);
 		
 	}
 	

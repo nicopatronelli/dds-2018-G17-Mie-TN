@@ -23,7 +23,7 @@ public class ConversionDispositivoPersistenciaTest {
 	@BeforeClass
 	public static void initialize() throws CloneNotSupportedException {
 		
-		admin = new Administrador("Jim", "Beach", "Jimmy", "Queen123", "FakeStreet 123", LocalDate.now());
+		admin = new Administrador("Jim", "Beach", "Jimmy", "Queen123", "FakeStreet 123", LocalDate.now(), null);
 		dispositivoEstandar = (DispositivoEstandar) admin.obtenerDispositivoEstandar("TV 33 Estandar", 4);
 		//dispositivoEstandar.guardar();
 

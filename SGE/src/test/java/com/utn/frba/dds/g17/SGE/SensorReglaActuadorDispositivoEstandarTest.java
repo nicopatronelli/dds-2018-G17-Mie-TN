@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import actuadores.ActuadorEncender;
 import dispositivos.Dispositivo;
-import mocks.ReglaTemperaturaMayorA20Grados;
-import mocks.SensorDeTemperatura;
+import reglas.ReglaTemperaturaMayorA20Grados;
+import sensores.SensorObservado;
 import usuarios.Administrador;
 
 import org.junit.Assert;
@@ -15,7 +15,7 @@ public class SensorReglaActuadorDispositivoEstandarTest {
 	
 	Administrador admin;
 	Dispositivo ventiladorEstandar;
-	SensorDeTemperatura sensor;
+	SensorObservado sensor;
 	ReglaTemperaturaMayorA20Grados regla;
 	ActuadorEncender actuador;
 	
@@ -31,7 +31,7 @@ public class SensorReglaActuadorDispositivoEstandarTest {
 		// El ventilador inicia apagado 
 		ventiladorEstandar = admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 2);
 		ventiladorEstandar.adaptarDispositivo(); // Adaptamos el dispositivo 
-		sensor = new SensorDeTemperatura(15); // Supongamos que la temperatura ambiente actual es de 15°C
+		sensor = new SensorObservado("Temperatura", 15); // Supongamos que la temperatura ambiente actual es de 15°C
 		regla = new ReglaTemperaturaMayorA20Grados();
 		actuador = new ActuadorEncender(ventiladorEstandar);
 		sensor.agregarRegla(regla);
@@ -41,14 +41,14 @@ public class SensorReglaActuadorDispositivoEstandarTest {
 	
 	@Test
 	public void testEncenderVentiladorSiLaTemperaturaEsMayorA20() {
-		sensor.revisarTemperatura(25); // Ahora la temperatura ambiente aumento a 25°C => sensor notifica a sus observadores (regla)
+		sensor.nuevaMedicion(25); // Ahora la temperatura ambiente aumento a 25°C => sensor notifica a sus observadores (regla)
 		Assert.assertTrue(ventiladorEstandar.estaEncendido());
 	}
 	
 	@Test 
 	public void testElVentiladorSigueApagadoSiLaTemperaturaEsMenorOIgualA20() {
 		// Ahora la temperatura ambiente aumento a 18°C => sensor notifica a sus observadores (regla), pero como es menor a 20° no se dispara el actuador
-		sensor.revisarTemperatura(18); 
+		sensor.nuevaMedicion(18); 
 		Assert.assertTrue(ventiladorEstandar.estaApagado());
 	}
 	

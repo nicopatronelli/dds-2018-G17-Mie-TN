@@ -1,0 +1,52 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `minutos_entre_fechas`(IN fecha_inicio DATETIME(6), IN fecha_final DATETIME(6), OUT resultado INT)
+BEGIN
+	SELECT TIMESTAMPDIFF(MINUTE, fecha_inicio, fecha_final) INTO resultado;
+END
+
+--------------------------------------------------------------------------------------
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `minutos_encendido`(OUT minutos_totales INT)
+BEGIN
+
+	-- Variables donde almacenamos lo que nos traemos del SELECT
+    DECLARE fecha_encendido_actual DATETIME(6);
+    DECLARE fecha_apagado_actual DATETIME(6);
+    DECLARE minutos_parciales INTEGER DEFAULT 0;
+    
+    -- Variable para controlar el fin del bucle
+    DECLARE fin INTEGER DEFAULT 0;
+    
+    -- Declaro el cursor
+    DECLARE cursor_estados CURSOR FOR
+		SELECT fecha_hora FROM estados_dispositivos_inteligentes;
+        
+	-- Condición de salida 
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;
+        
+	-- Inicializamos en 0 el parámetro de salida
+    SET minutos_totales = 0;
+        
+	-- Abro el cursor
+    OPEN cursor_estados;
+    loop_estados: LOOP -- Inicio el bucle
+		FETCH cursor_estados INTO fecha_encendido_actual;
+		FETCH cursor_estados INTO fecha_apagado_actual;
+        IF fin = 1 THEN -- Significa que me quede sin filas (llegue al final de la tabla), así que salgo
+			LEAVE loop_estados;
+		END IF;
+        
+		CALL minutos_entre_fechas(fecha_encendido_actual, fecha_apagado_actual, minutos_parciales);
+        SET minutos_totales = minutos_totales + minutos_parciales;
+	
+	END LOOP loop_estados; -- Cierro el bucle
+    
+    CLOSE cursor_estados;
+    
+END
+
+--------------------------------------------------------------------------------------
+
+CREATE PROCEDURE `procedure_prueba` (OUT resultado INTEGER)
+BEGIN
+	SELECT 1880 INTO resultado;
+END
