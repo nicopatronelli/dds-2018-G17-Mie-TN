@@ -1,5 +1,8 @@
 package spark;
 
+import static spark.util.LoginUtil.*;
+import static spark.util.RequestUtil.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import spark.util.ViewUtil;
 import usuarios.Administrador;
 import usuarios.Cliente;
-import static spark.RequestUtil.*;
-import static spark.LoginUtil.*;
 
 public class LoginController {
 	

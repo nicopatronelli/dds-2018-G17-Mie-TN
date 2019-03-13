@@ -1,4 +1,4 @@
-package hibernate;
+package hibernate.util;
 
 import java.sql.Date;
 import java.time.LocalDate;

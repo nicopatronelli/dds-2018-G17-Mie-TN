@@ -1,8 +1,5 @@
 package spark;
 
-import static spark.RequestUtil.*;
-import static spark.DispositivoUtil.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,16 +8,18 @@ import java.util.Map;
 import dispositivos.Dispositivo;
 import hibernate.RepositorioAdmins;
 import hibernate.RepositorioDispositivos;
+import spark.util.ViewUtil;
 import usuarios.Administrador;
 import usuarios.DispositivoDisponible;
 
 import static spark.FlagNuevoDispositivoDisponible.*;
+import static spark.util.DispositivoUtil.*;
+import static spark.util.RequestUtil.*;
 
 public class DispositivoController {
 	
     public static Route encender = (Request request, Response response) -> {
     
-    	//System.out.println("El usuario actual es " + obtenerUsuarioActual(request));
     	encenderDispositivo(request);
     	response.redirect("/cliente/dispositivos");
     	return null;

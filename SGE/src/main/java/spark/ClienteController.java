@@ -1,8 +1,8 @@
 package spark;
 
-import static spark.RequestUtil.*;
 import static spark.Spark.staticFiles;
-import static spark.ClienteUtil.*;
+import static spark.util.ClienteUtil.*;
+import static spark.util.RequestUtil.*;
 
 import java.io.File;
 import java.io.InputStream;
@@ -21,6 +21,7 @@ import dispositivos.Dispositivo;
 import hibernate.RepositorioAdmins;
 import hibernate.RepositorioClientes;
 import mocks.FabricanteSamsungMock;
+import spark.util.ViewUtil;
 import usuarios.Administrador;
 import usuarios.Cliente;
 
@@ -127,6 +128,9 @@ public class ClienteController {
     	
     	Map<String, Object> model = new HashMap<>();
     	model.put("reglasActivas", reglas);
+
+    	reglas.forEach(regla -> System.out.println("Las reglas son: " + regla.toString()));
+    	
     	
         return ViewUtil.render(request, model, "/velocity/reglas_activas.html");
     }; 

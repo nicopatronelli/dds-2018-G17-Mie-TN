@@ -1,9 +1,11 @@
-package spark;
+package spark.util;
 
 import java.util.Map;
 
 import org.apache.velocity.app.VelocityEngine;
 
+import spark.ModelAndView;
+import spark.Request;
 import spark.template.velocity.VelocityTemplateEngine;
 
 public class ViewUtil {

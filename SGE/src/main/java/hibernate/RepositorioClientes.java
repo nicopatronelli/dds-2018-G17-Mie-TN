@@ -67,6 +67,5 @@ public class RepositorioClientes {
 		Query query = pe.manager().createNativeQuery(querySQL);
 		query.setParameter("idCliente", idUsuario);
 		return query.getResultList();
-		//pe.ejecutarQuerySqlNativo(query);
 	}
 }

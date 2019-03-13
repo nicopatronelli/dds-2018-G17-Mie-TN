@@ -22,7 +22,6 @@
 					<th>Domicilio (Posicion)</th>
                     <th>Categoria</th>
 					<th>Consumo</th>
-                    <th>Cantidad dispositivos encendidos</th>
 				  </tr>
 				</thead>
 				<tbody> 
@@ -33,7 +32,7 @@
                     <td>$cliente.getNombreApellido()</td>
 					<td>$cliente.domicilioPrincipal().coordenadas()</td>
 					<td>$cliente.domicilioPrincipal().categoria()</td>
-					<td>$cliente.domicilioPrincipal().consumoInteligenteDomicilio()</td>
+					<td>$cliente.domicilioPrincipal().consumoInstantaneo()</td>
 				  </tr>
 				#end
 				</tbody>

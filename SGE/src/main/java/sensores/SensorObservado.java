@@ -58,7 +58,7 @@ public class SensorObservado {
 		
 		if (nuevaMedicion != this.valorMagnitudMedida) {
 			this.valorMagnitudMedida = nuevaMedicion;
-			System.out.println("La magnitud medida por el sensor " + id + " cambió al nuevo valor de : " + nuevaMedicion);
+			System.out.println("La magnitud medida por el sensor cambio al nuevo valor de : " + nuevaMedicion);
 			this.notificarReglas();
 		}
 		

@@ -1,4 +1,6 @@
-package spark;
+package spark.util;
+
+import spark.Request;
 
 public class RequestUtil {
 	

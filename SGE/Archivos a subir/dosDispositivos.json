@@ -1,0 +1,11 @@
+[
+	{
+		"nombreGenerico" : "TV 34 Estandar",
+		"consumoKwPorHora" : 0.075,
+		"usoMensualMinimoEnHoras" : 90, 
+		"usoMensualMaximoEnHoras" : 360,
+		"esBajoConsumo" : false,
+		"esInteligente" : false,
+        "horasUsoDiarias" : 1
+	}
+]

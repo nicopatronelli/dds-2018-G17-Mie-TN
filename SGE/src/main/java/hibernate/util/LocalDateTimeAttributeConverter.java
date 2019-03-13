@@ -1,4 +1,4 @@
-package hibernate;
+package hibernate.util;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

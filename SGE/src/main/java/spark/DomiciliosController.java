@@ -1,7 +1,7 @@
 package spark;
 
-import static spark.RequestUtil.obtenerParamUsuario;
-import static spark.RequestUtil.obtenerUsuarioActual;
+import static spark.util.RequestUtil.obtenerParamUsuario;
+import static spark.util.RequestUtil.obtenerUsuarioActual;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import java.util.Map;
 
 import hibernate.RepositorioAdmins;
 import hibernate.RepositorioClientes;
+import spark.util.ViewUtil;
 import usuarios.Administrador;
 
 public class DomiciliosController {

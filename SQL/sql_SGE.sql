@@ -19,7 +19,7 @@ DROP TABLE domicilios;
 DROP table zonas;
 DROP TABLE clientes;
 DROP TABLE administradores;
-DROP TABLE hibernate_sequences;
+DROP TABLE hibernate_sequence;
 
 /* Seleccionar tablas */ 
 SELECT * FROM administradores;
@@ -36,37 +36,25 @@ SELECT * FROM reglas;
 SELECT * FROM sensores;
 SELECT * FROM fabricantedispositivointeligente;
 
-------
-SELECT descripcion
-FROM reglas r
-	JOIN actuadores a 
-		ON r.id_regla = a.id_regla
-	JOIN dispositivos d
-		ON a.id_dispositivo_inteligente = d.id_dispositivo
-	JOIN domicilios dom 
-		ON d.id_domicilio = dom.id_domicilio
-	JOIN clientes c
-		ON dom.id_cliente = c.id_cliente
-WHERE c.usuario = "Johnny"
+--------------------------------------------------------
 
--------
+/* Insertamos algunas reglas más... */
+INSERT INTO  reglas(DTYPE, descripcion, id_sensor)
+VALUES ('ReglaTemperaturaMayorA20Grados', 'Apagar luz patio si la luminosidad desciende 20 cd', 1);
 
-INSERT INTO estados_dispositivos_inteligentes
-VALUES (6, 'ENCENDIDO', '2019-02-16', 2);
+UPDATE reglas
+SET id_regla = 1
+WHERE id_dispositivo = 2;
 
-SELECT * 
-FROM estados_dispositivos_inteligentes
-WHERE fechaHoraActual BETWEEN '2018-11-06' AND '2018-11-06';
-
-INSERT INTO estados_dispositivos_inteligentes(estado, fechaHora, dispositivo_inteligente_id) VALUES('APAGADO', null, 1);
 
 ---------------------------------------------------------
 
 /* 1. SIMULAMOS FUNCIONAMIENTO DE LOS DISPOSITIVOS */ 
 
--- Limpiamos sólo la tabla de estados 
+-- Limpiamos só-lo la tabla de estados 
+SET foreign_key_checks =0;
 TRUNCATE estados_dispositivos_inteligentes;
-
+SET foreign_key_checks =1;
 -- Cargamos estados de prueba para el dispositivo 1
 INSERT INTO estados_dispositivos_inteligentes(estado, fecha_hora, id_dispositivo_inteligente) 
 VALUES

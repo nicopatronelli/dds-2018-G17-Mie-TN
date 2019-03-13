@@ -1,8 +1,8 @@
 package spark;
 
-import static spark.RequestUtil.*;
 import static spark.Spark.staticFiles;
-import static spark.ClienteUtil.*;
+import static spark.util.ClienteUtil.*;
+import static spark.util.RequestUtil.*;
 
 import java.io.File;
 import java.io.InputStream;
@@ -22,6 +22,7 @@ import hibernate.RepositorioAdmins;
 import hibernate.RepositorioClientes;
 import hibernate.RepositorioTransformadores;
 import mocks.FabricanteSamsungMock;
+import spark.util.ViewUtil;
 import usuarios.Administrador;
 import usuarios.Cliente;
 import geoposicionamiento.Transformador;

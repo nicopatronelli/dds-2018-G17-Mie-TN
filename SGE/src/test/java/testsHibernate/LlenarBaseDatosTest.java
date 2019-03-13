@@ -10,15 +10,11 @@ import dispositivos.Dispositivo;
 import dispositivos.DispositivoEstandar;
 import dispositivos.DispositivoInteligente;
 
-import static utils.ClienteUtil.crearClienteA;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static utils.AdministradorUtil.adminDePrueba;
 
 import domicilio.Categoria;
 import domicilio.DomicilioServicio;
@@ -28,6 +24,8 @@ import hibernate.RepositorioAdmins;
 import hibernate.RepositorioClientes;
 import hibernate.RepositorioSensores;
 import mocks.FabricanteSamsungMock;
+import reglas.ReglaEncenderLuzDeNoche;
+import reglas.ReglaObservador;
 import reglas.ReglaTemperaturaMayorA20Grados;
 import sensores.SensorObservado;
 import usuarios.Administrador;
@@ -37,8 +35,8 @@ import usuarios.DispositivoDisponible;
 public class LlenarBaseDatosTest {
 	
 	private Administrador admin;
-	private Cliente cliente;
-	private SensorObservado sensorDeTemperatura;
+	private Cliente cliente, clienteB;
+	private SensorObservado sensorDeTemperatura, sensorDeLuminosidadB;
 	
 	@Before 
 	public void init() throws CloneNotSupportedException {
@@ -65,6 +63,8 @@ public class LlenarBaseDatosTest {
 		
 		/***** FIN - Admin *****/
 		
+		/*** INICIO - Cliente A ***/
+		
 		// Domicilio 
 		Categoria categoriaR2 = Categoria.R2;
 		Posicion posicion = new Posicion(-34.614810436, -58.450436775);
@@ -86,25 +86,70 @@ public class LlenarBaseDatosTest {
 		domicilioPrincipal.registrarDispositivo(dispositivoInteligenteB);
 		dispositivoInteligenteB.encender();
 		
-		//
+		// Creamos otro dispositivo inteligente 
+		DispositivoInteligente dispositivoInteligenteC = admin.obtenerDispositivoInteligente("Lampara 15W Inteligente", 
+				new FabricanteSamsungMock("SAMSUNG-JD256"));
+		domicilioPrincipal.registrarDispositivo(dispositivoInteligenteC);
+		
+		// Añadimos un sensor, regla y actuador
 		sensorDeTemperatura = new SensorObservado("Temperatura", 15);
-		//SensorDeTemperatura sensor = new SensorDeTemperatura(15); // Supongamos que la temperatura ambiente actual es de 15°C
-		ReglaTemperaturaMayorA20Grados regla = new ReglaTemperaturaMayorA20Grados();
+		ReglaObservador regla = new ReglaTemperaturaMayorA20Grados();
 		ActuadorEncender actuador = new ActuadorEncender(dispositivoInteligenteB);
 		sensorDeTemperatura.agregarRegla(regla);
 		regla.agregarActuador(actuador);
-		//
+		
+		// Añadimos un sensor, regla y actuador
+		sensorDeLuminosidadB = new SensorObservado("Luminosidad", 80);
+		ReglaObservador reglaB = new ReglaEncenderLuzDeNoche();
+		ActuadorEncender actuadorB = new ActuadorEncender(dispositivoInteligenteC);
+		sensorDeLuminosidadB.agregarRegla(reglaB);
+		regla.agregarActuador(actuadorB);
 		
 		// Creamos un dispositivo estandar
 		DispositivoEstandar dispositivoEstandarA = admin.obtenerDispositivoEstandar("Ventilador pie Estandar", 4);
 		domicilioPrincipal.registrarDispositivo(dispositivoEstandarA);
 		
+		/*** FIN - Cliente A ***/
+		
+		/*** INICIO - Cliente B ***/
+		
+		// Domicilio 
+		Categoria categoriaB = Categoria.R3;
+		Posicion posicionB = new Posicion(-34.632960275, -58.376549522);
+		DomicilioServicio domicilioPrincipalB = new DomicilioServicio("4585-1627", LocalDate.of(2018, 06, 12), categoriaB, posicionB);
+		
+		// Cliente
+		clienteB = new Cliente("Brian", "May", "DNI", 11252789, "BrianMay", "queen123");
+		clienteB.agregarDomicilio(domicilioPrincipalB);
+		
+		// Creamos un dispositivo inteligente 
+		DispositivoInteligente dispositivoInteligenteB1 = admin.obtenerDispositivoInteligente("Lampara 20W Inteligente", 
+				new FabricanteSamsungMock("SAMSUNG-JD256"));
+		domicilioPrincipalB.registrarDispositivo(dispositivoInteligenteB1);
+		dispositivoInteligenteB1.encender();
+		
+		// Creamos otro dispositivo inteligente 
+		DispositivoInteligente dispositivoInteligenteB2 = admin.obtenerDispositivoInteligente("Aire 3500 Inteligente", 
+				new FabricanteSamsungMock("SAMSUNG-JD256"));
+		domicilioPrincipalB.registrarDispositivo(dispositivoInteligenteB2);
+		
+		// Creamos un dispositivo estandar
+		DispositivoEstandar dispositivoEstandarB1 = admin.obtenerDispositivoEstandar("TV 29 Estandar", 2);
+		domicilioPrincipal.registrarDispositivo(dispositivoEstandarB1);
+		
+		/*** FIN - Cliente B ***/
+		
+		/*** INICIO - Zonas y transformadores ***/
 		// Zonas y transformadores
 		admin.cargarZonas("src/test/resources/data/json/Zonas.json");
 		admin.cargarTransformadores("src/test/resources/data/json/Transformadores.json"); 
 		admin.asignarTransformador(cliente);
-	}
+		admin.asignarTransformador(clienteB);
+		
+		/*** FIN - Zonas y transformadores ***/
 
+	}
+	
 	@Test
 	public void test() {
 		RepositorioAdmins repoAdmins = new RepositorioAdmins();
@@ -115,7 +160,9 @@ public class LlenarBaseDatosTest {
 		repoSensores.abrir();
 		repoAdmins.guardar(admin);
 		repoClientes.guardar(cliente);
+		repoClientes.guardar(clienteB);
 		repoSensores.guardar(sensorDeTemperatura);
+		repoSensores.guardar(sensorDeLuminosidadB);
 		repoClientes.cerrar();
 		repoAdmins.cerrar();
 		repoSensores.cerrar();

@@ -1,10 +1,11 @@
-package spark;
+package spark.util;
 
-import static spark.RequestUtil.obtenerParamPassword;
-import static spark.RequestUtil.obtenerParamUsuario;
+import static spark.util.RequestUtil.obtenerParamPassword;
+import static spark.util.RequestUtil.obtenerParamUsuario;
 
 import hibernate.RepositorioAdmins;
 import hibernate.RepositorioClientes;
+import spark.Request;
 import usuarios.Administrador;
 import usuarios.Cliente;
 import usuarios.Usuario;

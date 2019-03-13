@@ -1,7 +1,7 @@
 [
 	{
 		"id" : 1,
-		"nombre" : "Pueblo Paleta", 
+		"nombre" : "Almagro", 
 		"latitud" : 250,
 		"longitud" : 350, 
 		"radio" : 50,
@@ -9,7 +9,7 @@
 	},
 	{
 		"id" : 2,
-		"nombre" : "Springfield", 
+		"nombre" : "Caballito", 
 		"latitud" : 150,
 		"longitud" : 50, 
 		"radio" : 25,

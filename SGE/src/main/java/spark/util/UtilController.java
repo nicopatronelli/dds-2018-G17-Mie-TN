@@ -1,12 +1,15 @@
-package spark;
+package spark.util;
 
-import static spark.ClienteUtil.recuperarDispositivos;
-import static spark.RequestUtil.obtenerUsuarioActual;
+import static spark.util.ClienteUtil.recuperarDispositivos;
+import static spark.util.RequestUtil.obtenerUsuarioActual;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import hibernate.RepositorioClientes;
+import spark.Request;
+import spark.Response;
+import spark.Route;
 
 public class UtilController {
 	

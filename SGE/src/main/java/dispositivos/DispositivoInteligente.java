@@ -234,5 +234,5 @@ public class DispositivoInteligente extends Dispositivo {
 	public double consumoUltimoPeriodo() {
 		return consumoEntre("2018-12-01", "2018-12-31");
 	}
-	
+
 }

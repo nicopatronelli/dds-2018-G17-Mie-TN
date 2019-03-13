@@ -1,9 +1,10 @@
-package spark;
+package spark.util;
 
 import hibernate.RepositorioClientes;
+import spark.Request;
 import usuarios.Cliente;
 
-import static spark.RequestUtil.obtenerUsuarioActual;
+import static spark.util.RequestUtil.obtenerUsuarioActual;
 
 import java.util.List;
 
