@@ -1,5 +1,5 @@
 # dds-2018-G17-Mie-TN
-Integrantes: PATRONELLI Carlos Nicolas, RUBIÑO Matias Emanuel
+Integrantes: PATRONELLI Carlos Nicolas
 
 INSTRUCCIONES PARA CORRER TEST UNITARIOS CON MYSQL 
 
